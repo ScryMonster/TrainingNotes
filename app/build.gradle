@@ -1,0 +1,71 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+apply from: 'dependencies.gradle'
+
+android {
+    compileSdkVersion versions.compileSdkVersion
+    defaultConfig {
+        applicationId "com.example.darkfox.trainingnotes"
+        minSdkVersion versions.minSdkVersion
+        targetSdkVersion versions.targetSdkVersion
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation libs.supportDesign
+    implementation libs.constraintLayout
+    implementation libs.card
+    implementation libs.appCompat
+
+    implementation libs.coroutines
+
+    implementation libs.viewModel
+    implementation libs.livedata
+    implementation libs.lifecycle
+    kapt libs.accProcessor
+
+    implementation libs.koinAndroid
+    implementation libs.koinScopes
+    implementation libs.koinViewModel
+    implementation libs.koinKotlin
+    implementation libs.koinKotlinExt
+
+
+    implementation libs.glide
+    kapt libs.glideCompiler
+
+    implementation libs.retrofit
+    implementation libs.retrofitRX
+    implementation libs.retrofitGson
+    implementation libs.retrofitCoroutine
+    implementation libs.retrofitScalars
+    implementation libs.retrofitInterceptor
+    implementation libs.stetcho
+    implementation libs.stetchoOkHttp
+
+    implementation libs.lottie
+    implementation libs.joda
+
+
+
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test:runner:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+}
+
+kapt {
+    generateStubs = true
+}

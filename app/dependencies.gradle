@@ -1,0 +1,76 @@
+ext.versions = [
+        minSdkVersion          : 21,
+        targetSdkVersion       : 28,
+        compileSdkVersion      : 28,
+
+        supportDesignVersion   : '1.0.0-rc01',
+        percentVersion         : '25.3.1',
+        cardViewVersion        : '1.0.0',
+        constraintLayoutVersion: '2.0.0-alpha3',
+
+        coroutineVersion       : '1.0.1',
+
+        glideVersion           : '4.4.0',
+
+        jodaTime               : '2.9.9',
+
+        retrofit               : '2.3.0',
+        retrofitIntercaptor    : '3.8.0',
+        stechoVersion          : '1.4.2',
+
+        materialAnimation      : '1.1.0',
+        lottieAnimation        : '2.2.0',
+        swipeLayout            : '1.4.0',
+        exPandableRV           :'v1.0.0',
+        rulerView              : '1.1.0',
+
+        lifecycleVersion       :'2.0.0',
+        koinVersion            : '1.0.2'
+
+]
+
+ext.libs = [
+        supportDesign      : "com.google.android.material:material:$versions.supportDesignVersion",
+        constraintLayout   : "androidx.constraintlayout:constraintlayout:$versions.constraintLayoutVersion",
+        card               : "androidx.cardview:cardview:$versions.cardViewVersion",
+        appCompat          : "androidx.appcompat:appcompat:$versions.cardViewVersion",
+
+        //Kotlin
+        kotlin             : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+        coroutines         : "org.jetbrains.kotlinx:kotlinx-coroutines-android:$versions.coroutineVersion",
+
+        //AAC
+        viewModel          : "androidx.lifecycle:lifecycle-viewmodel:$versions.lifecycleVersion",
+        livedata           : "androidx.lifecycle:lifecycle-livedata:$versions.lifecycleVersion",
+        lifecycle          : "androidx.lifecycle:lifecycle-runtime:$versions.lifecycleVersion",
+        accProcessor       : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycleVersion",
+
+        //Koin
+        koinAndroid        : "org.koin:koin-android:$versions.koinVersion",
+        koinScopes         : "org.koin:koin-androidx-scope:$versions.koinVersion",
+        koinViewModel      : "org.koin:koin-androidx-viewmodel:$versions.koinVersion",
+        koinKotlin         : "org.koin:koin-core:$versions.koinVersion",
+        koinKotlinExt      : "org.koin:koin-core-ext:$versions.koinVersion",
+
+
+
+        //Glide
+        glide              : "com.github.bumptech.glide:glide:$versions.glideVersion",
+        glideCompiler      : "com.github.bumptech.glide:compiler:$versions.glideVersion",
+
+
+        //Retrofit
+        retrofit           : "com.squareup.retrofit2:retrofit:$versions.retrofit",
+        retrofitRX         : "com.squareup.retrofit2:adapter-rxjava2:$versions.retrofit",
+        retrofitGson       : "com.squareup.retrofit2:converter-gson:$versions.retrofit",
+        retrofitCoroutine         : "com.jakewharton.retrofit:retrofit2-kotlin-coroutines-experimental-adapter:1.0.0",
+        retrofitScalars    : "com.squareup.retrofit2:converter-scalars:$versions.retrofit",
+        retrofitInterceptor: "com.squareup.okhttp3:logging-interceptor:$versions.retrofitIntercaptor",
+        stetcho            : "com.facebook.stetho:stetho:1.5.0",
+        stetchoOkHttp            : "com.facebook.stetho:stetho-okhttp3:1.4.2",
+
+
+        //HelpLibs
+        lottie             : "com.airbnb.android:lottie:$versions.lottieAnimation",
+        joda               : "net.danlew:android.joda:$versions.jodaTime"
+]
