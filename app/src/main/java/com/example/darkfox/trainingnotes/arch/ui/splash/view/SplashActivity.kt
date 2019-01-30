@@ -1,20 +1,20 @@
 package com.example.darkfox.trainingnotes.arch.ui.splash.view
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.WindowManager
+import androidx.appcompat.app.AppCompatActivity
 import com.example.darkfox.trainingnotes.R
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes.*
+import com.example.darkfox.trainingnotes.utils.enums.KoinScopes.SPLASH
 import com.example.darkfox.trainingnotes.utils.extensions.showErrorInSnackBar
 import com.example.darkfox.trainingnotes.utils.extensions.showInfoInSnackBar
 import kotlinx.android.synthetic.main.activity_splash.*
-import org.koin.androidx.viewmodel.ext.koin.viewModel
 import org.koin.core.scope.Scope
-import org.koin.dsl.module.module
 
 class SplashActivity : AppCompatActivity(),ISplashView {
 
     private lateinit var session: Scope
+
+
 
 
 
