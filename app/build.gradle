@@ -39,6 +39,7 @@ dependencies {
     implementation libs.constraintLayout
     implementation libs.card
     implementation libs.appCompat
+    implementation libs.ktx
 
     implementation libs.coroutines
 

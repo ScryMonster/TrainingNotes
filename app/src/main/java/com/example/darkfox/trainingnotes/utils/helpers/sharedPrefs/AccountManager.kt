@@ -18,8 +18,6 @@ interface AccountManager {
 
     fun setAccountEmail(email: String)
 
-    fun setAccountPhoneNumber(phoneNumber: String)
-
     fun storeAccount(account: Account)
 
     fun restoreAccount(): Account?
