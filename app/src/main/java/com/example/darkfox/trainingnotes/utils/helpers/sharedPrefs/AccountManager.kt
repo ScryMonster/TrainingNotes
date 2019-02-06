@@ -4,15 +4,7 @@ import com.example.darkfox.trainingnotes.dto.Account
 
 interface AccountManager {
 
-    val isTokenExist: Boolean
-
     val isAccountExist: Boolean
-
-    fun storeToken(accessToken: String, refreshToken: String)
-
-    fun restoreAccessToken(): String?
-
-    fun restoreRefreshToken(): String
 
     fun setAccountUserName(firstName: String, lastName: String)
 

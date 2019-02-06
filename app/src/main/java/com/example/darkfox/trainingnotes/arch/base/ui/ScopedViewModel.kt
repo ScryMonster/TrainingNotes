@@ -7,7 +7,7 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancelChildren
 import kotlin.coroutines.CoroutineContext
 
-open class ScopedViewModel : ViewModel() {
+open class ScopedViewModel : BaseViewModel() {
     private val parentJob = SupervisorJob()
 
     protected val uiScope = CoroutineScope(Dispatchers.Main + parentJob)

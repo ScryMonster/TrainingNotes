@@ -6,11 +6,11 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Account(
-        private var id:Int,
-        private var email:String,
-        private var firstName:String,
-        private var lastName:String,
-        private var imageUrl:String
+         var id:Int,
+         var email:String,
+         var firstName:String,
+         var lastName:String,
+         var imageUrl:String
 ):Parcelable{
 
 

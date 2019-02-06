@@ -8,4 +8,9 @@
     <color name="colorCyanDark">#81b9bf</color>
     <color name="colorOrange100">#ffe0b2</color>
     <color name="lightBlue">#0198E1</color>
+
+
+    <color name="windows_blue">#ff3d95c6</color>
+    <color name="soft_green">#FF8ad183</color>
+    <color name="spring_green">#54FF9F</color>
 </resources>

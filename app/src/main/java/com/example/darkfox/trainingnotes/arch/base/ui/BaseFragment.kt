@@ -25,6 +25,8 @@ abstract class BaseFragment : Fragment(),IBaseView, IKoinView {
 
     protected lateinit var session:Scope
 
+    abstract fun registerListeners()
+
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =  container?.inflate(layoutId)
 

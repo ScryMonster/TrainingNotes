@@ -8,13 +8,17 @@
     android:layout_height="match_parent"
     tools:context=".arch.ui.splash.view.SplashActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <com.example.darkfox.trainingnotes.dto.custom.DoubleProgressView
+        android:id="@+id/splashRotateLoading"
+        style="@style/rotate_view"
+        android:visibility="gone"
+        app:anim_duration="@integer/default_anim_duration"
+        app:innerColor="@color/soft_green"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:outerColor="@color/windows_blue"
+        app:thickness="5dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

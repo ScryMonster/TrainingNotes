@@ -4,6 +4,10 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: 'dependencies.gradle'
 
+def TIMEOUT_SECONDS = 60
+
+
+
 android {
     compileSdkVersion versions.compileSdkVersion
     defaultConfig {
@@ -13,11 +17,18 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField "int","TIMEOUT_SECONDS","$TIMEOUT_SECONDS"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField "Boolean","needToLog","false"
+        }
+
+        debug{
+            buildConfigField "Boolean","needToLog","true"
+
         }
     }
 }
