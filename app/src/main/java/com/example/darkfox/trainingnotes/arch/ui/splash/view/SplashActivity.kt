@@ -11,6 +11,7 @@ import com.example.darkfox.trainingnotes.arch.ui.splash.viewmodel.SplashViewMode
 import com.example.darkfox.trainingnotes.dto.Account
 import com.example.darkfox.trainingnotes.dto.errors.UserNotExist
 import com.example.darkfox.trainingnotes.utils.enums.KoinScopes.SPLASH
+import com.example.darkfox.trainingnotes.utils.extensions.observe
 import com.example.darkfox.trainingnotes.utils.extensions.showErrorInSnackBar
 import com.example.darkfox.trainingnotes.utils.extensions.showInfoInSnackBar
 import com.example.darkfox.trainingnotes.utils.helpers.states.RequestState
@@ -18,11 +19,11 @@ import kotlinx.android.synthetic.main.activity_splash.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.scope.Scope
 
-class SplashActivity : AppCompatActivity(),ISplashView {
+class SplashActivity : AppCompatActivity(), ISplashView {
 
     private lateinit var session: Scope
 
-    private val splashViewModel:SplashViewModel by viewModel()
+    private val splashViewModel: SplashViewModel by viewModel()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,22 +39,24 @@ class SplashActivity : AppCompatActivity(),ISplashView {
         destroyKoinScope()
     }
 
-    fun registerListeners(){
-        splashViewModel.accountLiveData.observe(this, Observer<Account> {account->
+    fun registerListeners() {
+        splashViewModel.accountLiveData.observe(this) { account ->
             infoMessage("Account ${account.firstName} is exist")
-        })
+        }
 
-        splashViewModel.requestState.observe(this,Observer<RequestState>{state->
-            when(state){
+        splashViewModel.requestState.observe(this) { state ->
+            when (state) {
                 is RequestState.Loading_START -> showProgress(null)
                 is RequestState.Loading_STOP -> hideProgress(null)
-                is RequestState.Error-> {
-                    when(state.e){
-                        is UserNotExist-> infoMessage("Need to Log In")
+                is RequestState.Error -> {
+                    when (state.e) {
+                        is UserNotExist -> {
+                            infoMessage("Need to Log In")
+                        }
                     }
                 }
             }
-        })
+        }
     }
 
 

@@ -1,6 +1,5 @@
 package com.example.darkfox.trainingnotes.arch.ui.splash.viewmodel
 
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.darkfox.trainingnotes.arch.base.ui.ScopedViewModel
 import com.example.darkfox.trainingnotes.arch.domain.splash.ISplashInteractor
@@ -13,11 +12,15 @@ class SplashViewModel(private val interactor: ISplashInteractor) : ScopedViewMod
     val accountLiveData = MutableLiveData<Account>()
 
     fun loadUser() {
-        interactor.loadUser({ account ->
-            accountLiveData.value = account
-        }, { exception ->
-            requestState.value = RequestState.Error(exception)
-        })
+            withProgress {
+                interactor.loadUser({ account ->
+                    accountLiveData.value = account
+                }, { exception ->
+                    requestState.value = RequestState.Error(exception)
+                })
+            }
 
     }
+
+
 }
