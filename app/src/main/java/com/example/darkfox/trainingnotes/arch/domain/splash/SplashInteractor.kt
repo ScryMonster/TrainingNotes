@@ -8,14 +8,20 @@ class SplashInteractor(private val localRepository: LocalRepository<Account>) : 
 
     override fun loadUser(success: (Account) -> Unit, error: (Exception) -> Unit) {
         localRepository.restore(success){
-            if (it is UserNotExist) localRepository.save(Account(1,
-                    "nikitots@i.ua",
-                    "Nikita",
-                    "Totskiy",
-                    "ffff"),success = {
-                localRepository.restore(success, error)
-            })
+            checkError(it,success,error)
         }
     }
+
+    fun checkError(error: Exception,success: (Account) -> Unit, errorFun: (Exception) -> Unit){
+        if (error is UserNotExist) localRepository.save(mockAccount(),success = {
+            localRepository.restore(success, errorFun)
+        })
+    }
+
+    private fun mockAccount() = Account(1,
+            "nikitots@i.ua",
+            "Nikita",
+            "Totskiy",
+            "ffff")
 
 }
