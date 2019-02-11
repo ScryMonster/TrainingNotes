@@ -5,8 +5,10 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.core.content.edit
 import com.example.darkfox.trainingnotes.dto.Account
+import com.example.darkfox.trainingnotes.dto.ReadWriteStoragePermission
 import com.example.darkfox.trainingnotes.utils.extensions.*
 import com.example.darkfox.trainingnotes.utils.helpers.sharedPrefs.AccountManager
+import com.example.darkfox.trainingnotes.utils.helpers.sharedPrefs.PermissionsManager
 import com.example.darkfox.trainingnotes.utils.helpers.sharedPrefs.TokenManager
 import com.google.gson.Gson
 import org.koin.core.Koin
@@ -23,9 +25,12 @@ object BaseModule {
         single<TokenManager> {
             provideTokenManager(get(), get())
         }
+        single<PermissionsManager> {
+            providePermissionsManager(get(),get())
+        }
     }
 
-    private fun provideSharedPrefs(context:Context) = PreferenceManager.getDefaultSharedPreferences(context)
+    private fun provideSharedPrefs(context: Context) = PreferenceManager.getDefaultSharedPreferences(context)
 
     private fun provideAccountManager(sharedPreferences: SharedPreferences, gson: Gson) = object : AccountManager {
 
@@ -81,6 +86,26 @@ object BaseModule {
 
     }
 
+    private fun providePermissionsManager(sharedPreferences: SharedPreferences, gson: Gson) = object : PermissionsManager {
+        override val arePermissionsExist: Boolean
+            get() = sharedPreferences.contains(PERMISSIONS_KEY)
+
+
+        override fun storePermissions(permissions: ReadWriteStoragePermission) {
+            sharedPreferences.edit {
+                putString(PERMISSIONS_KEY,gson.toJson(permissions))
+            }
+        }
+
+        override fun restorePermissions(): ReadWriteStoragePermission {
+            val permissionsInString = sharedPreferences.getString(PERMISSIONS_KEY,null)
+            return if (permissionsInString != null) gson.fromJson<ReadWriteStoragePermission>(permissionsInString,ReadWriteStoragePermission::class.java)
+            else ReadWriteStoragePermission()
+        }
+
+    }
+
     private val ACCESS_TOKEN_PREF = "com.example.darkfox.trainingnotes::ACCESS_TOKEN_PREF"
     private val REFRESH_TOKEN_PREF = "com.example.darkfox.trainingnotes::REFRESH_TOKEN_PREF"
+    private val PERMISSIONS_KEY = "com.example.darkfox.trainingnotes::PERMISSIONS_KEY"
 }

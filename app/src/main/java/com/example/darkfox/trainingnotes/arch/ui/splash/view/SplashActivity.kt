@@ -17,13 +17,16 @@ import com.example.darkfox.trainingnotes.utils.extensions.showInfoInSnackBar
 import com.example.darkfox.trainingnotes.utils.helpers.states.RequestState
 import kotlinx.android.synthetic.main.activity_splash.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.Koin.Companion.logger
 import org.koin.core.scope.Scope
+import org.koin.standalone.inject
 
 class SplashActivity : AppCompatActivity(), ISplashView {
 
     private lateinit var session: Scope
 
     private val splashViewModel: SplashViewModel by viewModel()
+    private val tt: SplashViewModel by inject()
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,7 +34,7 @@ class SplashActivity : AppCompatActivity(), ISplashView {
         setContentView(R.layout.activity_splash)
         buildKoinScope()
         registerListeners()
-        splashViewModel.loadUser()
+        splashViewModel.attemptRequestPermissions(this)
     }
 
     override fun onDestroy() {
@@ -59,6 +62,11 @@ class SplashActivity : AppCompatActivity(), ISplashView {
         }
     }
 
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<out String>, grantResults: IntArray) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        splashViewModel.onRequestPermissionsResult(requestCode, grantResults)
+    }
+
 
     override fun showProgress(tag: Any?) {
         splashRotateLoading.visibility = VISIBLE
@@ -82,6 +90,7 @@ class SplashActivity : AppCompatActivity(), ISplashView {
 
     override fun errorMessage(message: Int) {
         message showErrorInSnackBar splash
+        logger.debug("lll")
     }
 
     override fun switchOffUiInteraction(flag: Boolean) {

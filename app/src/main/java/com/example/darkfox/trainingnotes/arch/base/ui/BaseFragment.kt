@@ -14,6 +14,7 @@ import com.example.darkfox.trainingnotes.arch.ui.splash.view.SplashActivity
 import com.example.darkfox.trainingnotes.utils.extensions.inflate
 import com.example.darkfox.trainingnotes.utils.extensions.showErrorInSnackBar
 import com.example.darkfox.trainingnotes.utils.extensions.showInfoInSnackBar
+import org.koin.androidx.scope.ext.android.bindScope
 import org.koin.core.scope.Scope
 
 abstract class BaseFragment : Fragment(),IBaseView, IKoinView {
@@ -21,11 +22,12 @@ abstract class BaseFragment : Fragment(),IBaseView, IKoinView {
     abstract val layoutId : Int
     @IdRes get
 
+    abstract fun registerListeners()
+
     protected val parent get() = activity as SplashActivity?
 
     protected lateinit var session:Scope
 
-    abstract fun registerListeners()
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? =  container?.inflate(layoutId)

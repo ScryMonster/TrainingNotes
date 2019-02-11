@@ -1,27 +1,35 @@
 package com.example.darkfox.trainingnotes.arch.domain.splash
 
+import android.app.Activity
 import com.example.darkfox.trainingnotes.arch.repository.local.LocalRepository
 import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.errors.UserNotExist
+import com.example.darkfox.trainingnotes.dto.ReadWriteStoragePermission
+import com.example.darkfox.trainingnotes.utils.permission.PermissionHelper
 
-class SplashInteractor(private val localRepository: LocalRepository<Account>) : ISplashInteractor {
+class SplashInteractor(private val localRepository: LocalRepository<Account>,
+                       private val permissionLocalRepository: LocalRepository<ReadWriteStoragePermission>,
+                       private val permissionHelper: PermissionHelper) : ISplashInteractor {
 
     override fun loadUser(success: (Account) -> Unit, error: (Exception) -> Unit) {
-        localRepository.restore(success){
-            checkError(it,success,error)
-        }
+        localRepository.restore(success, error)
     }
 
-    fun checkError(error: Exception,success: (Account) -> Unit, errorFun: (Exception) -> Unit){
-        if (error is UserNotExist) localRepository.save(mockAccount(),success = {
-            localRepository.restore(success, errorFun)
-        })
+    override fun savePermissions(permission: ReadWriteStoragePermission) {
+        permissionLocalRepository.save(permission)
     }
 
-    private fun mockAccount() = Account(1,
-            "nikitots@i.ua",
-            "Nikita",
-            "Totskiy",
-            "ffff")
+    override fun attemptRequestPermissions(activity: Activity, success: () -> Unit) {
+        permissionHelper
+                .addOnPermissionGrantedListener { write, read ->
+                    permissionLocalRepository.save(ReadWriteStoragePermission(write, read))
+                    success()
+                }
+                .attemptRequestPermissions(activity)
+    }
+
+    override fun onRequestPermissionsResult(requestCode: Int, grantResults: IntArray) {
+        permissionHelper.onRequestPermissionsResult(requestCode, grantResults)
+    }
+
 
 }
