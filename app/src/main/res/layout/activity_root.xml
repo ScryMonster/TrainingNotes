@@ -1,32 +1,40 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/splash"
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".arch.ui.splash.view.SplashActivity">
+    android:background="@drawable/root_bckground_gradient">
 
-    <View
-        android:id="@+id/progressBackgroundSplash"
+    <FrameLayout
+        android:id="@+id/fragment_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/black"
-        android:visibility="gone"
-        android:alpha="0.2"/>
-
-    <com.example.darkfox.trainingnotes.dto.custom.DoubleProgressView
-        android:id="@+id/splashRotateLoading"
-        style="@style/rotate_view"
-        android:visibility="gone"
-        app:anim_duration="@integer/default_anim_duration"
-        app:innerColor="@color/soft_green"
+        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/progressBackground"
+        android:visibility="gone"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@android:color/black"
+        android:alpha="0.2"/>
+
+    <com.example.darkfox.trainingnotes.dto.custom.DoubleProgressView
+        android:id="@+id/rootRotateLoading"
+        style="@style/rotate_view"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        app:anim_duration="@integer/default_anim_duration"
+        app:innerColor="@color/soft_green"
         app:outerColor="@color/windows_blue"
         app:thickness="5dp" />
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+
+</FrameLayout>

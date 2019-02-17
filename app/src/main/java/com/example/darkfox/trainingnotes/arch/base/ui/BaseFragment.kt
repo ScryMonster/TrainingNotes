@@ -8,6 +8,7 @@ import android.view.WindowManager
 import androidx.annotation.CallSuper
 import androidx.annotation.IdRes
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import com.example.darkfox.trainingnotes.application.TrainingNotes
 import com.example.darkfox.trainingnotes.arch.base.di.IKoinView
 import com.example.darkfox.trainingnotes.arch.ui.splash.view.SplashActivity
@@ -15,6 +16,7 @@ import com.example.darkfox.trainingnotes.utils.extensions.inflate
 import com.example.darkfox.trainingnotes.utils.extensions.showErrorInSnackBar
 import com.example.darkfox.trainingnotes.utils.extensions.showInfoInSnackBar
 import org.koin.androidx.scope.ext.android.bindScope
+import org.koin.androidx.scope.ext.android.createScope
 import org.koin.core.scope.Scope
 
 abstract class BaseFragment : Fragment(),IBaseView, IKoinView {
@@ -45,7 +47,7 @@ abstract class BaseFragment : Fragment(),IBaseView, IKoinView {
     }
 
     override fun buildKoinScope() {
-        session = koinContext.createScope(scopeName)
+        session = createScope(scopeName)
     }
 
     override fun destroyKoinScope() {
@@ -84,5 +86,4 @@ abstract class BaseFragment : Fragment(),IBaseView, IKoinView {
     override fun errorMessage(message: Int) {
         resources.getString(message).showErrorInSnackBar(view!!)
     }
-
 }

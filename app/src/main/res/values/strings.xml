@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">TrainingNotes</string>
+    <string name="breast_name">Breast</string>
+    <string name="legs_name">Legs</string>
+    <string name="back_name">Back</string>
+    <string name="shoulders_name">Shoulders</string>
+    <string name="biceps_name">Biceps</string>
+    <string name="triceps_name">Triceps</string>
+    <string name="abs_name">ABS</string>
 </resources>

@@ -1,5 +1,6 @@
 package com.example.darkfox.trainingnotes.arch.ui.splash.view
 
+import android.content.Intent
 import android.hardware.biometrics.BiometricPrompt
 import android.os.Bundle
 import android.view.View.GONE
@@ -8,6 +9,8 @@ import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.mocked.MockedSplashViewModel
+import com.example.darkfox.trainingnotes.arch.ui.root.view.RootActivity
+import com.example.darkfox.trainingnotes.dto.Account
 import com.example.darkfox.trainingnotes.dto.errors.UserNotExist
 import com.example.darkfox.trainingnotes.utils.enums.KoinScopes.SPLASH
 import com.example.darkfox.trainingnotes.utils.extensions.observe
@@ -15,6 +18,7 @@ import com.example.darkfox.trainingnotes.utils.extensions.showErrorInSnackBar
 import com.example.darkfox.trainingnotes.utils.extensions.showInfoInSnackBar
 import com.example.darkfox.trainingnotes.utils.helpers.states.RequestState
 import kotlinx.android.synthetic.main.activity_splash.*
+import org.koin.androidx.scope.ext.android.bindScope
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.Koin.Companion.logger
 import org.koin.core.scope.Scope
@@ -31,16 +35,14 @@ class SplashActivity : AppCompatActivity(), ISplashView {
         buildKoinScope()
         registerListeners()
         splashViewModel.attemptRequestPermissions(this)
+        bindScope(session)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        destroyKoinScope()
-    }
 
     fun registerListeners() {
         splashViewModel.accountData.observe(this) { account ->
-            infoMessage("Account ${account.firstName} is exist")
+            logger.info("Account ${account.firstName} is exist")
+            openRootActivity(account)
         }
 
         splashViewModel.requestState.observe(this) { state ->
@@ -63,13 +65,22 @@ class SplashActivity : AppCompatActivity(), ISplashView {
         splashViewModel.onRequestPermissionsResult(requestCode, grantResults)
     }
 
+    private fun openRootActivity(account: Account){
+        val intent = Intent().apply {
+            putExtra(RootActivity.acc_key,account)
+        }
+        startActivity(intent)
+    }
+
 
     override fun showProgress(tag: Any?) {
         splashRotateLoading.visibility = VISIBLE
+        progressBackgroundSplash.visibility = VISIBLE
     }
 
     override fun hideProgress(tag: Any?) {
         splashRotateLoading.visibility = GONE
+        progressBackgroundSplash.visibility = GONE
     }
 
     override fun infoMessage(message: String) {
@@ -86,7 +97,6 @@ class SplashActivity : AppCompatActivity(), ISplashView {
 
     override fun errorMessage(message: Int) {
         message showErrorInSnackBar splash
-        logger.debug("lll")
     }
 
     override fun switchOffUiInteraction(flag: Boolean) {

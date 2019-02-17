@@ -1,31 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    android:id="@+id/splash"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".arch.ui.splash.view.SplashActivity">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <TextView
+        android:id="@+id/testTV"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
 
     <View
-        android:id="@+id/progressBackgroundSplash"
+        android:id="@+id/progressBackground"
+        android:visibility="gone"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@android:color/black"
-        android:visibility="gone"
         android:alpha="0.2"/>
 
     <com.example.darkfox.trainingnotes.dto.custom.DoubleProgressView
-        android:id="@+id/splashRotateLoading"
+        android:id="@+id/rootRotateLoading"
         style="@style/rotate_view"
         android:visibility="gone"
+        android:layout_gravity="center"
         app:anim_duration="@integer/default_anim_duration"
         app:innerColor="@color/soft_green"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:outerColor="@color/windows_blue"
         app:thickness="5dp" />
 
