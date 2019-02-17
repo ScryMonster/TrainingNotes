@@ -10,7 +10,8 @@ data class Account(
          var email:String,
          var firstName:String,
          var lastName:String,
-         var imageUrl:String
+         var imageUrl:String,
+         var properties: UserProperties? = null
 ):Parcelable{
 
 

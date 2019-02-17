@@ -6,4 +6,9 @@
         <attr name="thickness" format="dimension"/>
         <attr name="anim_duration" format="integer"/>
     </declare-styleable>
+
+
+    <declare-styleable name="UserProperty">
+        <attr name="title" format="string"/>
+    </declare-styleable>
 </resources>

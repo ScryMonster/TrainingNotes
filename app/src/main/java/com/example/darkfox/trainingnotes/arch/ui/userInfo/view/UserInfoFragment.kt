@@ -16,7 +16,10 @@ class UserInfoFragment : BaseFragment(),IUserInfoView {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        testTV.text = arguments?.getParcelable<Account>(key_acc)?.firstName
+        val account = arguments?.getParcelable<Account>(key_acc)!!
+        userName.setValue(account.firstName)
+        userSurname.setValue(account.lastName)
+        userEmail.setValue(account.email)
     }
 
     override fun showProgress(tag: Any?) {
