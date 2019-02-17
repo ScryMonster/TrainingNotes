@@ -32,6 +32,7 @@ class UserInfoFragment : BaseFragment(),IUserInfoView {
     }
 
 
+
     companion object {
         private const val key_acc = "com.example.darkfox.trainingnotes.arch.ui.userInfo.view::ACCOUNT_KEY"
 

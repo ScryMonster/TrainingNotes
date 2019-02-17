@@ -66,7 +66,7 @@ class SplashActivity : AppCompatActivity(), ISplashView {
     }
 
     private fun openRootActivity(account: Account){
-        val intent = Intent().apply {
+        val intent = Intent(this,RootActivity::class.java).apply {
             putExtra(RootActivity.acc_key,account)
         }
         startActivity(intent)

@@ -63,8 +63,16 @@ class RootActivity : AppCompatActivity(), IRootView, IRootNavigation {
         }
     }
 
-    override fun onCreate(savedInstanceState: Bundle?, persistentState: PersistableBundle?) {
-        super.onCreate(savedInstanceState, persistentState)
+    override fun onBackPressed() {
+        super.onBackPressed()
+        if (supportFragmentManager.backStackEntryCount > 0){
+            navigator.back()
+        } else finish()
+    }
+
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_root)
         buildKoinScope()
         rootViewModel.attachNavigator(navigator)
