@@ -5,6 +5,7 @@ import com.example.darkfox.trainingnotes.BuildConfig
 import com.example.darkfox.trainingnotes.di.modules.BaseModule
 import com.example.darkfox.trainingnotes.di.modules.NetModule
 import com.example.darkfox.trainingnotes.di.modules.SplashModule
+import com.example.darkfox.trainingnotes.di.modules.SplashModuleMocked
 import org.koin.android.ext.android.startKoin
 import org.koin.android.logger.AndroidLogger
 import org.koin.dsl.module.module
@@ -16,7 +17,7 @@ class TrainingNotes : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin(this, listOf(NetModule.module,BaseModule.module,SplashModule.module),logger = AndroidLogger(BuildConfig.DEBUG))
+        startKoin(this, listOf(NetModule.module,BaseModule.module, SplashModuleMocked.module),logger = AndroidLogger(BuildConfig.DEBUG))
     }
 
 

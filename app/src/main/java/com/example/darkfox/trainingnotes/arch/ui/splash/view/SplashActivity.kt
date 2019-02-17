@@ -1,14 +1,13 @@
 package com.example.darkfox.trainingnotes.arch.ui.splash.view
 
+import android.hardware.biometrics.BiometricPrompt
 import android.os.Bundle
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import com.example.darkfox.trainingnotes.R
-import com.example.darkfox.trainingnotes.arch.ui.splash.viewmodel.SplashViewModel
-import com.example.darkfox.trainingnotes.dto.Account
+import com.example.darkfox.trainingnotes.arch.mocked.MockedSplashViewModel
 import com.example.darkfox.trainingnotes.dto.errors.UserNotExist
 import com.example.darkfox.trainingnotes.utils.enums.KoinScopes.SPLASH
 import com.example.darkfox.trainingnotes.utils.extensions.observe
@@ -19,15 +18,12 @@ import kotlinx.android.synthetic.main.activity_splash.*
 import org.koin.androidx.viewmodel.ext.android.viewModel
 import org.koin.core.Koin.Companion.logger
 import org.koin.core.scope.Scope
-import org.koin.standalone.inject
 
 class SplashActivity : AppCompatActivity(), ISplashView {
 
     private lateinit var session: Scope
 
-    private val splashViewModel: SplashViewModel by viewModel()
-    private val tt: SplashViewModel by inject()
-
+    private val splashViewModel: MockedSplashViewModel by viewModel()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,7 +39,7 @@ class SplashActivity : AppCompatActivity(), ISplashView {
     }
 
     fun registerListeners() {
-        splashViewModel.accountLiveData.observe(this) { account ->
+        splashViewModel.accountData.observe(this) { account ->
             infoMessage("Account ${account.firstName} is exist")
         }
 
@@ -115,5 +111,4 @@ class SplashActivity : AppCompatActivity(), ISplashView {
     override fun destroyKoinScope() {
         session.close()
     }
-
 }

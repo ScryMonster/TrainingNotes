@@ -10,7 +10,7 @@ interface ISplashInteractor {
 
     fun savePermissions(permission: ReadWriteStoragePermission)
 
-    fun attemptRequestPermissions(activity: Activity,success: () -> Unit)
+    fun attemptRequestPermissions(activity: Activity,success: () -> Unit = {})
 
     fun onRequestPermissionsResult(requestCode: Int,grantResults: IntArray)
 }

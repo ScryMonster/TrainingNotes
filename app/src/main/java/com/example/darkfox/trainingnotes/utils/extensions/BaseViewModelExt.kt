@@ -10,3 +10,9 @@ fun BaseViewModel.withProgress(code:()->Unit){
     code.invoke()
     stopProgress()
 }
+
+suspend fun BaseViewModel.withProgressAsync(code:suspend ()->Unit){
+    startProgress()
+    code.invoke()
+    stopProgress()
+}

@@ -1,7 +1,7 @@
-package com.example.darkfox.trainingnotes.arch.repository.local
+package com.example.darkfox.trainingnotes.arch.mocked
 
+import com.example.darkfox.trainingnotes.arch.repository.local.LocalRepository
 import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.errors.UserNotExist
 import com.example.darkfox.trainingnotes.utils.helpers.sharedPrefs.AccountManager
 
 class MockedAccountRepository(private val accountManager: AccountManager) : LocalRepository<Account> {
