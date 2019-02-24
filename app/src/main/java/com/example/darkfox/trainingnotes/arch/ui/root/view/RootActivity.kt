@@ -85,6 +85,8 @@ class RootActivity : AppCompatActivity(), IRootView, IRootNavigation {
         rootViewModel.detachNavigator()
     }
 
+
+    //region DI Scope Initialization
     override val scopeName: String = KoinScopes.ROOT_ACT.scopeName
 
     override fun buildKoinScope() {
@@ -94,7 +96,9 @@ class RootActivity : AppCompatActivity(), IRootView, IRootNavigation {
     override fun destroyKoinScope() {
         session.close()
     }
+    //endregion
 
+    //region Progress execution functions
     override fun showProgress(tag: Any?) {
         progressBackground.visibility = VISIBLE
         rootRotateLoading.visibility = VISIBLE
@@ -104,7 +108,9 @@ class RootActivity : AppCompatActivity(), IRootView, IRootNavigation {
         progressBackground.visibility = GONE
         rootRotateLoading.visibility = GONE
     }
+    //endregion
 
+    //region help functions
     override fun infoMessage(message: String) {
         message showInfoInSnackBar splash
     }
@@ -133,6 +139,7 @@ class RootActivity : AppCompatActivity(), IRootView, IRootNavigation {
         if (flag) blockScreen()
         else unBlockScreen()
     }
+    //endregion
 
     override fun openUserInfoFragment(account: Account) {
         rootViewModel.openUserInfoFragment(account)

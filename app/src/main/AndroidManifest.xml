@@ -23,6 +23,9 @@
         </activity>
 
         <activity android:name=".arch.ui.root.view.RootActivity"/>
+
+        <activity android:name=".arch.ui.signIn.view.SignInActivity"
+            android:noHistory="true"/>
     </application>
 
 </manifest>
