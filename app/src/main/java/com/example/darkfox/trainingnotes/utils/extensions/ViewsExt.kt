@@ -3,11 +3,15 @@ package com.example.darkfox.trainingnotes.utils.extensions
 import android.text.Html
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.IdRes
+import com.example.darkfox.trainingnotes.utils.enums.TimePatterns
 import com.google.android.material.tabs.TabLayout
+import java.text.SimpleDateFormat
+import java.util.*
 
 infix fun TextView.showTextViewsAsMandatory(text: String) {
     setText(Html.fromHtml("<html><body><font size=8></font> $text"))
@@ -49,6 +53,21 @@ fun TabLayout.addTabWithCondition(condition: Boolean, code: (TabLayout.Tab) -> U
                 }
     }
 }
+
+fun View.visible(){
+    visibility = VISIBLE
+}
+
+fun View.invisible(){
+    visibility = INVISIBLE
+}
+
+fun View.gone(){
+    visibility = GONE
+}
+
+infix fun Long.convertToTime(pattern: TimePatterns) = SimpleDateFormat(pattern.format).format(Date(this))
+
 
 
 

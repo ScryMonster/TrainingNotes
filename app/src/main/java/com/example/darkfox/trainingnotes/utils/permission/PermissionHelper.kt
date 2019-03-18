@@ -14,6 +14,10 @@ class PermissionHelper {
 
     }
 
+    private var defaultListener:()->Unit= {
+
+    }
+
 
     private val REQUIRED_PERMISSIONS = arrayListOf<String>(
             Manifest.permission.WRITE_EXTERNAL_STORAGE,
@@ -22,6 +26,10 @@ class PermissionHelper {
 
     fun addOnPermissionGrantedListener(onPermissionGranted:(Boolean,Boolean)->Unit) = apply{
         this.grantedListener = onPermissionGranted
+    }
+
+    fun addDefaultListener(listener:()->Unit) = apply {
+        defaultListener = listener
     }
 
     fun addPermissions(vararg permission: String) = apply {
@@ -63,8 +71,8 @@ class PermissionHelper {
         if (requestCode == REQUEST_CODE) {
             val results = getPairPermissionsResults(grantResults)
             grantedListener(results.first,results.second)
-
         }
+        defaultListener.invoke()
     }
 
     private fun getPairPermissionsResults(grantResults: IntArray):Pair<Boolean,Boolean>{

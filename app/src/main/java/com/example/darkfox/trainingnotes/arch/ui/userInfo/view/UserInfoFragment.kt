@@ -4,15 +4,23 @@ import android.os.Bundle
 import android.view.View
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.base.ui.BaseFragment
+import com.example.darkfox.trainingnotes.arch.base.ui.BaseProgressFragment
 import com.example.darkfox.trainingnotes.dto.Account
+import com.example.darkfox.trainingnotes.dto.custom.DoubleProgressView
 import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
+import com.example.darkfox.trainingnotes.utils.extensions.gone
+import com.example.darkfox.trainingnotes.utils.extensions.visible
 import kotlinx.android.synthetic.main.fragment_user_info.*
 
-class UserInfoFragment : BaseFragment(),IUserInfoView {
+class UserInfoFragment : BaseProgressFragment(),IUserInfoView {
 
     override val layoutId: Int = R.layout.fragment_user_info
 
     override val scopeName: String = KoinScopes.USER_INFO.scopeName
+
+    override val background = progressBackground
+
+    override val progressView = userInfoRotateLoading
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -22,15 +30,11 @@ class UserInfoFragment : BaseFragment(),IUserInfoView {
         userEmail.setValue(account.email)
     }
 
-    override fun showProgress(tag: Any?) {
-
-    }
-
-    override fun hideProgress(tag: Any?) {
-
-    }
-
     override fun registerListeners() {
+
+    }
+
+    private fun initRV(){
 
     }
 

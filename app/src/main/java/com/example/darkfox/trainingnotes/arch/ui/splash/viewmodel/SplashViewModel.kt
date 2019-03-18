@@ -18,13 +18,12 @@ class SplashViewModel(private val interactor: ISplashInteractor) : ScopedViewMod
 
     val accountData:LiveData<Account> = accountLiveData
 
-    init {
-        loadUser()
-    }
 
 
     fun attemptRequestPermissions(activity: Activity){
-        interactor.attemptRequestPermissions(activity)
+        interactor.attemptRequestPermissions(activity){
+            loadUser()
+        }
     }
 
     fun onRequestPermissionsResult(requestCode: Int,grantResults: IntArray){

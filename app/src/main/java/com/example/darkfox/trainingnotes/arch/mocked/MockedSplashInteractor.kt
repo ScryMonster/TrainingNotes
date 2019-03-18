@@ -26,6 +26,9 @@ class MockedSplashInteractor(private val localRepository: LocalRepository<Accoun
                 .addOnPermissionGrantedListener { write, read ->
                     permissionLocalRepository.save(ReadWriteStoragePermission(write, read))
                 }
+                .addDefaultListener {
+                    success()
+                }
                 .attemptRequestPermissions(activity)
     }
 

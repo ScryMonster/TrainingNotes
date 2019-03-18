@@ -16,8 +16,9 @@ class MockedSplashViewModel(private val interactor: ISplashMockedInteractor) : S
 
 
     fun attemptRequestPermissions(activity: Activity){
-        interactor.attemptRequestPermissions(activity)
-        loadUser()
+        interactor.attemptRequestPermissions(activity) {
+            loadUser()
+        }
     }
 
     fun onRequestPermissionsResult(requestCode: Int,grantResults: IntArray){
