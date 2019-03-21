@@ -13,4 +13,6 @@
     <color name="windows_blue">#ff3d95c6</color>
     <color name="soft_green">#FF8ad183</color>
     <color name="spring_green">#54FF9F</color>
+    <color name="light_grey">#D3D3D3</color>
+    <color name="indian_red">#CD5C5C</color>
 </resources>
