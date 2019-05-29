@@ -4,29 +4,55 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.core.content.edit
+import com.example.darkfox.trainingnotes.arch.repository.local.AccountRepository
+import com.example.darkfox.trainingnotes.arch.repository.local.LocalRepository
+import com.example.darkfox.trainingnotes.arch.repository.remote.BaseFirestoreRepository
+import com.example.darkfox.trainingnotes.arch.repository.remote.FirebaseAuthRepository
+import com.example.darkfox.trainingnotes.arch.repository.remote.IRemoteRepository
+import com.example.darkfox.trainingnotes.arch.repository.remote.UserFirestoreRepository
 import com.example.darkfox.trainingnotes.dto.Account
 import com.example.darkfox.trainingnotes.dto.ReadWriteStoragePermission
 import com.example.darkfox.trainingnotes.utils.extensions.*
 import com.example.darkfox.trainingnotes.utils.helpers.sharedPrefs.AccountManager
 import com.example.darkfox.trainingnotes.utils.helpers.sharedPrefs.PermissionsManager
 import com.example.darkfox.trainingnotes.utils.helpers.sharedPrefs.TokenManager
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.gson.Gson
 import org.koin.core.Koin
 import org.koin.core.KoinContext
 import org.koin.dsl.module.module
 
 object BaseModule {
+    val AccountRepositoryName = "AccountRepositoryName"
+
 
     val module = module {
         single { provideSharedPrefs(get()) }
         single<AccountManager> {
             provideAccountManager(get(), get())
         }
+        single<LocalRepository<Account>>(
+                name = AccountRepositoryName) {
+            AccountRepository(get())
+        }
         single<TokenManager> {
             provideTokenManager(get(), get())
         }
         single<PermissionsManager> {
-            providePermissionsManager(get(),get())
+            providePermissionsManager(get(), get())
+        }
+
+        single {
+            FirebaseAuthRepository(FirebaseAuth.getInstance())
+        }
+
+        single {
+            FirebaseFirestore.getInstance()
+        }
+
+        single<IRemoteRepository<Account>>{
+            UserFirestoreRepository(get())
         }
     }
 
@@ -39,8 +65,9 @@ object BaseModule {
 
         override fun setAccountUserName(firstName: String, lastName: String) {
             sharedPreferences.getAccount(gson)
-                    ?.editName(firstName)
-                    ?.editLastName(lastName)
+                    ?.let {
+                        it.copy(firstName = firstName, lastName = lastName)
+                    }
                     ?.transformToJson(gson)
                     ?.also { json ->
                         sharedPreferences.storeAccount(json)
@@ -49,7 +76,9 @@ object BaseModule {
 
         override fun setAccountEmail(email: String) {
             sharedPreferences.getAccount(gson)
-                    ?.editEmail(email)
+                    ?.let {
+                        it.copy(email = email)
+                    }
                     ?.transformToJson(gson)
                     ?.also { json ->
                         sharedPreferences.storeAccount(json)
@@ -93,13 +122,13 @@ object BaseModule {
 
         override fun storePermissions(permissions: ReadWriteStoragePermission) {
             sharedPreferences.edit {
-                putString(PERMISSIONS_KEY,gson.toJson(permissions))
+                putString(PERMISSIONS_KEY, gson.toJson(permissions))
             }
         }
 
         override fun restorePermissions(): ReadWriteStoragePermission {
-            val permissionsInString = sharedPreferences.getString(PERMISSIONS_KEY,null)
-            return if (permissionsInString != null) gson.fromJson<ReadWriteStoragePermission>(permissionsInString,ReadWriteStoragePermission::class.java)
+            val permissionsInString = sharedPreferences.getString(PERMISSIONS_KEY, null)
+            return if (permissionsInString != null) gson.fromJson<ReadWriteStoragePermission>(permissionsInString, ReadWriteStoragePermission::class.java)
             else ReadWriteStoragePermission()
         }
 

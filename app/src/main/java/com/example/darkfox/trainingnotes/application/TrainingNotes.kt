@@ -14,7 +14,16 @@ class TrainingNotes : Application() {
 
     override fun onCreate() {
         super.onCreate()
-        startKoin(this, listOf(NetModule.module,BaseModule.module, SplashModuleMocked.module,RootActModule.module),logger = AndroidLogger(BuildConfig.DEBUG))
+        startKoin(this,
+                listOf(NetModule.module,
+                        BaseModule.module,
+                        SplashModule.module,
+                        RootActModule.module,
+                        SignInModule.module,
+                        EnterUserModule.module,
+                        WizzardModule.module),
+                logger = AndroidLogger(BuildConfig.DEBUG)
+        )
     }
 
 

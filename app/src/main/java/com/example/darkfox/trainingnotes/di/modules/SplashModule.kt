@@ -3,9 +3,11 @@ package com.example.darkfox.trainingnotes.di.modules
 import com.example.darkfox.trainingnotes.arch.domain.splash.ISplashInteractor
 import com.example.darkfox.trainingnotes.arch.domain.splash.SplashInteractor
 import com.example.darkfox.trainingnotes.arch.repository.local.LocalRepository
-import com.example.darkfox.trainingnotes.arch.mocked.MockedAccountRepository
+import com.example.darkfox.trainingnotes.arch.repository.local.AccountRepository
 import com.example.darkfox.trainingnotes.arch.repository.local.PermissionsLocalRepository
-import com.example.darkfox.trainingnotes.arch.ui.splash.viewmodel.SplashViewModel
+import com.example.darkfox.trainingnotes.arch.ui.contracts.SplashContract
+import com.example.darkfox.trainingnotes.arch.ui.splash.SplashPresenter
+import com.example.darkfox.trainingnotes.di.modules.BaseModule.AccountRepositoryName
 import com.example.darkfox.trainingnotes.dto.Account
 import com.example.darkfox.trainingnotes.dto.ReadWriteStoragePermission
 import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
@@ -16,16 +18,16 @@ import org.koin.dsl.module.module
 object SplashModule {
     private val scopeName = KoinScopes.SPLASH.scopeName
     private val permissionsLocalRepositoryName = "PermissionsLocalRepositoryName"
-    private val mockedAccountRepositoryName = "MockedAccountRepositoryName"
+//    private val AccountRepositoryName = "AccountRepositoryName"
 
     val module = module {
         scope(scopeName) { PermissionHelper() }
 
-        scope<LocalRepository<Account>>(
-                scopeName,
-                name = mockedAccountRepositoryName) {
-            MockedAccountRepository(get())
-        }
+//        scope<LocalRepository<Account>>(
+//                scopeName,
+//                name = AccountRepositoryName) {
+//            AccountRepository(get())
+//        }
         scope<LocalRepository<ReadWriteStoragePermission>>(
                 scopeName,
                 name = permissionsLocalRepositoryName) {
@@ -34,12 +36,16 @@ object SplashModule {
 
         scope<ISplashInteractor>(scopeName) {
             SplashInteractor(
-                    get(name = mockedAccountRepositoryName),
+                    get(name = AccountRepositoryName),
                     get(name = permissionsLocalRepositoryName),
                     get()
             )
         }
-        viewModel { SplashViewModel(get()) }
+
+        scope<SplashContract.Presenter>(scopeName){
+            SplashPresenter(get())
+        }
+//        viewModel { SplashViewModel(get()) }
 //        scope<LocalRepository<Account>> (scopeName){ AccountRepository(get()) }
     }
 }

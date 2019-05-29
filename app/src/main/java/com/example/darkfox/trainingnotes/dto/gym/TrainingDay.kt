@@ -1,5 +1,5 @@
 package com.example.darkfox.trainingnotes.dto.gym
 
-class TrainingDay(val id:Long,
-                  var state:TrainingState = TrainingState.EMPTY,
-                  var training: Training? = null)
+class TrainingDay(override val id:Long,
+                  override var state:TrainingState = TrainingState.PLANNED,
+                  var training: Training? = null) : Day

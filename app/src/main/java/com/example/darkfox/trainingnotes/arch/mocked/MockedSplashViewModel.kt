@@ -15,14 +15,14 @@ class MockedSplashViewModel(private val interactor: ISplashMockedInteractor) : S
     val accountData: LiveData<Account> = accountLiveData
 
 
-    fun attemptRequestPermissions(activity: Activity){
+    fun attemptRequestPermissions(activity: Activity) {
         interactor.attemptRequestPermissions(activity) {
             loadUser()
         }
     }
 
-    fun onRequestPermissionsResult(requestCode: Int,grantResults: IntArray){
-        interactor.onRequestPermissionsResult(requestCode, grantResults)
+    fun onRequestPermissionsResult(requestCode: Int, grantResults: IntArray, permissions: Array<String>) {
+        interactor.onRequestPermissionsResult(requestCode, grantResults, permissions)
     }
 
     private fun loadUser() {

@@ -27,7 +27,10 @@ ext.versions = [
 
         lifecycleVersion       : '2.0.0',
         koinVersion            : '1.0.2',
-        ktxVersion             : '1.0.0'
+        ktxVersion             : '1.0.0',
+        roomVersion            : '2.1.0-alpha06',
+        navigationArgsVersion  : '1.0.0-alpha07',
+        navigationVersion      : '2.1.0-alpha04'
 
 ]
 
@@ -47,6 +50,9 @@ ext.libs = [
         livedata           : "androidx.lifecycle:lifecycle-livedata:$versions.lifecycleVersion",
         lifecycle          : "androidx.lifecycle:lifecycle-runtime:$versions.lifecycleVersion",
         accProcessor       : "androidx.lifecycle:lifecycle-compiler:$versions.lifecycleVersion",
+        room               : "androidx.room:room-runtime:$versions.roomVersion",
+        roomProcessor      : "androidx.room:room-compiler:$versions.roomVersion",
+        roomEXt            : "androidx.room:room-ktx:$versions.roomVersion",
 
         //Koin
         koinAndroid        : "org.koin:koin-android:$versions.koinVersion",
@@ -72,5 +78,14 @@ ext.libs = [
         //HelpLibs
         lottie             : "com.airbnb.android:lottie:$versions.lottieAnimation",
         joda               : "net.danlew:android.joda:$versions.jodaTime",
-        circleImg          :"de.hdodenhof:circleimageview:$versions.circleImgVersion"
+        circleImg          : "de.hdodenhof:circleimageview:$versions.circleImgVersion",
+
+        //Navigation
+        navSafeArg         : "android.arch.navigation:navigation-safe-args-gradle-plugin:$versions.navigationArgsVersion",
+        navigation         : "androidx.navigation:navigation-fragment:$versions.navigationVersion",
+        navigationUI       : "androidx.navigation:navigation-ui:$versions.navigationVersion",
+
+        navigationRuntimeKtx  : "androidx.navigation:navigation-runtime-ktx:$versions.navigationVersion",
+        navigationKtx         : "androidx.navigation:navigation-fragment-ktx:$versions.navigationVersion",
+        navigationUIKtx       : "androidx.navigation:navigation-ui-ktx:$versions.navigationVersion"
 ]

@@ -1,6 +1,8 @@
 package com.example.darkfox.trainingnotes.utils.extensions
 
+import android.text.Editable
 import android.text.Html
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
@@ -66,7 +68,27 @@ fun View.gone(){
     visibility = GONE
 }
 
+fun View.enable(){
+    isEnabled = true
+}
+
+fun View.disable(){
+    isEnabled = false
+}
+
 infix fun Long.convertToTime(pattern: TimePatterns) = SimpleDateFormat(pattern.format).format(Date(this))
+
+fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
+    this.addTextChangedListener(object: TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            afterTextChanged.invoke(s.toString())
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
+    })
+}
 
 
 

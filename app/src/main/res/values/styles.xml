@@ -1,16 +1,60 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.AppCompat.Light.DarkActionBar">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar">
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
     <style name="rotate_view">
         <item name="android:layout_height">80dp</item>
         <item name="android:layout_width">80dp</item>
     </style>
+
+    <style name="BorderedCard" parent="Widget.MaterialComponents.CardView">
+        <item name="cardCornerRadius">16dp</item>
+        <item name="android:layout_margin">44dp</item>
+        <item name="android:backgroundTint">@color/colorPrimary</item>
+    </style>
+
+    <style name="ProgressShadow">
+        <item name="android:background">@android:color/black</item>
+        <item name="android:alpha">0.2</item>
+    </style>
+
+    <style name="rotate_view.ProgressView">
+        <item name="innerColor">@color/soft_green</item>
+        <item name="outerColor">@color/windows_blue</item>
+        <item name="thickness">@dimen/progress_thickness</item>
+        <item name="anim_duration">5000</item>
+    </style>
+
+    <style name="Widget.MaterialComponents.TextInputLayout.OutlinedBox.LogInOutlineBox">
+        <item name="android:minWidth">200dp</item>
+        <item name="android:maxWidth">300dp</item>
+    </style>
+
+    <style name="BlueHintText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/windows_blue</item>
+    </style>
+
+    <style name="ErrorHintText" parent="TextAppearance.AppCompat.Small">
+        <item name="android:textColor">@color/indian_red</item>
+    </style>
+
+    <style name="MainActionButtons">
+        <item name="android:background">@color/colorPrimaryDark</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
+    <style name="CustomToolbar">
+        <item name="android:background">@color/colorPrimary</item>
+        <item name="android:titleTextColor">@android:color/white</item>
+    </style>
+
 
 </resources>

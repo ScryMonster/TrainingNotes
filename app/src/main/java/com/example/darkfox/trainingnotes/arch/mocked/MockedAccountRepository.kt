@@ -14,7 +14,7 @@ class MockedAccountRepository(private val accountManager: AccountManager) : Loca
         if (acc != null) success(acc) else success(mockAccount())
     }
 
-    private fun mockAccount() = Account(1,
+    private fun mockAccount() = Account("rogm",
             "nikitots@i.ua",
             "Nikita",
             "Totskiy",

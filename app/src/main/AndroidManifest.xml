@@ -12,7 +12,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".arch.ui.splash.view.SplashActivity"
+        <activity android:name=".arch.ui.splash.SplashActivity"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar"
             android:noHistory="true">
             <intent-filter>
@@ -22,9 +22,8 @@
             </intent-filter>
         </activity>
 
-        <activity android:name=".arch.ui.root.view.RootActivity"/>
-
-        <activity android:name=".arch.ui.signIn.view.SignInActivity"
+        <activity android:name=".arch.ui.root.RootActivity"/>
+        <activity android:name=".arch.ui.enterAccount.activity.EnterUserActivity"
             android:noHistory="true"/>
     </application>
 

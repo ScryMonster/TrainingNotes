@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "397832496707",
+    "firebase_url": "https://training-notes-1551041639509.firebaseio.com",
+    "project_id": "training-notes-1551041639509",
+    "storage_bucket": "training-notes-1551041639509.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:397832496707:android:c14a68a9267126ee",
+        "android_client_info": {
+          "package_name": "com.example.darkfox.trainingnotes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "397832496707-kpkr8rp7rooliv6rofsojtu67l8fs84i.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.darkfox.trainingnotes",
+            "certificate_hash": "1454abeb58ca64212062d7517ba639ea7049c59b"
+          }
+        },
+        {
+          "client_id": "397832496707-hk92of0gp9tl5d52vtf90s7fsv8p7cu5.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCEpzCFMI9Ab5tyQZAecEbtfGup-hkBaaw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "397832496707-hk92of0gp9tl5d52vtf90s7fsv8p7cu5.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

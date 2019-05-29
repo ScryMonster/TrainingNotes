@@ -3,9 +3,11 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 apply plugin: 'kotlin-kapt'
 apply from: 'dependencies.gradle'
+apply plugin: 'com.google.gms.google-services'
+apply plugin: 'androidx.navigation.safeargs'
+
 
 def TIMEOUT_SECONDS = 60
-
 
 
 android {
@@ -17,17 +19,17 @@ android {
         versionCode 1
         versionName "1.0"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-        buildConfigField "int","TIMEOUT_SECONDS","$TIMEOUT_SECONDS"
+        buildConfigField "int", "TIMEOUT_SECONDS", "$TIMEOUT_SECONDS"
     }
     buildTypes {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-            buildConfigField "Boolean","needToLog","false"
+            buildConfigField "Boolean", "needToLog", "false"
         }
 
-        debug{
-            buildConfigField "Boolean","needToLog","true"
+        debug {
+            buildConfigField "Boolean", "needToLog", "true"
 
         }
     }
@@ -45,19 +47,31 @@ androidExtensions {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'com.google.android.material:material:1.0.0-beta01'
     implementation libs.supportDesign
     implementation libs.constraintLayout
     implementation libs.card
     implementation libs.appCompat
     implementation libs.ktx
+    implementation libs.navigation
+    implementation libs.navigationUI
+    implementation libs.navigationRuntimeKtx
+    implementation libs.navigationKtx
+    implementation libs.navigationUIKtx
+
 
     implementation libs.coroutines
 
     implementation libs.viewModel
     implementation libs.livedata
     implementation libs.lifecycle
+    implementation 'com.google.firebase:firebase-auth:17.0.0'
+    implementation 'com.google.firebase:firebase-firestore:17.1.2'
     kapt libs.accProcessor
+    implementation libs.room
+    implementation libs.roomEXt
+    kapt libs.roomProcessor
 
     implementation libs.koinAndroid
     implementation libs.koinScopes
@@ -83,10 +97,10 @@ dependencies {
     implementation libs.circleImg
 
 
-
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+
 }
 
 kapt {

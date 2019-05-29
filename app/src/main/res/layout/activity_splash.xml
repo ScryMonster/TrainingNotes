@@ -6,27 +6,22 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".arch.ui.splash.view.SplashActivity">
+    tools:context=".arch.ui.splash.SplashActivity">
 
     <View
         android:id="@+id/progressBackgroundSplash"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@android:color/black"
         android:visibility="gone"
-        android:alpha="0.2"/>
+        style="@style/ProgressShadow"/>
 
     <com.example.darkfox.trainingnotes.dto.custom.DoubleProgressView
         android:id="@+id/splashRotateLoading"
-        style="@style/rotate_view"
+        style="@style/rotate_view.ProgressView"
         android:visibility="gone"
-        app:anim_duration="@integer/default_anim_duration"
-        app:innerColor="@color/soft_green"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:outerColor="@color/windows_blue"
-        app:thickness="5dp" />
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

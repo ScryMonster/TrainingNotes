@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/wizzards_graph"
+    app:startDestination="@id/wizzardFragment">
+
+    <fragment
+        android:id="@+id/wizzardFragment"
+        android:name="com.example.darkfox.trainingnotes.arch.ui.wizzards.names.WizzardFragment"
+        android:label="WizzardFragment" >
+        <argument
+            android:name="account"
+            app:argType="com.example.darkfox.trainingnotes.dto.Account"
+            app:nullable="true" />
+        <argument
+            android:name="type"
+            app:argType="com.example.darkfox.trainingnotes.utils.enums.WizzardType" />
+        <action
+            android:id="@+id/open_props_wizzard"
+            app:destination="@id/wizzardFragment2" />
+    </fragment>
+    <fragment
+        android:id="@+id/wizzardFragment2"
+        android:name="com.example.darkfox.trainingnotes.arch.ui.wizzards.names.WizzardFragment"
+        android:label="WizzardFragment" >
+        <argument
+            android:name="account"
+            app:argType="com.example.darkfox.trainingnotes.dto.Account"
+            app:nullable="true" />
+        <argument
+            android:name="type"
+            app:argType="com.example.darkfox.trainingnotes.utils.enums.WizzardType" />
+    </fragment>
+</navigation>

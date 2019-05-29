@@ -4,9 +4,11 @@ import android.Manifest
 import android.app.Activity
 import android.content.Context
 import android.content.pm.PackageManager
+import android.util.Log
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
+import com.example.darkfox.trainingnotes.dto.Permission
 
 class PermissionHelper {
 
@@ -19,9 +21,8 @@ class PermissionHelper {
     }
 
 
-    private val REQUIRED_PERMISSIONS = arrayListOf<String>(
-            Manifest.permission.WRITE_EXTERNAL_STORAGE,
-            Manifest.permission.READ_EXTERNAL_STORAGE)
+    private val REQUIRED_PERMISSIONS = arrayListOf(
+            Manifest.permission.WRITE_EXTERNAL_STORAGE)
 
 
     fun addOnPermissionGrantedListener(onPermissionGranted:(Boolean,Boolean)->Unit) = apply{
@@ -55,6 +56,7 @@ class PermissionHelper {
             ActivityCompat.requestPermissions(activity, REQUIRED_PERMISSIONS.toArray(array), REQUEST_CODE)
         } else {
             grantedListener(true,true)
+            defaultListener.invoke()
         }
     }
 
@@ -67,29 +69,16 @@ class PermissionHelper {
         return true
     }
 
-    fun onRequestPermissionsResult(requestCode: Int, grantResults: IntArray) {
-        if (requestCode == REQUEST_CODE) {
-            val results = getPairPermissionsResults(grantResults)
-            grantedListener(results.first,results.second)
-        }
-        defaultListener.invoke()
-    }
-
-    private fun getPairPermissionsResults(grantResults: IntArray):Pair<Boolean,Boolean>{
-        val list = arrayListOf<Boolean>()
-        grantResults.forEach {
-            list.add(it == PackageManager.PERMISSION_GRANTED)
-        }
-        return Pair(list.first(),list.last())
-    }
-
-    private fun allGranted(grantResults: IntArray): Boolean {
-        for (grantResult in grantResults) {
-            if (grantResult != PackageManager.PERMISSION_GRANTED) {
-                return false
+    fun onRequestPermissionsResult(requestCode: Int, grantResults: IntArray,permissions:Array<String>) {
+        if (requestCode == REQUEST_CODE){
+            val list = grantResults makeListOfPermissionsObjects permissions
+            list.forEach {
+                if (it.name == Manifest.permission.WRITE_EXTERNAL_STORAGE){
+                    Log.i("Permission",it.name)
+                }
             }
+            defaultListener.invoke()
         }
-        return grantResults.isNotEmpty()
     }
 
     companion object {
@@ -99,5 +88,13 @@ class PermissionHelper {
             return ContextCompat.checkSelfPermission(context, permission) == PackageManager.PERMISSION_GRANTED
         }
 
+    }
+
+    private infix fun IntArray.makeListOfPermissionsObjects(names:Array<String>) : List<Permission>{
+        val permissions = arrayListOf<Permission>()
+        forEachIndexed { index, granted ->
+            permissions.add(Permission(names[index],granted))
+        }
+        return permissions
     }
 }

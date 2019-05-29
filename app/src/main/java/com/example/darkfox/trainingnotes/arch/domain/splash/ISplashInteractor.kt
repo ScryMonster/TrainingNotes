@@ -12,5 +12,5 @@ interface ISplashInteractor {
 
     fun attemptRequestPermissions(activity: Activity,success: () -> Unit = {})
 
-    fun onRequestPermissionsResult(requestCode: Int,grantResults: IntArray)
+    fun onRequestPermissionsResult(requestCode: Int,grantResults: IntArray,permissions:Array<String>)
 }

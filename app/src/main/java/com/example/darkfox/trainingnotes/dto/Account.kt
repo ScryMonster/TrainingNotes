@@ -1,21 +1,19 @@
 package com.example.darkfox.trainingnotes.dto
 
 import android.os.Parcelable
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
 import kotlinx.android.parcel.Parcelize
 
-
+@Entity(tableName = "accounts")
 @Parcelize
 data class Account(
-         var id:Int,
-         var email:String,
-         var firstName:String,
-         var lastName:String,
-         var imageUrl:String,
-         var properties: UserProperties? = null
-):Parcelable{
-
-
-    fun editEmail(email: String) = apply { this@Account.email = email }
-    fun editName(name: String) = apply { this@Account.firstName = name }
-    fun editLastName(lastName: String) = apply { this@Account.lastName = lastName }
-}
+        @PrimaryKey
+        var fireBaseId: String,
+        var email: String? = null,
+        var firstName: String? = null,
+        var lastName: String? = null,
+        var imageUrl: String? = null,
+        var properties: UserProperties? = null
+) : Parcelable

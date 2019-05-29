@@ -20,14 +20,14 @@ class SplashInteractor(private val localRepository: LocalRepository<Account>,
 
     override fun attemptRequestPermissions(activity: Activity, success: () -> Unit) {
         permissionHelper
-                .addOnPermissionGrantedListener { write, read ->
-                    permissionLocalRepository.save(ReadWriteStoragePermission(write, read))
+                .addDefaultListener {
+                    success()
                 }
                 .attemptRequestPermissions(activity)
     }
 
-    override fun onRequestPermissionsResult(requestCode: Int, grantResults: IntArray) {
-        permissionHelper.onRequestPermissionsResult(requestCode, grantResults)
+    override fun onRequestPermissionsResult(requestCode: Int, grantResults: IntArray,permissions:Array<String>) {
+        permissionHelper.onRequestPermissionsResult(requestCode, grantResults,permissions)
     }
 
 
