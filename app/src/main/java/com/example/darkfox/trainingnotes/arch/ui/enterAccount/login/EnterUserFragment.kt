@@ -1,5 +1,6 @@
 package com.example.darkfox.trainingnotes.arch.ui.enterAccount.login
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View
@@ -7,7 +8,10 @@ import androidx.navigation.fragment.findNavController
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.base.ui.BaseFragment
 import com.example.darkfox.trainingnotes.arch.ui.contracts.EnterUserFragmentContract
+import com.example.darkfox.trainingnotes.arch.ui.enterAccount.activity.EnterUserActivity
+import com.example.darkfox.trainingnotes.arch.ui.root.RootActivity
 import com.example.darkfox.trainingnotes.arch.ui.wizzards.names.WizzardFragment
+import com.example.darkfox.trainingnotes.dto.Account
 import com.example.darkfox.trainingnotes.dto.EnterUserState
 import com.example.darkfox.trainingnotes.utils.enums.EnterUserFlow
 import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
@@ -77,27 +81,10 @@ class EnterUserFragment : BaseFragment<EnterUserFragmentContract.View, EnterUser
         }
 
         singInBtn.setOnClickListener {
-            presenter.doStaff(emailField.text?.toString(), passwordField.text.toString(),
-                    { account ->
-                        if (flow == EnterUserFlow.LOGIN) {
-                        } else {
-                            val args = Bundle().apply {
-                                putSerializable(WizzardFragment.TYPE, WizzardType.NAME)
-                                putParcelable(WizzardFragment.ACCOUNT, account)
-                            }
-                            findNavController().navigate(R.id.wizzards_graph, args)
-                        }
-                    },
-                    {
-
-                    })
+            presenter.doStaff(emailField.text?.toString(), passwordField.text.toString())
         }
 
         registerTV.setOnClickListener {
-            //            flow = if (flow == EnterUserFlow.LOGIN) EnterUserFlow.REGISTER
-//            else EnterUserFlow.LOGIN
-//            presenter.setFlow(flow)
-//            fillViewDependsOnFlow(flow)
             if (flow == EnterUserFlow.LOGIN) {
                 val direction = EnterUserFragmentDirections.openRegister(EnterUserFlow.REGISTER.name)
                 findNavController().navigate(direction)
@@ -106,6 +93,19 @@ class EnterUserFragment : BaseFragment<EnterUserFragmentContract.View, EnterUser
         }
 
     }
+
+    override fun navigateToWizzardFlow(account: Account) {
+        val args = Bundle().apply {
+            putSerializable(WizzardFragment.TYPE, WizzardType.NAME)
+            putParcelable(WizzardFragment.ACCOUNT, account)
+        }
+        findNavController().navigate(R.id.wizzards_graph, args)
+    }
+
+    override fun navigateToMainFlow() {
+        (activity as EnterUserActivity).goToRootActivity()
+    }
+
 
     private fun fillViewDependsOnFlow(flow: EnterUserFlow) {
         if (flow == EnterUserFlow.LOGIN) {

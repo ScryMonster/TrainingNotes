@@ -68,9 +68,7 @@ class SplashActivity : AppCompatActivity(), SplashContract.View {
     }
 
     override fun openRootActivity(account: Account){
-        val intent = Intent(this, RootActivity::class.java).apply {
-            putExtra(RootActivity.acc_key,account)
-        }
+        val intent = Intent(this, RootActivity::class.java)
         startActivity(intent)
     }
 

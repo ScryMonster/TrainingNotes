@@ -16,7 +16,7 @@ import java.time.temporal.WeekFields
 import java.util.*
 
 @Entity(tableName = "weeks", foreignKeys = [ForeignKey(entity = Account::class,
-        parentColumns = arrayOf("id"),
+        parentColumns = arrayOf("fireBaseId"),
         childColumns = arrayOf("accountID"),
         onDelete = CASCADE)]
 )

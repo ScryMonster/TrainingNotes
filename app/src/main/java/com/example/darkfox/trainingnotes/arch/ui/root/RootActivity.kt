@@ -1,26 +1,29 @@
 package com.example.darkfox.trainingnotes.arch.ui.root
 
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.FragmentManager
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
+import androidx.navigation.NavController
 import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
 import com.example.darkfox.trainingnotes.R
+import com.example.darkfox.trainingnotes.arch.base.NavigationResultView
 import com.example.darkfox.trainingnotes.arch.ui.contracts.RootContract
-import com.example.darkfox.trainingnotes.dto.Account
+import com.example.darkfox.trainingnotes.arch.ui.enterAccount.activity.EnterUserActivity
 import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
-import com.example.darkfox.trainingnotes.utils.extensions.showErrorInSnackBar
-import com.example.darkfox.trainingnotes.utils.extensions.showInfoInSnackBar
+import com.example.darkfox.trainingnotes.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_root.*
-import kotlinx.android.synthetic.main.activity_splash.*
 import org.koin.androidx.scope.ext.android.bindScope
-import org.koin.androidx.scope.ext.android.createScope
 import org.koin.androidx.scope.ext.android.getOrCreateScope
 import org.koin.core.scope.Scope
 import org.koin.standalone.inject
+import kotlin.properties.Delegates
 
 
 class RootActivity : AppCompatActivity(), RootContract.View  {
@@ -28,49 +31,9 @@ class RootActivity : AppCompatActivity(), RootContract.View  {
     override val scopeName: String = KoinScopes.ROOT_ACT.scopeName
     override lateinit var session: Scope
     private val presenter:RootContract.Presenter by inject()
-    val navController by lazy {
-        findNavController(R.id.nav_host_fragment)
-    }
-    //region Old Navigation
-//    private val navigator by lazy {
-//        object : SupFragmentNavigator {
-//            override fun goTo(key: Screens, vararg data: Any?) {
-//                when (key) {
-//                    USER_INFO -> supportFragmentManager.addFragment(UserInfoFragment.newInstance(data[0] as Account), tag = key.toString())
-//                    else -> {
-//                    }
-//                }
-//            }
-//
-//            override fun backTo(key: Screens?, data: Any?) {
-//                val count = supportFragmentManager.backStackEntryCount
-//                if (count > 0) {
-//                    if (key != null) {
-//                        supportFragmentManager.popBackStack(key.toString(), 0)
-//                    } else while (count > 0) {
-//                        supportFragmentManager.popBackStack()
-//                    }
-//                }
-//            }
-//
-//            override fun back() {
-//                supportFragmentManager.popBackStack()
-//            }
-//
-//            override fun replace(key: String, data: Any) {}
-//
-//            override fun systemMessage(message: String) {
-//                infoMessage(message)
-//            }
-//
-//        }
-//    }
-    //endregion
+    private var currentNavController: MutableLiveData<NavController>? = null
+    private val NAV_BAR_INVISIBLE_SCREENS = arrayListOf<Int>()
 
-    override fun onBackPressed() {
-        super.onBackPressed()
-        navController.navigateUp()
-    }
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -80,16 +43,40 @@ class RootActivity : AppCompatActivity(), RootContract.View  {
         bindScope(session)
         presenter.attachView(this)
         Log.d("RootInfo","Created")
+        initBottomBarNavigation()
     }
 
     override fun onDestroy() {
         super.onDestroy()
-        presenter.detachNavigator()
         presenter.detachView()
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return onNavigateUp()
+        return currentNavController?.value?.navigateUp() ?: false
+    }
+
+    fun returnToEnterUserFlow(){
+        startActivity(Intent(this, EnterUserActivity::class.java))
+        finish()
+    }
+
+    override fun navigateBackWithResult(result: Bundle) {
+        val childFragmentManager = supportFragmentManager.findFragmentById(R.id.nav_host_container)?.childFragmentManager
+//        var backStackListener: NavController.OnDestinationChangedListener by Delegates.notNull()
+//        backStackListener = NavController.OnDestinationChangedListener { controller, destination, arguments ->
+//            (childFragmentManager?.primaryNavigationFragment as NavigationResult).onNavigationResult(result)
+//            //(supportFragmentManager.findFragmentById(controller.graph.id) as NavigationResult).onNavigationResult(result)
+//            currentNavController?.value?.removeOnDestinationChangedListener(backStackListener)
+//        }
+//        currentNavController?.value?.addOnDestinationChangedListener(backStackListener)//?.addOnBackStackChangedListener(backStackListener)
+//
+        var backStackListener: FragmentManager.OnBackStackChangedListener by Delegates.notNull()
+        backStackListener = FragmentManager.OnBackStackChangedListener {
+            (childFragmentManager?.fragments?.get(0) as NavigationResultView).onNavigationResult(result)
+            childFragmentManager.removeOnBackStackChangedListener(backStackListener)
+        }
+        childFragmentManager?.addOnBackStackChangedListener(backStackListener)
+        //currentNavController?.value?.navigateUp()
     }
 
 
@@ -115,19 +102,19 @@ class RootActivity : AppCompatActivity(), RootContract.View  {
 
     //region help functions
     override fun infoMessage(message: String) {
-        message showInfoInSnackBar splash
+        message showInfoInSnackBar rootView
     }
 
     override fun infoMessage(message: Int) {
-        message showInfoInSnackBar splash
+        message showInfoInSnackBar rootView
     }
 
     override fun errorMessage(message: String) {
-        message showErrorInSnackBar splash
+        message showErrorInSnackBar rootView
     }
 
     override fun errorMessage(message: Int) {
-        message showErrorInSnackBar splash
+        message showErrorInSnackBar rootView
     }
 
     override fun switchOffUiInteraction(flag: Boolean) {
@@ -144,16 +131,26 @@ class RootActivity : AppCompatActivity(), RootContract.View  {
     }
     //endregion
 
-    private fun initNavigation(){
+    private fun initBottomBarNavigation(){
 
+        val graphIds = listOf(R.navigation.trainings_graph,R.navigation.profile_graph)
+
+        val controller = rootBottomNavBar.setupWithNavController(
+                navGraphIds = graphIds,
+                fragmentManager = supportFragmentManager,
+                containerId = R.id.nav_host_container,
+                intent = intent
+        )
+
+        controller.observe(this, Observer { navController ->
+            navController?.addOnDestinationChangedListener { controller, destination, arguments ->
+                if (NAV_BAR_INVISIBLE_SCREENS.contains(destination.id)) rootBottomNavBar.gone()
+                else rootBottomNavBar.visible()
+            }
+        })
+        currentNavController = controller
     }
 
-    override fun openUserInfoFragment(account: Account) {
-        presenter.openUserInfoFragment(account)
-    }
 
-    companion object {
-        const val acc_key = "com.example.darkfox.trainingnotes.arch.ui.root.view::Account_Key"
-    }
 
 }

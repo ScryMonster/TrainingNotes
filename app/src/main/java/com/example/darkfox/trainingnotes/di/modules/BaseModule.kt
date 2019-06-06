@@ -5,11 +5,11 @@ import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.core.content.edit
 import com.example.darkfox.trainingnotes.arch.repository.local.AccountRepository
-import com.example.darkfox.trainingnotes.arch.repository.local.LocalRepository
-import com.example.darkfox.trainingnotes.arch.repository.remote.BaseFirestoreRepository
+import com.example.darkfox.trainingnotes.arch.repository.local.PermissionsLocalRepository
 import com.example.darkfox.trainingnotes.arch.repository.remote.FirebaseAuthRepository
 import com.example.darkfox.trainingnotes.arch.repository.remote.IRemoteRepository
 import com.example.darkfox.trainingnotes.arch.repository.remote.UserFirestoreRepository
+import com.example.darkfox.trainingnotes.database.TrainingsDatabase
 import com.example.darkfox.trainingnotes.dto.Account
 import com.example.darkfox.trainingnotes.dto.ReadWriteStoragePermission
 import com.example.darkfox.trainingnotes.utils.extensions.*
@@ -29,12 +29,27 @@ object BaseModule {
 
     val module = module {
         single { provideSharedPrefs(get()) }
+
         single<AccountManager> {
             provideAccountManager(get(), get())
         }
-        single<LocalRepository<Account>>(
-                name = AccountRepositoryName) {
-            AccountRepository(get())
+        single {
+            TrainingsDatabase.getInstance(get())!!
+        }
+
+        single {
+            TrainingsDatabase.getInstance(get())?.getAccountsDao()!!
+        }
+
+        single {
+            TrainingsDatabase.getInstance(get())?.getTrainingDaysDao()!!
+        }
+
+        single {
+            AccountRepository(get(), get())
+        }
+        single{
+            PermissionsLocalRepository(get())
         }
         single<TokenManager> {
             provideTokenManager(get(), get())
@@ -51,9 +66,11 @@ object BaseModule {
             FirebaseFirestore.getInstance()
         }
 
-        single<IRemoteRepository<Account>>{
+        single<IRemoteRepository<Account>> {
             UserFirestoreRepository(get())
         }
+
+
     }
 
     private fun provideSharedPrefs(context: Context) = PreferenceManager.getDefaultSharedPreferences(context)

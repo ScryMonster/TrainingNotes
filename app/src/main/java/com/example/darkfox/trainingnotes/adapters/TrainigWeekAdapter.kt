@@ -4,9 +4,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.darkfox.trainingnotes.R
-import com.example.darkfox.trainingnotes.arch.base.BaseAdapter
-import com.example.darkfox.trainingnotes.arch.base.BaseViewHolder
-import com.example.darkfox.trainingnotes.dto.gym.Training
+import com.example.darkfox.trainingnotes.arch.base.rv.BaseAdapter
 import com.example.darkfox.trainingnotes.dto.gym.TrainingDay
 import com.example.darkfox.trainingnotes.dto.gym.states.TrainingStateMachine
 import com.example.darkfox.trainingnotes.utils.enums.TimePatterns

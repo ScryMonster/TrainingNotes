@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">TrainingNotes</string>
-    <string name="breast_name">Breast</string>
+    <string name="breast_name">Chest</string>
     <string name="legs_name">Legs</string>
     <string name="back_name">Back</string>
     <string name="shoulders_name">Shoulders</string>
@@ -20,4 +20,36 @@
     <string name="weight">Weight</string>
     <string name="next">Next</string>
     <string name="finish">Finish</string>
+    <string name="your_profile">Your profile</string>
+    <string name="email_with_value_after">Email :</string>
+    <string name="first_name_with_value_after">First Name :</string>
+    <string name="last_name_with_value_after">Last Name :</string>
+    <string name="afe_with_value_after">Age :</string>
+
+    <string name="profile">Profile</string>
+    <string name="trainings">Trainings </string>
+    <string name="no_trainings_yet">There are no trainings yet.</string>
+    <string name="create_your_first">Create your First!</string>
+    <string name="muscles">Muscles :</string>
+    <string name="exercises">Exercises :</string>
+    <string name="date">Date :</string>
+    <string name="add_training">Add training</string>
+    <string name="get_progress">Ger Progress!</string>
+    <string name="state_active">Active</string>
+    <string name="state_finished">Finished</string>
+    <string name="state_passed">Passed</string>
+    <string name="state_planned">Planned</string>
+    <string name="state_empty">Empty</string>
+    <string name="my_trainings">My Trainings</string>
+    <string name="epic_training_name">Epic Training name</string>
+    <string name="add_warm_up">Add warm-up</string>
+    <string name="exercise">Exercise</string>
+    <string name="time">Time</string>
+    <string name="add_exercise">Add exercise</string>
+    <string name="naming">Naming</string>
+    <string name="round_one">1 round</string>
+    <string name="round_two">2 round</string>
+    <string name="round_three">3 round</string>
+    <string name="round_four">4 round</string>
+    <string name="save">Save</string>
 </resources>

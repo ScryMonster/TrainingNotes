@@ -4,5 +4,6 @@ enum class TrainingState {
     EMPTY,
     PLANNED,
     FINISHED,
-    PASSED
+    PASSED,
+    ACTIVE
 }

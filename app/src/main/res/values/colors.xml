@@ -16,4 +16,7 @@
     <color name="light_grey">#D3D3D3</color>
     <color name="indian_red">#CD5C5C</color>
     <color name="sea_green">#3cb371</color>
+
+    <color name="lightGrey">#D3D3D3</color>
+    <color name="trueBlue">#0073E6</color>
 </resources>

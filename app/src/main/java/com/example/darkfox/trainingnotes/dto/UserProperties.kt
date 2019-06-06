@@ -4,5 +4,5 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class UserProperties(var age:Int,
-                          var weight:Double) : Parcelable
+data class UserProperties(var age:Number? = null,
+                          var weight:Number? = null) : Parcelable

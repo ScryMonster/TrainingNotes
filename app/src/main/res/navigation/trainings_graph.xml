@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/trainings_graph"
+    app:startDestination="@id/trainingsFragment">
+
+    <fragment
+        android:id="@+id/trainingsFragment"
+        android:name="com.example.darkfox.trainingnotes.arch.ui.trainings.TrainingsFragment"
+        android:label="TrainingsFragment"
+        tools:layout="@layout/fragment_trainings">
+        <action
+            android:id="@+id/open_new_training"
+            app:destination="@id/createTrainingFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/createTrainingFragment"
+        android:name="com.example.darkfox.trainingnotes.arch.ui.createTraining.CreateTrainingFragment"
+        android:label="CreateTrainingFragment"
+        tools:layout="@layout/fragment_create_training" >
+        <action
+            android:id="@+id/open_warm_up_dialog"
+            app:destination="@id/addWarmUpDialog" />
+    </fragment>
+    <dialog-custom
+        android:id="@+id/addWarmUpDialog"
+        android:name="com.example.darkfox.trainingnotes.arch.ui.dialogs.AddWarmUpDialog"
+        android:label="AddWarmUpDialog" >
+        <argument
+            android:name="warmUp"
+            app:argType="com.example.darkfox.trainingnotes.dto.gym.WarmUp"
+            app:nullable="true" />
+    </dialog-custom>
+</navigation>

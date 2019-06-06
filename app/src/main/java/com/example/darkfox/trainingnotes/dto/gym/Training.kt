@@ -9,5 +9,7 @@ data class Training(val id:Long,
                     val name:String,
                     val ownWeight:Double,
                     val muscules:List<MuscleGroups>,
-                    val warmUP:String = "",
-                    val exercises:List<Exercise>) : Parcelable
+                    val warmUP:List<WarmUp> = emptyList(),
+                    val exercises:List<Exercise>,
+                    val from:Long,
+                    val to:Long) : Parcelable

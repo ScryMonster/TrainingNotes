@@ -8,12 +8,14 @@ interface EnterUserFragmentContract {
     interface View: BaseContract.View {
         fun setEmailState(state:Boolean,message:String?=null)
         fun setPasswordState(state:Boolean,message:String?=null)
+        fun navigateToWizzardFlow(account: Account)
+        fun navigateToMainFlow()
     }
 
     interface Presenter:BaseContract.Presenter<View>{
         fun checkEmail(email:String)
         fun checkPassword(password:String)
         fun setFlow(flow:EnterUserFlow)
-        fun doStaff(email: String?, password: String?, success: (Account) -> Unit, error: () -> Unit)
+        fun doStaff(email: String?, password: String?)
     }
 }

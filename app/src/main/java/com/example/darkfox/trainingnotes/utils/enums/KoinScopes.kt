@@ -4,8 +4,10 @@ enum class KoinScopes(val scopeName:String) {
     SPLASH("Splash"),
     EnterUser("SigInActivity"),
     LOG_IN("LogIn"),
-    REGISTER("Register"),
     ROOT_ACT("RootActivity"),
     USER_INFO("UserInfoFragment"),
-    WIZZARD("wizzard")
+    WIZZARD("wizzard"),
+    TRAININGS("trainings"),
+    CREATE_TRAINING("createTraining"),
+    ADD_WARM_UP("AddWarmUp")
 }

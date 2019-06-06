@@ -10,7 +10,7 @@ import kotlinx.android.parcel.Parcelize
 @Parcelize
 data class Account(
         @PrimaryKey
-        var fireBaseId: String,
+        var fireBaseId: String = "",
         var email: String? = null,
         var firstName: String? = null,
         var lastName: String? = null,

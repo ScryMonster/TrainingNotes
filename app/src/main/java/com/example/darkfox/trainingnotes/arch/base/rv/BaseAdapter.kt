@@ -1,4 +1,4 @@
-package com.example.darkfox.trainingnotes.arch.base
+package com.example.darkfox.trainingnotes.arch.base.rv
 
 import androidx.recyclerview.widget.RecyclerView
 import com.example.levent.levent.KotlinModifier.arch.base.recycler.IBaseAdapter
@@ -11,7 +11,7 @@ import com.example.levent.levent.KotlinModifier.arch.base.recycler.OnItemClicked
 abstract class BaseAdapter<VH: RecyclerView.ViewHolder,Item> : RecyclerView.Adapter<VH>(), IBaseAdapter<Item, BaseAdapter<VH, Item>> {
 
     protected var itemList = arrayListOf<Item>()
-    protected lateinit var clickListener: OnItemClickedListener<Item>
+    protected var clickListener:(Item)->Unit = {}
 
     override fun setList(newList: ArrayList<Item>,
                          notify: Boolean,
@@ -25,7 +25,7 @@ abstract class BaseAdapter<VH: RecyclerView.ViewHolder,Item> : RecyclerView.Adap
 
     override fun getItemCount() = itemList.size
 
-    open fun setListener(listener: OnItemClickedListener<Item>) = apply{
+    open fun setListener(listener: (Item)->Unit) = apply{
         this.clickListener = listener
     }
 

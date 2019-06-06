@@ -21,7 +21,11 @@ class TrainingNotes : Application() {
                         RootActModule.module,
                         SignInModule.module,
                         EnterUserModule.module,
-                        WizzardModule.module),
+                        WizzardModule.module,
+                        UserInfoModule.module,
+                        TrainingsModule.module,
+                        CreateTraningModule.module,
+                        AddWarmUpModule.module),
                 logger = AndroidLogger(BuildConfig.DEBUG)
         )
     }

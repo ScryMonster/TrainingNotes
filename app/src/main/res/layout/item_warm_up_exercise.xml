@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/tvExerciseName"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.LogInOutlineBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.6"
+        android:layout_marginTop="16dp"
+        app:hintTextAppearance="@style/BlueHintText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/trainingNameET"
+        app:layout_constraintTop_toBottomOf="@+id/selectMuscleGroupsBlock">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etExerciseNameField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/exercise"
+            android:inputType="text"
+            android:singleLine="true"
+            android:enabled="false"
+            tools:text="Running"
+            android:textColor="@android:color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etExerciseTime"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.LogInOutlineBox"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="0.4"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="8dp"
+        app:hintTextAppearance="@style/BlueHintText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/trainingNameET"
+        app:layout_constraintTop_toBottomOf="@+id/selectMuscleGroupsBlock">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/etExerciseTimeField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/time"
+            android:inputType="text"
+            android:singleLine="true"
+            android:enabled="false"
+            tools:text="10 m"
+            android:textColor="@android:color/black"/>
+    </com.google.android.material.textfield.TextInputLayout>
+
+</LinearLayout>

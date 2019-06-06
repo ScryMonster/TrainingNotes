@@ -6,7 +6,7 @@ import com.example.darkfox.trainingnotes.arch.ui.enterAccount.navigation.ISignIn
 
 interface EnterUserContract {
 
-    interface View: BaseContract.View, ISignInNavigation,IKoinView{
+    interface View: BaseContract.View,IKoinView{
 
     }
 

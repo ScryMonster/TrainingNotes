@@ -7,18 +7,7 @@ import com.example.darkfox.trainingnotes.arch.ui.contracts.RootContract
 import com.example.darkfox.trainingnotes.arch.ui.root.navigation.RootRouter
 import com.example.darkfox.trainingnotes.dto.Account
 
-class RootPresenter(private val interactor: IRootInteractor,
-                    private val router: RootRouter) : BasePresenter<RootContract.View>(),RootContract.Presenter {
+class RootPresenter(private val interactor: IRootInteractor) : BasePresenter<RootContract.View>(),RootContract.Presenter {
 
-    override fun attachNavigator(navigator: SupFragmentNavigator) {
-        router.attachNavigator(navigator)
-    }
 
-    override fun detachNavigator() {
-        router.detach()
-    }
-
-    override fun openUserInfoFragment(account: Account) {
-        router.openUserInfoFragment(account)
-    }
 }

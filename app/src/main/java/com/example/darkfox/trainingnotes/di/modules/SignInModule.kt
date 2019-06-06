@@ -9,13 +9,12 @@ import org.koin.dsl.module.module
 
 object SignInModule {
     private val scopeName = KoinScopes.LOG_IN.scopeName
-    private val AccountRepositoryName = "AccountRepositoryName"
 
 
 
     val module = module {
         scope<IEnterUserInteractor>(scopeName){
-            EnterUserInteractor(get(name = AccountRepositoryName),get(),get())
+            EnterUserInteractor()
         }
 
         scope<EnterUserFragmentContract.Presenter>(scopeName){

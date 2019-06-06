@@ -4,6 +4,7 @@ import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy.REPLACE
+import androidx.room.Update
 
 @Dao
 interface BaseDao<T> {
@@ -20,4 +21,7 @@ interface BaseDao<T> {
 
     @Delete
     fun deleteList(items: List<T>)
+
+    @Update
+    fun update(obj: T?)
 }

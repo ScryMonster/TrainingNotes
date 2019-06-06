@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+
+    <item
+        android:id="@+id/trainings_graph"
+        android:title="@string/trainings"
+        android:icon="@drawable/ic_dumbbell"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="1"/>
+
+    <item
+        android:id="@+id/profile_graph"
+        android:icon="@drawable/ic_person_outline_black_24dp"
+        android:title="@string/profile"
+        app:showAsAction="ifRoom"
+        android:orderInCategory="2"/>
+
+</menu>

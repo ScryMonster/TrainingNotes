@@ -4,6 +4,5 @@ import com.example.darkfox.trainingnotes.dto.Account
 
 interface IWizzardInteractor {
 
-    fun saveAccount(account: Account,success:(Account)->Unit)
-
+    suspend fun saveAccount(account: Account, success: () -> Unit, fail: (Exception) -> Unit)
 }

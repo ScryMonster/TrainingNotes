@@ -16,7 +16,7 @@ object RootActModule {
     val module = module {
         scope(scopeName) { RootRouter() }
         scope<IRootInteractor>(scopeName) { RootInteractor() }
-        scope<RootContract.Presenter>(scopeName) { RootPresenter(get(), get()) }
+        scope<RootContract.Presenter>(scopeName) { RootPresenter(get()) }
 //        viewModel{ RootViewModel(get(),get()) }
     }
 

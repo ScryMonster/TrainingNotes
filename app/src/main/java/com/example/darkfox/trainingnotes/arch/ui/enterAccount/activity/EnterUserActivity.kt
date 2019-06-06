@@ -1,6 +1,5 @@
 package com.example.darkfox.trainingnotes.arch.ui.enterAccount.activity
 
-//import com.example.darkfox.trainingnotes.utils.extensions.replaceFragment
 import android.content.Intent
 import android.os.Bundle
 import android.view.WindowManager
@@ -8,14 +7,12 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.ui.contracts.EnterUserContract
-import com.example.darkfox.trainingnotes.arch.ui.root.RootActivity
-import com.example.darkfox.trainingnotes.dto.Account
 import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
 import com.example.darkfox.trainingnotes.utils.extensions.showErrorInSnackBar
 import com.example.darkfox.trainingnotes.utils.extensions.showInfoInSnackBar
 import kotlinx.android.synthetic.main.activity_sign_in.*
 import org.koin.androidx.scope.ext.android.bindScope
-import org.koin.androidx.scope.ext.android.createScope
+import org.koin.androidx.scope.ext.android.getOrCreateScope
 import org.koin.core.scope.Scope
 import org.koin.standalone.inject
 
@@ -35,7 +32,6 @@ class EnterUserActivity : AppCompatActivity(), EnterUserContract.View {
         buildKoinScope()
         bindScope(session)
         presenter.attachView(this)
-        goToSignIn()
     }
 
     override fun onDestroy() {
@@ -45,34 +41,19 @@ class EnterUserActivity : AppCompatActivity(), EnterUserContract.View {
 
 
     override fun buildKoinScope() {
-        session = createScope(scopeName)
+        session = getOrCreateScope(scopeName)
     }
 
     override fun onSupportNavigateUp(): Boolean {
-        return onNavigateUp()
+        return navController.navigateUp()
     }
 
-    fun goToRootActivity(account: Account){
-        val intent = Intent(this, EnterUserActivity::class.java).apply {
-            putExtra(RootActivity.acc_key, account)
-        }
+    fun goToRootActivity(){
+        val intent = Intent(this, EnterUserActivity::class.java)
         startActivity(intent)
-
+        finish()
     }
 
-
-    //region Navigation
-
-    override fun goToSignIn() {
-//        supportFragmentManager.replaceFragment(EnterUserFragment(),
-//                place = R.id.sign_in_container,
-//                tag = EnterUserFragment.TAG)
-    }
-
-    override fun goToSignUp() {
-
-    }
-    //endregion
 
 
     //region help functions

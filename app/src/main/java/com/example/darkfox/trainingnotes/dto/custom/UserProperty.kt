@@ -3,6 +3,7 @@ package com.example.darkfox.trainingnotes.dto.custom
 import android.content.Context
 import android.util.AttributeSet
 import android.view.View
+import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import com.example.darkfox.trainingnotes.R

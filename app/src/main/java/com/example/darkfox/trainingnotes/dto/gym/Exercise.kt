@@ -5,5 +5,4 @@ import kotlinx.android.parcel.Parcelize
 
 @Parcelize
 data class Exercise(val name:String,
-                    val rounds:Int,
-                    val weight:Double) : Parcelable
+                    val rounds:List<Round>) : Parcelable

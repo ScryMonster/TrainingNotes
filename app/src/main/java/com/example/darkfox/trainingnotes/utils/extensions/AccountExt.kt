@@ -44,8 +44,8 @@ fun Account.convertIntoDocument(): Map<String,Any>{
 }
 
 fun UserProperties.convertIntoDocument():HashMap<String,Number> = hashMapOf<String,Number>().apply {
-    put("age",age)
-    put("weight",weight)
+    put("age",age ?: 0)
+    put("weight",weight ?: 0.0)
 }
 
 fun Map<String,Any>.toAccount() : Account{
@@ -59,9 +59,9 @@ fun Map<String,Any>.toAccount() : Account{
     return Account(firebaseId,email, firstName, lastName,imageUrl,properties.toProperties())
 }
 
-fun Map<String,Number>.toProperties(): UserProperties{
-    val age = get("age") as Int
-    val weight = get("weight") as Double
+fun Map<String,Number?>.toProperties(): UserProperties{
+    val age = get("age") as Long ?: 0
+    val weight = get("weight") as Double ?: 0.0
     return UserProperties(age, weight)
 }
 

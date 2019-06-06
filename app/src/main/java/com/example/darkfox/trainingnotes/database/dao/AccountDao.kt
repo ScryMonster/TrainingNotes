@@ -10,5 +10,5 @@ import kotlinx.coroutines.Deferred
 interface AccountDao : BaseDao<Account>{
 
     @Query("SELECT * from accounts WHERE fireBaseId =:id")
-    fun getAccount(id:String) : List<Account>
+    fun getAccount(id:String) : Account?
 }

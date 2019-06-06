@@ -48,12 +48,14 @@ class WizzardFragment : BaseFragment<WizzardContract.View, WizzardContract.Prese
                 WizzardType.PROPERTIES -> {
                     account?.properties = UserProperties(age = firstNameField.text?.toString()?.toInt()!!,
                             weight = lastNameField.text?.toString()?.toDouble()!!)
-                    presenter.saveAccount(account) { acc ->
-                        (activity as EnterUserActivity).goToRootActivity(acc)
-                    }
+                    presenter.saveAccount(account)
                 }
             }
         }
+    }
+
+    override fun finishFlow() {
+        (activity as EnterUserActivity).goToRootActivity()
     }
 
     private fun fillDependsOnWizzardType(type: WizzardType) {

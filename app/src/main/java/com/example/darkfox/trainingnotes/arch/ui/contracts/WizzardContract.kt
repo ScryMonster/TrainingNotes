@@ -6,10 +6,10 @@ import com.example.darkfox.trainingnotes.dto.Account
 interface WizzardContract {
 
     interface View : BaseContract.View{
-
+        fun finishFlow()
     }
 
     interface Presenter : BaseContract.Presenter<WizzardContract.View>{
-        fun saveAccount(account:Account?,success:(Account)->Unit)
+        fun saveAccount(account:Account?)
     }
 }

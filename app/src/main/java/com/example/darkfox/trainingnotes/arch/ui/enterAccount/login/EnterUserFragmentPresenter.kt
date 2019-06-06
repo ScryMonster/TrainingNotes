@@ -26,7 +26,7 @@ class EnterUserFragmentPresenter(private val interactor: IEnterUserInteractor) :
                         view?.setPasswordState(true)
                     },
                     { cause ->
-                        view?.setPasswordState(false,cause)
+                        view?.setPasswordState(false, cause)
                     })
         }
     }
@@ -39,36 +39,34 @@ class EnterUserFragmentPresenter(private val interactor: IEnterUserInteractor) :
                     {
                         view?.setEmailState(true)
                     },
-                    { cause->
-                        view?.setEmailState(false,cause)
+                    { cause ->
+                        view?.setEmailState(false, cause)
                     })
         }
     }
 
-//    override fun signIn(email: String?, password: String?, success: () -> Unit, error: () -> Unit) {
-//        interactor.signIn(email, password, success,error = {
-//
-//        })
-//    }
-//
-//    override fun register(email: String?, password: String?, success: () -> Unit, error: () -> Unit) {
-//        interactor.register(email, password, success,error = {
-//
-//        })
-//    }
-
-    override fun doStaff(email: String?, password: String?, success: (Account) -> Unit, error: () -> Unit) {
-        if (flow == EnterUserFlow.LOGIN){
-            interactor.signIn(email, password, success,error = {
-
-            })
-        }
-        else{
-            interactor.register(email, password, success,error = {
-
-            })
+    override fun doStaff(email: String?, password: String?) {
+        uiScope.launch {
+            if (flow == EnterUserFlow.LOGIN) {
+                interactor.signIn(email, password,
+                        { account ->
+                            view?.navigateToMainFlow()
+                        },
+                        {
+                            view?.errorMessage(it.localizedMessage)
+                        })
+            } else {
+                interactor.register(email, password,
+                        { account ->
+                            view?.navigateToWizzardFlow(account)
+                        },
+                        {
+                            view?.errorMessage(it.localizedMessage)
+                        })
+            }
         }
     }
+
 
     override fun setFlow(flow: EnterUserFlow) {
         this.flow = flow
