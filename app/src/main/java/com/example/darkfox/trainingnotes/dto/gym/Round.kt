@@ -4,5 +4,5 @@ import android.os.Parcelable
 import kotlinx.android.parcel.Parcelize
 
 @Parcelize
-data class Round(val weight:Double,
-            val count:Int) : Parcelable
+data class Round(val weight:Double = 0.0,
+            val repeats:Int = -1) : Parcelable

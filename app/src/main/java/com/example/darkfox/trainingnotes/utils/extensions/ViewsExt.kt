@@ -1,5 +1,6 @@
 package com.example.darkfox.trainingnotes.utils.extensions
 
+import android.content.Context
 import android.text.Editable
 import android.text.Html
 import android.text.TextWatcher
@@ -7,6 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
+import android.widget.CheckBox
 import android.widget.EditText
 import android.widget.TextView
 import androidx.annotation.IdRes
@@ -90,6 +93,28 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
     })
 }
 
+fun CheckBox.check(){
+    isChecked = true
+}
+
+fun CheckBox.unCheck(){
+    isChecked = false
+}
+
+fun View.hideKeyboard(): Boolean {
+    try {
+        val inputMethodManager = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        return inputMethodManager.hideSoftInputFromWindow(windowToken, 0)
+    } catch (ignored: RuntimeException) {
+    }
+    return false
+}
+
+fun View.showKeyboard() {
+    val imm = context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+    this.requestFocus()
+    imm.showSoftInput(this, InputMethodManager.SHOW_IMPLICIT)
+}
 
 
 

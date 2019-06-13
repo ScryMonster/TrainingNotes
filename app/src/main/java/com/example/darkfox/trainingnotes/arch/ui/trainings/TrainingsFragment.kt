@@ -5,6 +5,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.darkfox.trainingnotes.R
@@ -31,28 +32,33 @@ class TrainingsFragment : BaseFragment<TrainingsContract.View,TrainingsContract.
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        hasOptionsMenu()
         toolbar.title = resources.getString(R.string.my_trainings)
         (activity as AppCompatActivity).setSupportActionBar(toolbar)
-        presenter.getTrainingDaysById()
+        setHasOptionsMenu(true)
+        setHasOptionsMenu(true)
         initListeners()
+        userTrainingsRV.buildWithAction(adapter)
+        presenter.getTrainingDaysById()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
         inflater.inflate(R.menu.trainings_main_menu,menu)
         addItemMenu = menu.findItem(R.id.menu_item_add_training)
-        progressItemMenu  = menu.findItem(R.id.menu_item_progress)
-        userTrainingsRV.buildWithAction(adapter)
+//        progressItemMenu  = menu.findItem(R.id.menu_item_progress)
     }
 
     override fun setTrainingDays(days: List<TrainingDay>) {
         if (days.isEmpty()){
             emptyTrainingsView.visible()
             addItemMenu?.isVisible = false
+            progressItemMenu?.isVisible = false
         }
         else{
             emptyTrainingsView.gone()
             addItemMenu?.isVisible = true
+            progressItemMenu?.isVisible = true
             adapter.setList(days as ArrayList<TrainingDay>,notify = true)
         }
     }
@@ -69,10 +75,30 @@ class TrainingsFragment : BaseFragment<TrainingsContract.View,TrainingsContract.
         rootActivity?.hideProgress()
     }
 
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId){
+            R.id.menu_item_add_training ->{
+                val direction = TrainingsFragmentDirections.openNewTraining(null)
+                findNavController().navigate(direction)
+            }
+
+            R.id.menu_item_search ->{
+                val direction = TrainingsFragmentDirections.openSearch()
+                findNavController().navigate(direction)
+            }
+        }
+        return true
+    }
+
     private fun initListeners(){
         newTrainingIV.setOnClickListener {
-            val direction = TrainingsFragmentDirections.openNewTraining()
+            val direction = TrainingsFragmentDirections.openNewTraining(null)
             findNavController().navigate(direction)
+        }
+
+        adapter.setTrainingListener {
+                val direction = TrainingsFragmentDirections.openNewTraining(it)
+                findNavController().navigate(direction)
         }
     }
 

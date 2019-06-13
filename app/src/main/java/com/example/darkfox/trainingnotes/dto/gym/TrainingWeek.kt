@@ -1,5 +1,6 @@
 package com.example.darkfox.trainingnotes.dto.gym
 
+
 import android.os.Build
 import androidx.annotation.RequiresApi
 import androidx.room.Entity

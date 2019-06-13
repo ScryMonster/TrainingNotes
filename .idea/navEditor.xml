@@ -80,14 +80,7 @@
                 <map>
                   <entry key="userInfoFragment">
                     <value>
-                      <LayoutPositions>
-                        <option name="myPosition">
-                          <Point>
-                            <option name="x" value="12" />
-                            <option name="y" value="12" />
-                          </Point>
-                        </option>
-                      </LayoutPositions>
+                      <LayoutPositions />
                     </value>
                   </entry>
                 </map>
@@ -133,6 +126,27 @@
                       </LayoutPositions>
                     </value>
                   </entry>
+                  <entry key="searchFragment">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="138" />
+                            <option name="y" value="-420" />
+                          </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="open_training">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
                   <entry key="trainingsFragment">
                     <value>
                       <LayoutPositions>
@@ -145,6 +159,11 @@
                         <option name="myPositions">
                           <map>
                             <entry key="open_new_training">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                            <entry key="open_search">
                               <value>
                                 <LayoutPositions />
                               </value>

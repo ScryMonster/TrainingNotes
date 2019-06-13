@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="@android:color/white">
+    android:background="@android:color/white"
+    android:orientation="vertical">
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -25,10 +25,10 @@
                 android:id="@+id/tvTrainingState"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                tools:text="Saved"
                 android:layout_gravity="center"
                 android:layout_marginStart="32dp"
-                android:textSize="18sp"/>
+                android:textSize="18sp"
+                tools:text="Saved" />
 
         </androidx.appcompat.widget.Toolbar>
     </com.google.android.material.appbar.AppBarLayout>
@@ -49,7 +49,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appBarLayout">
+                app:layout_constraintTop_toTopOf="parent">
 
 
                 <LinearLayout
@@ -141,7 +141,7 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/epic_training_name"
                     android:inputType="text"
-                    android:singleLine="true"/>
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.textfield.TextInputLayout
@@ -166,8 +166,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:hint="@string/weight"
-                    android:inputType="text"
-                    android:singleLine="true"/>
+                    android:inputType="numberDecimal"
+                    android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <androidx.constraintlayout.widget.Guideline
@@ -175,7 +175,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.6"/>
+                app:layout_constraintGuide_percent="0.6" />
 
 
             <androidx.appcompat.widget.AppCompatTextView
@@ -190,20 +190,35 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/trainingNameET" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvWarmUp"
+            <LinearLayout
+                android:id="@+id/warUpContainer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="8dp"
-                android:visibility="gone"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/btnAddWarmUp"
-                tools:itemCount="2"
-                tools:listitem="@layout/item_warm_up_exercise" />
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="8dp"
+                android:orientation="vertical">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/warm_up"
+                    android:textAppearance="@style/TextAppearance.MaterialComponents.Subtitle2.GreyCaps"
+                    android:textAllCaps="true"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvWarmUp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="visible"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    tools:itemCount="2"
+                    tools:listitem="@layout/item_warm_up_exercise" />
+
+            </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/btnAddExercise"
@@ -215,7 +230,7 @@
                 android:drawableTint="@color/lightBlue"
                 android:text="@string/add_exercise"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvWarmUp" />
+                app:layout_constraintTop_toBottomOf="@+id/warUpContainer" />
 
             <LinearLayout
                 android:id="@+id/roundsBlock"
@@ -260,6 +275,7 @@
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvExercises"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"

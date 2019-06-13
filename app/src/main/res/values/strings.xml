@@ -52,4 +52,22 @@
     <string name="round_three">3 round</string>
     <string name="round_four">4 round</string>
     <string name="save">Save</string>
+    <string name="warm_up">Warm Up</string>
+    <string name="exercise_name">Exercise Name</string>
+    <string name="repeats">Repeats</string>
+    <string name="set_weight">%1$s kg</string>
+    <string name="add_exercise_error_name_required">You must set Exercise\'s Name</string>
+    <string name="add_war_up_error_name_required">You must set Warm-Up\'s Name</string>
+    <string name="add_war_up_error_time_required">You must set Warm-Up\'s Time</string>
+    <string name="none_muscle_group_error">You must specify at least one Muscle Group</string>
+    <string name="none_training_name_error">You must specify Training\'s name</string>
+    <string name="none_training_own_weight_error">You must specify Your weight to see the progress</string>
+    <string name="none_training_exercises_error">You must specify At least one exercise to save the training</string>
+    <string name="update">Update</string>
+    <string name="search_by_training_name">Search by name</string>
+    <string name="no_trainings_found">Sorry, no trainings found</string>
+    <string name="search">Search</string>
+    <string name="muscle">Muscles</string>
+    <string name="name">Name</string>
+
 </resources>

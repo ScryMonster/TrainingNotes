@@ -7,7 +7,7 @@
     android:layout_height="80dp">
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/tvExerciseName"
+        android:id="@+id/tvExerciseWarmUpName"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.LogInOutlineBox"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -19,7 +19,7 @@
         app:layout_constraintTop_toBottomOf="@+id/selectMuscleGroupsBlock">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/etExerciseNameField"
+            android:id="@+id/etExerciseWarmUpNameField"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="@string/exercise"

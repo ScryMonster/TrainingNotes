@@ -15,4 +15,8 @@
     <declare-styleable name="DialogNavigator">
         <attr name="android:name" />
     </declare-styleable>
+
+    <declare-styleable name="ExerciseRound">
+        <attr name="roundNumber" format="integer"/>
+    </declare-styleable>
 </resources>

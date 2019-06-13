@@ -9,5 +9,7 @@ enum class KoinScopes(val scopeName:String) {
     WIZZARD("wizzard"),
     TRAININGS("trainings"),
     CREATE_TRAINING("createTraining"),
-    ADD_WARM_UP("AddWarmUp")
+    ADD_WARM_UP("AddWarmUp"),
+    SEARCH("search"),
+    SEARCH_SETTINGS("searchSettings")
 }

@@ -8,6 +8,7 @@ import com.example.darkfox.trainingnotes.arch.repository.local.AccountRepository
 import com.example.darkfox.trainingnotes.arch.repository.local.PermissionsLocalRepository
 import com.example.darkfox.trainingnotes.arch.repository.remote.FirebaseAuthRepository
 import com.example.darkfox.trainingnotes.arch.repository.remote.IRemoteRepository
+import com.example.darkfox.trainingnotes.arch.repository.remote.TrainingDaysRepository
 import com.example.darkfox.trainingnotes.arch.repository.remote.UserFirestoreRepository
 import com.example.darkfox.trainingnotes.database.TrainingsDatabase
 import com.example.darkfox.trainingnotes.dto.Account
@@ -47,6 +48,9 @@ object BaseModule {
 
         single {
             AccountRepository(get(), get())
+        }
+        single {
+            TrainingDaysRepository(get())
         }
         single{
             PermissionsLocalRepository(get())

@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="horizontal"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bordered_baclground"
+    android:padding="4dp"
+    android:layout_marginStart="8dp">
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/roundWeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="12sp"
+        android:maxWidth="40dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:text="10kg" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/slash"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/"
+        android:textSize="12sp"/>
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/roundRepeats"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="10"
+        android:textSize="12sp"
+        android:maxWidth="40dp"
+        android:ellipsize="end"
+        android:lines="1"/>
+
+</LinearLayout>

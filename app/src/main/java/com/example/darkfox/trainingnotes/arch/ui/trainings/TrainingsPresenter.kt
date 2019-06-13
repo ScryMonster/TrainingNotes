@@ -1,7 +1,9 @@
 package com.example.darkfox.trainingnotes.arch.ui.trainings
 
+import android.util.Log
 import com.example.darkfox.trainingnotes.arch.base.ui.BasePresenter
 import com.example.darkfox.trainingnotes.arch.domain.trainings.ITrainingDayInteractor
+import com.example.darkfox.trainingnotes.arch.repository.DataProvider
 import com.example.darkfox.trainingnotes.arch.ui.contracts.TrainingsContract
 import kotlinx.coroutines.launch
 

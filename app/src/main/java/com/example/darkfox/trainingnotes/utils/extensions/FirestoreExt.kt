@@ -9,7 +9,11 @@ import java.lang.NullPointerException
 
 fun FirebaseFirestore.users() = collection("users")
 
+fun FirebaseFirestore.days() = collection("days")
+
 infix fun CollectionReference.account(name: String) = document(name)
+
+infix fun CollectionReference.newTrainingDay(day:Long) = document(day.toString())
 
 suspend fun <T> Task<T>.check(success: (T) -> Unit, fail: (Exception) -> Unit) {
     try {

@@ -4,6 +4,7 @@ import com.example.darkfox.trainingnotes.arch.repository.local.AccountRepository
 import com.example.darkfox.trainingnotes.arch.repository.local.PermissionsLocalRepository
 import com.example.darkfox.trainingnotes.arch.repository.remote.FirebaseAuthRepository
 import com.example.darkfox.trainingnotes.arch.repository.remote.IRemoteRepository
+import com.example.darkfox.trainingnotes.arch.repository.remote.TrainingDaysRepository
 import com.example.darkfox.trainingnotes.database.dao.TrainingDaysDao
 import com.example.darkfox.trainingnotes.dto.Account
 import com.example.darkfox.trainingnotes.dto.ReadWriteStoragePermission
@@ -17,6 +18,7 @@ import com.google.firebase.auth.AuthResult
 import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
 import org.koin.standalone.KoinComponent
 import org.koin.standalone.inject
@@ -28,6 +30,7 @@ object DataProvider : KoinComponent{
     private val firebaseAuthRepository:FirebaseAuthRepository by inject()
     private val firestoreRepository:IRemoteRepository<Account> by inject()
     private val trainingDaysDao: TrainingDaysDao by inject()
+    private val traininDaysFirestoreRepo : TrainingDaysRepository by inject()
 
     private val dbScope = CoroutineScope(Dispatchers.IO)
 
@@ -84,6 +87,28 @@ object DataProvider : KoinComponent{
 
     suspend fun getTrainingDaysById(id:String) = makeDbRequest {
         trainingDaysDao.getAllByAccountId(id)
+    }
+
+    suspend fun saveTrainingDay(day:TrainingDay) = makeDbRequest {
+        trainingDaysDao.insert(day)
+    }
+
+    suspend fun updateTraining(day:TrainingDay) = makeDbRequest {
+        trainingDaysDao.updateTrainingById(day)
+    }
+
+    suspend fun getTodaysTrainingDay(id:Long) = makeDbRequest {
+        trainingDaysDao.getTodaysTrainingDay(id)
+    }
+
+    suspend fun  saveDayToServer(day:TrainingDay,success:()->Unit,fail:(Exception)->Unit){
+        traininDaysFirestoreRepo.saveTrainingDay(day,success, fail)
+    }
+
+    suspend fun getDaysFromServer() = traininDaysFirestoreRepo.getTrainings().await().documents.map { it.toObject(TrainingDay::class.java) }
+
+    suspend fun updateTrainingDayServer(day: TrainingDay,success: () -> Unit,fail: (Exception) -> Unit){
+        traininDaysFirestoreRepo.updateDay(day,success,fail)
     }
 
 

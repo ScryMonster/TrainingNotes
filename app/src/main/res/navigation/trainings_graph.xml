@@ -13,6 +13,9 @@
         <action
             android:id="@+id/open_new_training"
             app:destination="@id/createTrainingFragment" />
+        <action
+            android:id="@+id/open_search"
+            app:destination="@id/searchFragment" />
     </fragment>
     <fragment
         android:id="@+id/createTrainingFragment"
@@ -22,14 +25,33 @@
         <action
             android:id="@+id/open_warm_up_dialog"
             app:destination="@id/addWarmUpDialog" />
+        <argument
+            android:name="dayHolder"
+            app:argType="com.example.darkfox.trainingnotes.dto.TrainingDayHolder"
+            app:nullable="true" />
     </fragment>
     <dialog-custom
         android:id="@+id/addWarmUpDialog"
-        android:name="com.example.darkfox.trainingnotes.arch.ui.dialogs.AddWarmUpDialog"
+        android:name="com.example.darkfox.trainingnotes.arch.ui.dialogs.warmUp.AddWarmUpDialog"
         android:label="AddWarmUpDialog" >
         <argument
             android:name="warmUp"
             app:argType="com.example.darkfox.trainingnotes.dto.gym.WarmUp"
             app:nullable="true" />
+        <argument
+            android:name="exercisePart"
+            app:argType="com.example.darkfox.trainingnotes.utils.enums.AddExercisePart" />
+        <argument
+            android:name="exercise"
+            app:argType="com.example.darkfox.trainingnotes.dto.gym.Exercise"
+            app:nullable="true" />
     </dialog-custom>
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.example.darkfox.trainingnotes.arch.ui.search.SearchFragment"
+        android:label="SearchFragment" >
+        <action
+            android:id="@+id/open_training"
+            app:destination="@id/createTrainingFragment" />
+    </fragment>
 </navigation>

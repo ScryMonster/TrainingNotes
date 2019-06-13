@@ -20,7 +20,6 @@ import org.koin.core.scope.Scope
 abstract class BaseBottomSheetDialog<V : BaseContract.View, P : BaseContract.Presenter<V>> : BottomSheetDialogFragment(), BaseContract.View, IKoinView {
 
     abstract val presenter: P
-    abstract var popupHandle: ImageView?
     override lateinit var session: Scope
 
 
@@ -48,14 +47,14 @@ abstract class BaseBottomSheetDialog<V : BaseContract.View, P : BaseContract.Pre
                 override fun onStateChanged(bottomSheet: View, newState: Int) {
                     when (newState) {
                         BottomSheetBehavior.STATE_HIDDEN -> {
-                            popupHandle?.setImageResource(R.drawable.ic_popup_handle_bottom_position)
+//                            popupHandle?.setImageResource(R.drawable.ic_popup_handle_bottom_position)
                             dialog.dismiss()
                         }
                         BottomSheetBehavior.STATE_EXPANDED -> {
-                            popupHandle?.setImageResource(R.drawable.ic_popup_handle_top_position)
+//                            popupHandle?.setImageResource(R.drawable.ic_popup_handle_top_position)
                         }
                         BottomSheetBehavior.STATE_COLLAPSED -> {
-                            popupHandle?.setImageResource(R.drawable.ic_popup_handle_top_position)
+//                            popupHandle?.setImageResource(R.drawable.ic_popup_handle_top_position)
                         }
                         BottomSheetBehavior.STATE_DRAGGING -> {
 

@@ -25,7 +25,8 @@ class TrainingNotes : Application() {
                         UserInfoModule.module,
                         TrainingsModule.module,
                         CreateTraningModule.module,
-                        AddWarmUpModule.module),
+                        AddWarmUpModule.module,
+                        SearchModule.module),
                 logger = AndroidLogger(BuildConfig.DEBUG)
         )
     }

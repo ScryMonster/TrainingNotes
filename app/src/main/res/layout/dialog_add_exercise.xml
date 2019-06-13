@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:orientation="vertical"
+    app:cardCornerRadius="10dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/mPopupHandle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:contentDescription="@null"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/notif_arrow_anim" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/addExerciseName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:textAppearance="@style/TextAppearance.MaterialComponents.Headline6.GreyCaps"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mPopupHandle"
+            tools:text="Pull Ups" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tvExerciseName"
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.LogInOutlineBox"
+            android:layout_width="170dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
+            android:ellipsize="end"
+            android:minWidth="100dp"
+            app:errorEnabled="true"
+            app:hintTextAppearance="@style/BlueHintText"
+            app:errorTextAppearance="@style/ErrorHintText"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/mPopupHandle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/etExerciseNameField"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="@string/exercise_name"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColor="@android:color/black"
+                tools:text="Running" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideLine"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="124dp" />
+
+
+        <com.example.darkfox.trainingnotes.dto.custom.ExerciseRound
+            android:id="@+id/firstRound"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/guideLine"
+            app:roundNumber="1" />
+
+        <com.example.darkfox.trainingnotes.dto.custom.ExerciseRound
+            android:id="@+id/secondRound"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintStart_toEndOf="@id/firstRound"
+            app:layout_constraintTop_toBottomOf="@id/guideLine"
+            app:roundNumber="2" />
+
+        <com.example.darkfox.trainingnotes.dto.custom.ExerciseRound
+            android:id="@+id/thirdRound"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/firstRound"
+            app:roundNumber="3" />
+
+        <com.example.darkfox.trainingnotes.dto.custom.ExerciseRound
+            android:id="@+id/fourthRound"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.099"
+            app:layout_constraintStart_toEndOf="@id/firstRound"
+            app:layout_constraintTop_toBottomOf="@id/secondRound"
+            app:roundNumber="4" />
+
+
+        <com.example.darkfox.trainingnotes.dto.custom.ExerciseRound
+            android:id="@+id/fifthRound"
+            android:layout_width="200dp"
+            android:layout_height="80dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/thirdRound"
+            app:roundNumber="5" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnSaveExercise"
+            android:layout_width="140dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="@color/trueBlue"
+            android:text="@string/save"
+            app:cornerRadius="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/fifthRound"/>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>

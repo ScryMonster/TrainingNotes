@@ -5,7 +5,6 @@ import androidx.room.PrimaryKey
 
 
 @Entity(tableName = "trainingDays")
-class TrainingDay(@PrimaryKey override val id: Long,
-                  val accountId:String,
-                  override var state: TrainingState = TrainingState.PLANNED,
-                  var training: Training? = null) : Day
+data class TrainingDay(@PrimaryKey val id: Long = -1L,
+                  val accountId:String = "",
+                  var trainings: List<Training> = emptyList())
