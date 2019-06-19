@@ -9,6 +9,7 @@ import com.example.darkfox.trainingnotes.database.dao.TrainingDaysDao
 import com.example.darkfox.trainingnotes.dto.Account
 import com.example.darkfox.trainingnotes.dto.ReadWriteStoragePermission
 import com.example.darkfox.trainingnotes.dto.Result
+import com.example.darkfox.trainingnotes.dto.gym.Training
 import com.example.darkfox.trainingnotes.dto.gym.TrainingDay
 import com.example.darkfox.trainingnotes.utils.enums.AccountPropertyType
 import com.example.darkfox.trainingnotes.utils.extensions.awaitWithNull
@@ -93,6 +94,10 @@ object DataProvider : KoinComponent{
         trainingDaysDao.insert(day)
     }
 
+    suspend fun saveTrainingDays(days:List<TrainingDay>) = makeDbRequest {
+        trainingDaysDao.insertList(days)
+    }
+
     suspend fun updateTraining(day:TrainingDay) = makeDbRequest {
         trainingDaysDao.updateTrainingById(day)
     }
@@ -109,6 +114,18 @@ object DataProvider : KoinComponent{
 
     suspend fun updateTrainingDayServer(day: TrainingDay,success: () -> Unit,fail: (Exception) -> Unit){
         traininDaysFirestoreRepo.updateDay(day,success,fail)
+    }
+
+    suspend fun removeTrainingLocaly(day: TrainingDay) = makeDbRequest {
+        trainingDaysDao.updateTrainingById(day)
+    }
+
+    suspend fun deleteTrainingDayLocaly(day: TrainingDay) = makeDbRequest {
+        trainingDaysDao.delete(day)
+    }
+
+    suspend fun deleteTrainingDayFromServer(day: TrainingDay,success: () -> Unit){
+        traininDaysFirestoreRepo.deleteDay(day,success)
     }
 
 

@@ -10,6 +10,7 @@ interface RegisterContract {
     }
 
     interface Presenter : BaseContract.Presenter<RegisterContract.View>{
-
+        fun checkEmail(email:String)
+        fun checkPassword(password:String)
     }
 }

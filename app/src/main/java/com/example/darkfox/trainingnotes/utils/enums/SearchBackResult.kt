@@ -1,6 +1,6 @@
 package com.example.darkfox.trainingnotes.utils.enums
 
-enum class SearchType {
+enum class SearchBackResult {
     TEXT,
     GROUPS,
     DATE

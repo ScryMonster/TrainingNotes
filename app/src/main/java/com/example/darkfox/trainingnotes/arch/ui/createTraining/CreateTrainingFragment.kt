@@ -221,6 +221,7 @@ class CreateTrainingFragment : BaseFragment<CreateTrainingContract.View, CreateT
             toolbar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.spring_green))
 
             //TODO Need to be uncommented when training states feature will be done/in process
+            //region
 //            when (it.state) {
 //                TrainingState.EMPTY -> {
 //                    tvTrainingState.text = resources.getString(R.string.state_empty)
@@ -243,6 +244,7 @@ class CreateTrainingFragment : BaseFragment<CreateTrainingContract.View, CreateT
 //                    toolbar.setBackgroundColor(ContextCompat.getColor(requireContext(), R.color.spring_green))
 //                }
 //            }
+            //endregion
         }
     }
 

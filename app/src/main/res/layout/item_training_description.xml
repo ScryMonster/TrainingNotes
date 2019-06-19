@@ -42,13 +42,17 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/trainingMusclesValueTV"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
         android:layout_marginTop="20dp"
-        tools:text="@string/shoulders_name"
+        app:layout_constraintEnd_toStartOf="@id/trainingStatusColoredView"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toEndOf="@+id/trainingMusclesTV"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/shoulders_name"
+        android:ellipsize="end"
+        android:lines="1"/>
 
 
     <androidx.appcompat.widget.AppCompatTextView

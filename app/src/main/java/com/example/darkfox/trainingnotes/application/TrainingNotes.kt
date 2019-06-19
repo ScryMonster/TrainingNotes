@@ -5,7 +5,6 @@ import com.example.darkfox.trainingnotes.BuildConfig
 import com.example.darkfox.trainingnotes.di.modules.*
 import org.koin.android.ext.android.startKoin
 import org.koin.android.logger.AndroidLogger
-import org.koin.dsl.module.module
 
 class TrainingNotes : Application() {
     private val module = org.koin.dsl.module.module {
@@ -19,14 +18,16 @@ class TrainingNotes : Application() {
                         BaseModule.module,
                         SplashModule.module,
                         RootActModule.module,
-                        SignInModule.module,
-                        EnterUserModule.module,
+//                        SignInModule.module,
+                        EnterUserActivityModule.module,
                         WizzardModule.module,
                         UserInfoModule.module,
                         TrainingsModule.module,
                         CreateTraningModule.module,
                         AddWarmUpModule.module,
-                        SearchModule.module),
+                        SearchModule.module,
+                        SearchSettingsModule.module,
+                        EnterUserFragmentsModule.module),
                 logger = AndroidLogger(BuildConfig.DEBUG)
         )
     }

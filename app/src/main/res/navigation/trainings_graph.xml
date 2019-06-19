@@ -53,5 +53,24 @@
         <action
             android:id="@+id/open_training"
             app:destination="@id/createTrainingFragment" />
+        <action
+            android:id="@+id/openSearchSettings"
+            app:destination="@id/searchSettingsDialog" />
     </fragment>
+    <dialog-custom
+        android:id="@+id/searchSettingsDialog"
+        android:name="com.example.darkfox.trainingnotes.arch.ui.dialogs.SearchSettingsDialog"
+        android:label="SearchSettingsDialog" >
+        <argument
+            android:name="settingsType"
+            app:argType="com.example.darkfox.trainingnotes.utils.enums.SearchType" />
+        <argument
+            android:name="selectedGroups"
+            app:argType="string[]"
+            app:nullable="true" />
+        <argument
+            android:name="selectedDate"
+            app:argType="java.util.Date"
+            app:nullable="true" />
+    </dialog-custom>
 </navigation>

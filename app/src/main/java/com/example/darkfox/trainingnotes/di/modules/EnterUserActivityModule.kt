@@ -5,7 +5,7 @@ import com.example.darkfox.trainingnotes.arch.ui.enterAccount.activity.EnterUser
 import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
 import org.koin.dsl.module.module
 
-object EnterUserModule {
+object EnterUserActivityModule {
     private val scopeName = KoinScopes.EnterUser.scopeName
 
 

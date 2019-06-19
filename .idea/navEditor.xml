@@ -29,13 +29,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="registerFragment">
+                  <entry key="registerFragment2">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="246" />
-                            <option name="y" value="-5" />
+                            <option name="x" value="267" />
+                            <option name="y" value="-15" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -137,12 +137,29 @@
                         </option>
                         <option name="myPositions">
                           <map>
+                            <entry key="openSearchSettings">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
                             <entry key="open_training">
                               <value>
                                 <LayoutPositions />
                               </value>
                             </entry>
                           </map>
+                        </option>
+                      </LayoutPositions>
+                    </value>
+                  </entry>
+                  <entry key="searchSettingsDialog">
+                    <value>
+                      <LayoutPositions>
+                        <option name="myPosition">
+                          <Point>
+                            <option name="x" value="469" />
+                            <option name="y" value="-560" />
+                          </Point>
                         </option>
                       </LayoutPositions>
                     </value>
@@ -194,7 +211,7 @@
                         </option>
                         <option name="myPositions">
                           <map>
-                            <entry key="open_props_wizzard">
+                            <entry key="open_wizzard_properties">
                               <value>
                                 <LayoutPositions />
                               </value>
@@ -204,13 +221,13 @@
                       </LayoutPositions>
                     </value>
                   </entry>
-                  <entry key="wizzardFragment2">
+                  <entry key="wizzardPropertiesFragment">
                     <value>
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="286" />
-                            <option name="y" value="46" />
+                            <option name="x" value="292" />
+                            <option name="y" value="52" />
                           </Point>
                         </option>
                       </LayoutPositions>

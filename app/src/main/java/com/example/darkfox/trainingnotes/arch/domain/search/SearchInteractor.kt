@@ -3,6 +3,7 @@ package com.example.darkfox.trainingnotes.arch.domain.search
 import com.example.darkfox.trainingnotes.arch.repository.DataProvider
 import com.example.darkfox.trainingnotes.dto.TrainingDayHolder
 import com.example.darkfox.trainingnotes.dto.gym.Training
+import com.example.darkfox.trainingnotes.utils.enums.MuscleGroups
 
 class SearchInteractor : ISearchInteractor {
 
@@ -17,6 +18,18 @@ class SearchInteractor : ISearchInteractor {
 
     override fun clearLastSearchedList() {
         allTrainings = null
+    }
+
+    override suspend fun searchByGroup(groups: List<MuscleGroups>?) : List<TrainingDayHolder> {
+        return if (allTrainings == null) {
+            getTrainings().filter { it.training.muscules.containsAll(groups as List<MuscleGroups>) }
+        } else allTrainings?.filter { it.training.muscules.containsAll(groups as List<MuscleGroups>) } ?: emptyList()
+    }
+
+    override suspend fun searchByDate(midnight: Long?): List<TrainingDayHolder> {
+        return if (allTrainings == null) {
+            getTrainings().filter { it.dayId == midnight }
+        } else allTrainings?.filter { it.dayId == midnight } ?: emptyList()
     }
 
     private suspend fun getTrainings() = DataProvider.getCurrentAccount()?.let { account ->

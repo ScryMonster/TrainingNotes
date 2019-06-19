@@ -1,6 +1,7 @@
 package com.example.darkfox.trainingnotes.arch.ui.search
 
 import android.os.Bundle
+import android.text.TextWatcher
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -9,16 +10,20 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.adapters.SearchAdapter
+import com.example.darkfox.trainingnotes.arch.base.NavigationResultView
 import com.example.darkfox.trainingnotes.arch.base.ui.BaseFragment
 import com.example.darkfox.trainingnotes.arch.ui.contracts.SearchContract
 import com.example.darkfox.trainingnotes.dto.TrainingDayHolder
 import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
+import com.example.darkfox.trainingnotes.utils.enums.MuscleGroups
+import com.example.darkfox.trainingnotes.utils.enums.SearchBackResult
 import com.example.darkfox.trainingnotes.utils.enums.SearchType
 import com.example.darkfox.trainingnotes.utils.extensions.*
 import kotlinx.android.synthetic.main.fragment_search.*
 import org.koin.android.ext.android.inject
+import java.util.*
 
-class SearchFragment : BaseFragment<SearchContract.View, SearchContract.Presenter>(), SearchContract.View {
+class SearchFragment : BaseFragment<SearchContract.View, SearchContract.Presenter>(), SearchContract.View,NavigationResultView {
     override val layoutId: Int = R.layout.fragment_search
     override val presenter: SearchContract.Presenter by inject()
     override val scopeName: String = KoinScopes.SEARCH.scopeName
@@ -27,8 +32,14 @@ class SearchFragment : BaseFragment<SearchContract.View, SearchContract.Presente
     private var groupSearchMenuItem:MenuItem? = null
     private var searchType = SearchType.TEXT
 
+    private var selectedGroups:List<MuscleGroups>? = null
+    private var selectedDate: Date? = null
+    private var isFirstTime = true
+    private var currentTextWatcher:TextWatcher? = null
+
     private val searchAdapter = SearchAdapter()
             .setListener { training ->
+                isFirstTime = false
                 val direction = SearchFragmentDirections.openTraining(training)
                 findNavController().navigate(direction)
             }
@@ -40,12 +51,23 @@ class SearchFragment : BaseFragment<SearchContract.View, SearchContract.Presente
         initListeners()
         setHasOptionsMenu(true)
         etSearch.requestFocus()
-        etSearch.showKeyboard()
+        switchViewsDependsOnSearchType(searchType)
+        if (searchType == SearchType.TEXT) etSearch.showKeyboard()
     }
 
     override fun onViewStateRestored(savedInstanceState: Bundle?) {
         super.onViewStateRestored(savedInstanceState)
-        presenter.clearLastSearchedList()
+        if (!isFirstTime){
+            presenter.clearLastSearchedList()
+            when(searchType){
+                SearchType.GROUPS->{
+                    presenter.searchByGroup(selectedGroups)
+//                    initTextChangeListener {}
+                }
+                SearchType.DATE->{}
+                else ->{}
+            }
+        }
     }
 
     override fun setTrainings(trainings: List<TrainingDayHolder>) {
@@ -78,6 +100,15 @@ class SearchFragment : BaseFragment<SearchContract.View, SearchContract.Presente
         inflater.inflate(R.menu.search_menu,menu)
         textSearchMenuItem = menu.findItem(R.id.menu_item_name)
         groupSearchMenuItem = menu.findItem(R.id.menu_item_muscle)
+        when(searchType){
+            SearchType.TEXT->{
+                textSearchMenuItem?.isVisible = false
+            }
+            SearchType.GROUPS->{
+                groupSearchMenuItem?.isVisible = false
+            }
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -87,26 +118,69 @@ class SearchFragment : BaseFragment<SearchContract.View, SearchContract.Presente
                 etSearch.clearFocus()
                 findNavController().navigateUp()
             }
-            R.id.menu_item_muscle-> switchViewsDependsOnSearchType(SearchType.GROUPS)
-            R.id.menu_item_name->switchViewsDependsOnSearchType(SearchType.TEXT)
+            R.id.menu_item_muscle->{
+                searchType = SearchType.GROUPS
+                switchViewsDependsOnSearchType(searchType)
+                openSettingsByGroup()
+            }
+            R.id.menu_item_name->{
+                searchType = SearchType.TEXT
+                switchViewsDependsOnSearchType(searchType)
+            }
 
         }
 
         return true
     }
 
+    override fun onNavigationResult(bundle: Bundle) {
+        when(bundle.getSerializable(BACK_RESULT) as SearchBackResult){
+            SearchBackResult.TEXT->{}
+            SearchBackResult.GROUPS->{
+                selectedGroups =  bundle.getStringArrayList(BACK_RESULT_GROUPS)?.map { it.toMuscleGroup() }
+                val stringRepresentation = selectedGroups?.toStringRepresentation()
+                etSearch.setText(stringRepresentation)
+                presenter.searchByGroup(selectedGroups)
+            }
+            SearchBackResult.DATE->{
+
+            }
+        }
+    }
+
+    override fun warningMeaage(type: SearchType) {
+        when(type){
+            SearchType.GROUPS->{
+                resources.getString(R.string.search_warning_no_groups_entered).showInfoInSnackBar(requireView())
+                etSearch.setText(R.string.search_by_training_group)
+            }
+            SearchType.DATE->{
+                resources.getString(R.string.search_warning_no_date_entered).showInfoInSnackBar(requireView())
+                etSearch.setText(R.string.search_by_training_date)
+            }
+            else ->{}
+        }
+    }
+
     private fun switchViewsDependsOnSearchType(type:SearchType){
         when(type){
             SearchType.TEXT->{
                 textSearchMenuItem?.isVisible = false
-                etSearch.setText(emptyString)
+                groupSearchMenuItem?.isVisible = true
                 etSearch.enable()
-                btnClearSearch.visible()
+                initTextChangeListener { name ->
+                    presenter.searchByName(name)
+                }
+                etSearch.setText(emptyString)
+                etSearch.requestFocus()
+//                btnClearSearch.visible()
                 btnSetupSearch.gone()
             }
             SearchType.GROUPS ->{
                 groupSearchMenuItem?.isVisible = false
-                etSearch.setText(emptyString)
+                textSearchMenuItem?.isVisible = true
+                initTextChangeListener {}
+                etSearch.setText(R.string.search_by_training_group)
                 etSearch.disable()
                 btnClearSearch.gone()
                 btnSetupSearch.visible()
@@ -119,7 +193,8 @@ class SearchFragment : BaseFragment<SearchContract.View, SearchContract.Presente
         rvSearchSuggestions.buildWithBaseLayoutManagerAndAnimator {
             adapter = searchAdapter
         }
-        etSearch.afterTextChanged { name ->
+
+        initTextChangeListener { name ->
             if (etSearch.isEnabled) presenter.searchByName(name)
         }
 
@@ -128,8 +203,30 @@ class SearchFragment : BaseFragment<SearchContract.View, SearchContract.Presente
         }
 
         btnSetupSearch.setOnClickListener {
-
+            openSettingsByGroup()
         }
+    }
+
+    private fun openSettingsByGroup(){
+//        isFirstTime = false
+        val direction = SearchFragmentDirections.openSearchSettings(SearchType.GROUPS, selectedGroups?.map { it.name }?.toTypedArray(),null)
+        findNavController().navigate(direction)
+    }
+
+    private fun initTextChangeListener(listener:(String)->Unit){
+        if (etSearch.tag != null){
+            etSearch.removeTextChangedListener(currentTextWatcher)
+        }
+        currentTextWatcher = etSearch.afterTextChangedWithWatcher(listener)
+        etSearch.tag = ""
+    }
+
+
+    companion object {
+        const val BACK_RESULT_TEXT = "backResultText"
+        const val BACK_RESULT_GROUPS = "backResultGroups"
+        const val BACK_RESULT_DATE = "backResultDate"
+        const val BACK_RESULT = "backResultSearchSettings"
     }
 
 

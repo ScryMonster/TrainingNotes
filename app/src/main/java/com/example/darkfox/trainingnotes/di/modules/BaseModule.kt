@@ -4,6 +4,8 @@ import android.content.Context
 import android.content.SharedPreferences
 import android.preference.PreferenceManager
 import androidx.core.content.edit
+import com.example.darkfox.trainingnotes.arch.domain.enterUser.EnterUserInteractor
+import com.example.darkfox.trainingnotes.arch.domain.enterUser.IEnterUserInteractor
 import com.example.darkfox.trainingnotes.arch.repository.local.AccountRepository
 import com.example.darkfox.trainingnotes.arch.repository.local.PermissionsLocalRepository
 import com.example.darkfox.trainingnotes.arch.repository.remote.FirebaseAuthRepository

@@ -57,7 +57,7 @@ class AddWarmUpDialog : BaseBottomSheetDialog<AddWarmUpContract.View, AddWarmUpC
                 }
             }
             setContentView(view)
-
+            initBottomSheetBehavior(this,view)
             when (exercisePart) {
                 AddExercisePart.WARMUP -> startWarmUpFlow(this)
                 AddExercisePart.EXERCISES -> startExerciseFlow(this)

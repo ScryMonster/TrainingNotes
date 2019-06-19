@@ -19,4 +19,8 @@ class TrainingDaysRepository(private val db: FirebaseFirestore) {
     suspend fun updateDay(day:TrainingDay,success:()->Unit,fail:(Exception)->Unit){
         db.days().newTrainingDay(day.id).update("trainings",day.trainings.map { it.convertIntoDocument() }).check(success, fail)
     }
+
+    suspend fun deleteDay(day: TrainingDay,success:()->Unit){
+        db.days().newTrainingDay(day.id).delete().check(success,{})
+    }
 }

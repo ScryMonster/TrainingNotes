@@ -93,6 +93,20 @@ fun EditText.afterTextChanged(afterTextChanged: (String) -> Unit) {
     })
 }
 
+fun EditText.afterTextChangedWithWatcher(afterTextChanged: (String) -> Unit) : TextWatcher {
+    val watcher = object: TextWatcher {
+        override fun afterTextChanged(s: Editable?) {
+            afterTextChanged.invoke(s.toString())
+        }
+
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) { }
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) { }
+    }
+    this.addTextChangedListener(watcher)
+    return watcher
+}
+
 fun CheckBox.check(){
     isChecked = true
 }

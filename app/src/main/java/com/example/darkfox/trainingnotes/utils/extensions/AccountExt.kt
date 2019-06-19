@@ -53,7 +53,7 @@ fun Map<String,Any>.toAccount() : Account{
    val lastName =  get(AccountPropertyType.LAST_NAME.propName) as String
    val email =  get(AccountPropertyType.EMAIL.propName) as String
    val firebaseId =  get(AccountPropertyType.FIREBASE_ID.propName) as String
-   val imageUrl =  get(AccountPropertyType.IMAGE_URL.propName) as String
+   val imageUrl: String? =  (get(AccountPropertyType.IMAGE_URL.propName) ?: "") as String
    val properties =  get(AccountPropertyType.PROPERTIES.propName) as Map<String,Number>
 
     return Account(firebaseId,email, firstName, lastName,imageUrl,properties.toProperties())

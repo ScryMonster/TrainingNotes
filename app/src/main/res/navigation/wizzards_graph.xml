@@ -5,29 +5,23 @@
 
     <fragment
         android:id="@+id/wizzardFragment"
-        android:name="com.example.darkfox.trainingnotes.arch.ui.wizzards.names.WizzardFragment"
+        android:name="com.example.darkfox.trainingnotes.arch.ui.wizzards.names.WizzardNamesFragment"
         android:label="WizzardFragment" >
         <argument
             android:name="account"
             app:argType="com.example.darkfox.trainingnotes.dto.Account"
             app:nullable="true" />
-        <argument
-            android:name="type"
-            app:argType="com.example.darkfox.trainingnotes.utils.enums.WizzardType" />
         <action
-            android:id="@+id/open_props_wizzard"
-            app:destination="@id/wizzardFragment2" />
+            android:id="@+id/open_wizzard_properties"
+            app:destination="@id/wizzardPropertiesFragment" />
     </fragment>
     <fragment
-        android:id="@+id/wizzardFragment2"
-        android:name="com.example.darkfox.trainingnotes.arch.ui.wizzards.names.WizzardFragment"
-        android:label="WizzardFragment" >
+        android:id="@+id/wizzardPropertiesFragment"
+        android:name="com.example.darkfox.trainingnotes.arch.ui.wizzards.names.props.WizzardPropertiesFragment"
+        android:label="WizzardPropertiesFragment" >
         <argument
             android:name="account"
             app:argType="com.example.darkfox.trainingnotes.dto.Account"
             app:nullable="true" />
-        <argument
-            android:name="type"
-            app:argType="com.example.darkfox.trainingnotes.utils.enums.WizzardType" />
     </fragment>
 </navigation>

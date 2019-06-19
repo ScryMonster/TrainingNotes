@@ -2,11 +2,16 @@ package com.example.darkfox.trainingnotes.arch.ui.enterAccount.activity
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.view.WindowManager
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.ui.contracts.EnterUserContract
+import com.example.darkfox.trainingnotes.arch.ui.root.RootActivity
+import com.example.darkfox.trainingnotes.arch.ui.wizzards.names.WizzardNamesFragment
 import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
 import com.example.darkfox.trainingnotes.utils.extensions.showErrorInSnackBar
 import com.example.darkfox.trainingnotes.utils.extensions.showInfoInSnackBar
@@ -19,8 +24,8 @@ import org.koin.standalone.inject
 class EnterUserActivity : AppCompatActivity(), EnterUserContract.View {
 
     override val scopeName: String = KoinScopes.EnterUser.scopeName
-    override lateinit var session:Scope
-    private val presenter:EnterUserContract.Presenter by inject()
+    override lateinit var session: Scope
+    private val presenter: EnterUserContract.Presenter by inject()
     val navController by lazy {
         findNavController(R.id.nav_host_fragment)
     }
@@ -48,12 +53,33 @@ class EnterUserActivity : AppCompatActivity(), EnterUserContract.View {
         return navController.navigateUp()
     }
 
-    fun goToRootActivity(){
-        val intent = Intent(this, EnterUserActivity::class.java)
+    override fun goToRootActivity() {
+        val intent = Intent(this, RootActivity::class.java)
         startActivity(intent)
         finish()
     }
 
+    override fun showProgress() {
+        progressBackground.visibility = VISIBLE
+        rootRotateLoading.visibility = VISIBLE
+    }
+
+    override fun hideProgress() {
+        progressBackground.visibility = GONE
+        rootRotateLoading.visibility = GONE
+    }
+
+    override fun onBackPressed() {
+//        super.onBackPressed()
+        Log.d("BackPressed", "trtr")
+        val childFragmentManager = supportFragmentManager.fragments[0]?.childFragmentManager
+        if (childFragmentManager?.fragments?.get(0) is WizzardNamesFragment) closeWizzardScreens()
+
+    }
+
+    override fun closeWizzardScreens() {
+        presenter.saveEmptyProperties()
+    }
 
 
     //region help functions

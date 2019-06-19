@@ -20,13 +20,13 @@ import com.example.darkfox.trainingnotes.utils.extensions.visible
 import kotlinx.android.synthetic.main.fragment_trainings.*
 import org.koin.standalone.inject
 
-class TrainingsFragment : BaseFragment<TrainingsContract.View,TrainingsContract.Presenter>(),TrainingsContract.View {
+class TrainingsFragment : BaseFragment<TrainingsContract.View, TrainingsContract.Presenter>(), TrainingsContract.View {
     override val layoutId: Int = R.layout.fragment_trainings
     override val presenter: TrainingsContract.Presenter by inject()
     override val scopeName: String = KoinScopes.TRAININGS.scopeName
 
-    private var addItemMenu:MenuItem? = null
-    private var progressItemMenu:MenuItem? = null
+    private var addItemMenu: MenuItem? = null
+    private var progressItemMenu: MenuItem? = null
     private val adapter = TrainingDayAdapter()
 
 
@@ -44,22 +44,22 @@ class TrainingsFragment : BaseFragment<TrainingsContract.View,TrainingsContract.
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
-        inflater.inflate(R.menu.trainings_main_menu,menu)
+        inflater.inflate(R.menu.trainings_main_menu, menu)
         addItemMenu = menu.findItem(R.id.menu_item_add_training)
 //        progressItemMenu  = menu.findItem(R.id.menu_item_progress)
     }
 
     override fun setTrainingDays(days: List<TrainingDay>) {
-        if (days.isEmpty()){
+        if (days.isEmpty()) {
             emptyTrainingsView.visible()
+            adapter.setList(days as ArrayList<TrainingDay>)
             addItemMenu?.isVisible = false
             progressItemMenu?.isVisible = false
-        }
-        else{
+        } else {
             emptyTrainingsView.gone()
             addItemMenu?.isVisible = true
             progressItemMenu?.isVisible = true
-            adapter.setList(days as ArrayList<TrainingDay>,notify = true)
+            adapter.setList(days as ArrayList<TrainingDay>, notify = true)
         }
     }
 
@@ -76,13 +76,13 @@ class TrainingsFragment : BaseFragment<TrainingsContract.View,TrainingsContract.
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId){
-            R.id.menu_item_add_training ->{
+        when (item.itemId) {
+            R.id.menu_item_add_training -> {
                 val direction = TrainingsFragmentDirections.openNewTraining(null)
                 findNavController().navigate(direction)
             }
 
-            R.id.menu_item_search ->{
+            R.id.menu_item_search -> {
                 val direction = TrainingsFragmentDirections.openSearch()
                 findNavController().navigate(direction)
             }
@@ -90,16 +90,26 @@ class TrainingsFragment : BaseFragment<TrainingsContract.View,TrainingsContract.
         return true
     }
 
-    private fun initListeners(){
+    private fun initListeners() {
         newTrainingIV.setOnClickListener {
             val direction = TrainingsFragmentDirections.openNewTraining(null)
             findNavController().navigate(direction)
         }
 
-        adapter.setTrainingListener {
-                val direction = TrainingsFragmentDirections.openNewTraining(it)
-                findNavController().navigate(direction)
-        }
+        adapter
+                .setTrainingListener {
+                    val direction = TrainingsFragmentDirections.openNewTraining(it)
+                    findNavController().navigate(direction)
+                }
+                .setTrainingDeletionListener { day ->
+                    adapter.deleteDay(day)
+                    adapter.notifyDataSetChanged()
+                    presenter.deleteTraining(day)
+                }
+                .setTrainingRemoveListener { day ->
+                    presenter.removeTraining(day)
+//                    adapter.notifyDataSetChanged()
+                }
     }
 
 }

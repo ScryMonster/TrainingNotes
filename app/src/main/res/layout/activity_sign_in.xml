@@ -18,5 +18,22 @@
         app:defaultNavHost="true"
         app:navGraph="@navigation/enter_user_graph"/>
 
+    <View
+        android:id="@+id/progressBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"
+        style="@style/ProgressShadow"/>
+
+    <com.example.darkfox.trainingnotes.dto.custom.DoubleProgressView
+        android:id="@+id/rootRotateLoading"
+        style="@style/rotate_view.ProgressView"
+        android:visibility="gone"
+        android:layout_gravity="center"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toTopOf="parent"/>
+
 
 </FrameLayout>

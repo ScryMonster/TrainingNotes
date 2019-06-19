@@ -21,6 +21,17 @@ class TrainingAdapter : BaseAdapter<TrainingAdapter.TrainingViewHolder,Training>
         holder.bind(itemList[position], position, clickListener)
     }
 
+    fun deleteItem(position: Int){
+        itemList.removeAt(position)
+        notifyItemRemoved(position)
+    }
+
+    fun deleteItem(item: Training){
+        itemList = itemList.minus(item) as ArrayList<Training>
+
+        notifyDataSetChanged()
+    }
+
 
     class TrainingViewHolder(view:View) : BaseViewHolder<Training>(view){
         override fun bind(item: Training, position: Int, listener: (Training) -> Unit) {
