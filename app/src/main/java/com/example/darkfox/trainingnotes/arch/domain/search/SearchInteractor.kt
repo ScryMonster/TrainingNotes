@@ -1,8 +1,7 @@
 package com.example.darkfox.trainingnotes.arch.domain.search
 
 import com.example.darkfox.trainingnotes.arch.repository.DataProvider
-import com.example.darkfox.trainingnotes.dto.TrainingDayHolder
-import com.example.darkfox.trainingnotes.dto.gym.Training
+import com.example.darkfox.trainingnotes.models.dto.TrainingDayHolder
 import com.example.darkfox.trainingnotes.utils.enums.MuscleGroups
 
 class SearchInteractor : ISearchInteractor {

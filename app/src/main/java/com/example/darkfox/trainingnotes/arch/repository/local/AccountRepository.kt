@@ -1,13 +1,10 @@
 package com.example.darkfox.trainingnotes.arch.repository.local
 
 import com.example.darkfox.trainingnotes.database.dao.AccountDao
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.errors.UserNotExist
-import com.example.darkfox.trainingnotes.utils.helpers.sharedPrefs.AccountManager
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import com.example.darkfox.trainingnotes.models.dto.Account
+import com.example.darkfox.trainingnotes.utils.helpers.sharedPrefs.IAccountManager
 
-class AccountRepository(private val accountManager: AccountManager,
+class AccountRepository(private val accountManager: IAccountManager,
                         private val accountDao: AccountDao) {
 
 
@@ -19,9 +16,7 @@ class AccountRepository(private val accountManager: AccountManager,
 
 
     fun saveToDatabase(account: Account) {
-//        withContext(Dispatchers.Default) {
             accountDao.insert(account)
-//        }
     }
 
     fun getAccount(id: String) = accountDao.getAccount(id)

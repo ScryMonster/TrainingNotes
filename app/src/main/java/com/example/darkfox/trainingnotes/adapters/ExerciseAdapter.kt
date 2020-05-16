@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.base.rv.BaseAdapter
 import com.example.darkfox.trainingnotes.arch.base.rv.BaseViewHolder
-import com.example.darkfox.trainingnotes.dto.gym.Exercise
+import com.example.darkfox.trainingnotes.models.dto.gym.Exercise
 import com.example.darkfox.trainingnotes.utils.extensions.findAndReplace
 import com.example.darkfox.trainingnotes.utils.extensions.inflate
 import kotlinx.android.synthetic.main.item_exercise.view.*

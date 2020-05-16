@@ -2,10 +2,8 @@ package com.example.darkfox.trainingnotes.arch.domain.splash
 
 import android.app.Activity
 import com.example.darkfox.trainingnotes.arch.repository.DataProvider
-import com.example.darkfox.trainingnotes.arch.repository.local.AccountRepository
-import com.example.darkfox.trainingnotes.arch.repository.local.PermissionsLocalRepository
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.ReadWriteStoragePermission
+import com.example.darkfox.trainingnotes.models.dto.Account
+import com.example.darkfox.trainingnotes.models.dto.ReadWriteStoragePermission
 import com.example.darkfox.trainingnotes.utils.permission.PermissionHelper
 
 class SplashInteractor(private val permissionHelper: PermissionHelper) : ISplashInteractor {

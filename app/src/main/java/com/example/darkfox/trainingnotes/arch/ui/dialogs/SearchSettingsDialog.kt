@@ -1,7 +1,6 @@
 package com.example.darkfox.trainingnotes.arch.ui.dialogs
 
 import android.app.Dialog
-import android.content.DialogInterface
 import android.os.Bundle
 import android.view.View
 import android.widget.CheckBox
@@ -10,7 +9,6 @@ import com.example.darkfox.trainingnotes.arch.base.ui.BaseBottomSheetDialog
 import com.example.darkfox.trainingnotes.arch.ui.contracts.SearchSettingsContract
 import com.example.darkfox.trainingnotes.arch.ui.root.RootActivity
 import com.example.darkfox.trainingnotes.arch.ui.search.SearchFragment
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
 import com.example.darkfox.trainingnotes.utils.enums.MuscleGroups
 import com.example.darkfox.trainingnotes.utils.enums.SearchBackResult
 import com.example.darkfox.trainingnotes.utils.enums.SearchType
@@ -23,7 +21,6 @@ import kotlin.collections.ArrayList
 
 class SearchSettingsDialog : BaseBottomSheetDialog<SearchSettingsContract.View, SearchSettingsContract.Presenter>(), SearchSettingsContract.View {
     override val presenter: SearchSettingsContract.Presenter by inject()
-    override val scopeName: String = KoinScopes.SEARCH_SETTINGS.scopeName
     private var checkBoxes: List<CheckBox>? = null
 
     private var settingsType: SearchType = SearchType.GROUPS

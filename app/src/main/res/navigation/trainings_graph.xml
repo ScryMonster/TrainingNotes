@@ -27,7 +27,7 @@
             app:destination="@id/addWarmUpDialog" />
         <argument
             android:name="dayHolder"
-            app:argType="com.example.darkfox.trainingnotes.dto.TrainingDayHolder"
+            app:argType="com.example.darkfox.trainingnotes.models.dto.TrainingDayHolder"
             app:nullable="true" />
     </fragment>
     <dialog-custom
@@ -36,14 +36,14 @@
         android:label="AddWarmUpDialog" >
         <argument
             android:name="warmUp"
-            app:argType="com.example.darkfox.trainingnotes.dto.gym.WarmUp"
+            app:argType="com.example.darkfox.trainingnotes.models.dto.gym.WarmUp"
             app:nullable="true" />
         <argument
             android:name="exercisePart"
             app:argType="com.example.darkfox.trainingnotes.utils.enums.AddExercisePart" />
         <argument
             android:name="exercise"
-            app:argType="com.example.darkfox.trainingnotes.dto.gym.Exercise"
+            app:argType="com.example.darkfox.trainingnotes.models.dto.gym.Exercise"
             app:nullable="true" />
     </dialog-custom>
     <fragment

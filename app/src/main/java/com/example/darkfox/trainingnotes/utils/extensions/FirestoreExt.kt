@@ -1,6 +1,6 @@
 package com.example.darkfox.trainingnotes.utils.extensions
 
-import com.example.darkfox.trainingnotes.dto.Result
+import com.example.darkfox.trainingnotes.models.dto.Result
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.CollectionReference
 import com.google.firebase.firestore.FirebaseFirestore

@@ -8,20 +8,17 @@ import com.example.darkfox.trainingnotes.arch.base.ui.BaseBottomSheetDialog
 import com.example.darkfox.trainingnotes.arch.ui.contracts.AddWarmUpContract
 import com.example.darkfox.trainingnotes.arch.ui.createTraining.CreateTrainingFragment
 import com.example.darkfox.trainingnotes.arch.ui.root.RootActivity
-import com.example.darkfox.trainingnotes.dto.gym.Exercise
-import com.example.darkfox.trainingnotes.dto.gym.WarmUp
+import com.example.darkfox.trainingnotes.models.dto.gym.Exercise
+import com.example.darkfox.trainingnotes.models.dto.gym.WarmUp
 import com.example.darkfox.trainingnotes.utils.enums.AddExercisePart
 import com.example.darkfox.trainingnotes.utils.enums.CreateTraningBackResult
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.google.android.material.textfield.TextInputEditText
 import kotlinx.android.synthetic.main.dialog_add_exercise.*
 import kotlinx.android.synthetic.main.dialog_add_war_up.*
 import org.koin.android.ext.android.inject
 import kotlin.random.Random
 
 class AddWarmUpDialog : BaseBottomSheetDialog<AddWarmUpContract.View, AddWarmUpContract.Presenter>(), AddWarmUpContract.View {
-    override val scopeName: String = KoinScopes.ADD_WARM_UP.scopeName
     override val presenter: AddWarmUpContract.Presenter by inject()
 
 

@@ -1,8 +1,8 @@
 package com.example.darkfox.trainingnotes.arch.domain.userInfo
 
 import com.example.darkfox.trainingnotes.arch.repository.DataProvider
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.errors.UserNotExist
+import com.example.darkfox.trainingnotes.models.dto.Account
+import com.example.darkfox.trainingnotes.models.errors.UserNotExist
 
 class UserInfoInteractor : IUserInfoInteractor {
 

@@ -6,25 +6,23 @@ import com.example.darkfox.trainingnotes.arch.repository.remote.FirebaseAuthRepo
 import com.example.darkfox.trainingnotes.arch.repository.remote.IRemoteRepository
 import com.example.darkfox.trainingnotes.arch.repository.remote.TrainingDaysRepository
 import com.example.darkfox.trainingnotes.database.dao.TrainingDaysDao
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.ReadWriteStoragePermission
-import com.example.darkfox.trainingnotes.dto.Result
-import com.example.darkfox.trainingnotes.dto.gym.Training
-import com.example.darkfox.trainingnotes.dto.gym.TrainingDay
+import com.example.darkfox.trainingnotes.models.dto.Account
+import com.example.darkfox.trainingnotes.models.dto.ReadWriteStoragePermission
+import com.example.darkfox.trainingnotes.models.dto.Result
+import com.example.darkfox.trainingnotes.models.dto.gym.TrainingDay
 import com.example.darkfox.trainingnotes.utils.enums.AccountPropertyType
 import com.example.darkfox.trainingnotes.utils.extensions.awaitWithNull
 import com.example.darkfox.trainingnotes.utils.extensions.getResults
 import com.example.darkfox.trainingnotes.utils.extensions.toAccount
 import com.google.firebase.auth.AuthResult
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
-import org.koin.standalone.KoinComponent
-import org.koin.standalone.inject
+import org.koin.core.KoinComponent
+import org.koin.core.inject
 
-object DataProvider : KoinComponent{
+object DataProvider : KoinComponent {
 
     private val accountRepository:AccountRepository by inject()
     private val permissionsLocalRepository:PermissionsLocalRepository by inject()

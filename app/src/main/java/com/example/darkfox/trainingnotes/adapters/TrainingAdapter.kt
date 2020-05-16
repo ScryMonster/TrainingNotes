@@ -6,8 +6,8 @@ import androidx.core.content.ContextCompat
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.base.rv.BaseAdapter
 import com.example.darkfox.trainingnotes.arch.base.rv.BaseViewHolder
-import com.example.darkfox.trainingnotes.dto.gym.Training
-import com.example.darkfox.trainingnotes.dto.gym.TrainingState
+import com.example.darkfox.trainingnotes.models.dto.gym.Training
+import com.example.darkfox.trainingnotes.models.dto.gym.TrainingState
 import com.example.darkfox.trainingnotes.utils.extensions.getDate
 import com.example.darkfox.trainingnotes.utils.extensions.getTime
 import com.example.darkfox.trainingnotes.utils.extensions.inflate

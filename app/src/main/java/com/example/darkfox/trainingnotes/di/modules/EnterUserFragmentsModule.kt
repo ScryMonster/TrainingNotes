@@ -5,24 +5,21 @@ import com.example.darkfox.trainingnotes.arch.domain.enterUser.IEnterUserInterac
 import com.example.darkfox.trainingnotes.arch.ui.contracts.EnterUserFragmentContract
 import com.example.darkfox.trainingnotes.arch.ui.enterAccount.login.EnterUserFragmentPresenter
 import com.example.darkfox.trainingnotes.arch.ui.enterAccount.register.RegisterPresenter
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
-import org.koin.dsl.module.module
+import org.koin.core.qualifier.named
+import org.koin.dsl.module
 
 object EnterUserFragmentsModule {
-    private val scopeName= KoinScopes.ENTER_USER_FRAGMENTS.scopeName
+    val module = module {
+            single<IEnterUserInteractor> { EnterUserInteractor() }
 
-    val module = org.koin.dsl.module.module {
-        scope<IEnterUserInteractor>(scopeName){
-            EnterUserInteractor()
-        }
 
-        scope<EnterUserFragmentContract.Presenter>(scopeName,name = SignIn){
-            EnterUserFragmentPresenter(get())
-        }
+            single<EnterUserFragmentContract.Presenter>(named(SignIn)) {
+                EnterUserFragmentPresenter(interactor = get())
+            }
 
-        scope<EnterUserFragmentContract.Presenter>(scopeName,name = Register){
-            RegisterPresenter(get())
-        }
+            single<EnterUserFragmentContract.Presenter>(named(Register)) {
+                RegisterPresenter(interactor = get())
+            }
     }
 
 

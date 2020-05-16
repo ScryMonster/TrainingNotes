@@ -1,17 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/enter_user_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/enter_user_graph"
     app:startDestination="@id/logInFragment">
 
     <fragment
         android:id="@+id/logInFragment"
         android:name="com.example.darkfox.trainingnotes.arch.ui.enterAccount.login.EnterUserFragment"
-        android:label="LogInFragment" >
+        android:label="LogInFragment">
         <action
             android:id="@+id/open_register"
             app:destination="@id/registerFragment2" />
     </fragment>
+
     <include app:graph="@navigation/wizzards_graph" />
+
     <fragment
         android:id="@+id/registerFragment2"
         android:name="com.example.darkfox.trainingnotes.arch.ui.enterAccount.register.RegisterFragment"

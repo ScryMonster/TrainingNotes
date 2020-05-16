@@ -5,25 +5,23 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.CheckBox
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.fragment.findNavController
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.adapters.TrainingDayAdapter
 import com.example.darkfox.trainingnotes.arch.base.ui.BaseFragment
 import com.example.darkfox.trainingnotes.arch.ui.contracts.TrainingsContract
-import com.example.darkfox.trainingnotes.dto.gym.TrainingDay
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
+import com.example.darkfox.trainingnotes.models.dto.gym.TrainingDay
 import com.example.darkfox.trainingnotes.utils.extensions.buildWithAction
 import com.example.darkfox.trainingnotes.utils.extensions.gone
 import com.example.darkfox.trainingnotes.utils.extensions.visible
 import kotlinx.android.synthetic.main.fragment_trainings.*
-import org.koin.standalone.inject
+import org.koin.android.ext.android.inject
+import org.koin.core.inject
 
 class TrainingsFragment : BaseFragment<TrainingsContract.View, TrainingsContract.Presenter>(), TrainingsContract.View {
     override val layoutId: Int = R.layout.fragment_trainings
     override val presenter: TrainingsContract.Presenter by inject()
-    override val scopeName: String = KoinScopes.TRAININGS.scopeName
 
     private var addItemMenu: MenuItem? = null
     private var progressItemMenu: MenuItem? = null

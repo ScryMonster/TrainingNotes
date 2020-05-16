@@ -7,26 +7,18 @@ import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.annotation.CallSuper
 import androidx.annotation.IdRes
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import com.example.darkfox.trainingnotes.arch.base.di.IKoinView
 import com.example.darkfox.trainingnotes.arch.ui.root.RootActivity
 import com.example.darkfox.trainingnotes.utils.extensions.inflate
 import com.example.darkfox.trainingnotes.utils.extensions.showErrorInSnackBar
 import com.example.darkfox.trainingnotes.utils.extensions.showInfoInSnackBar
-import org.koin.androidx.scope.ext.android.bindScope
-import org.koin.androidx.scope.ext.android.createScope
-import org.koin.androidx.scope.ext.android.getOrCreateScope
-import org.koin.core.scope.Scope
 
-abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>> : Fragment(), BaseContract.View, IKoinView {
+abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>> : Fragment(), BaseContract.View {
 
     abstract val layoutId: Int
         @IdRes get
 
     abstract val presenter: P
-
-    override lateinit var session: Scope
 
     val rootActivity: RootActivity?
         get() {
@@ -40,8 +32,6 @@ abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>
     @CallSuper
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        buildKoinScope()
-        bindScope(session)
         presenter.attachView(this as V)
     }
 
@@ -50,14 +40,6 @@ abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>
         super.onDestroyView()
         presenter.detachView()
     }
-
-    override fun buildKoinScope() {
-        session = getOrCreateScope(scopeName)
-    }
-
-//    override fun destroyKoinScope() {
-//        session.close()
-//    }
 
 
     override fun switchOffUiInteraction(flag: Boolean) {
@@ -76,18 +58,18 @@ abstract class BaseFragment<V : BaseContract.View, P : BaseContract.Presenter<V>
 
 
     override fun infoMessage(message: String) {
-        message.showInfoInSnackBar(view!!)
+        message.showInfoInSnackBar(requireView())
     }
 
     override fun errorMessage(message: String) {
-        message.showErrorInSnackBar(view!!)
+        message.showErrorInSnackBar(requireView())
     }
 
     override fun infoMessage(message: Int) {
-        resources.getString(message).showInfoInSnackBar(view!!)
+        resources.getString(message).showInfoInSnackBar(requireView())
     }
 
     override fun errorMessage(message: Int) {
-        resources.getString(message).showErrorInSnackBar(view!!)
+        resources.getString(message).showErrorInSnackBar(requireView())
     }
 }

@@ -4,36 +4,23 @@ import android.app.Dialog
 import android.os.Bundle
 import android.view.View
 import android.widget.FrameLayout
-import android.widget.ImageView
 import androidx.annotation.CallSuper
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import com.example.darkfox.trainingnotes.R
-import com.example.darkfox.trainingnotes.arch.base.di.IKoinView
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import org.koin.androidx.scope.ext.android.bindScope
-import org.koin.androidx.scope.ext.android.getOrCreateScope
-import org.koin.core.scope.Scope
 
 
-abstract class BaseBottomSheetDialog<V : BaseContract.View, P : BaseContract.Presenter<V>> : BottomSheetDialogFragment(), BaseContract.View, IKoinView {
+abstract class BaseBottomSheetDialog<V : BaseContract.View, P : BaseContract.Presenter<V>> : BottomSheetDialogFragment(), BaseContract.View {
 
     abstract val presenter: P
-    override lateinit var session: Scope
 
-
-    @CallSuper
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        buildKoinScope()
-    }
 
     @CallSuper
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
         val dialog = super.onCreateDialog(savedInstanceState)
         presenter.attachView(this as V)
-        bindScope(session)
         return dialog
     }
 
@@ -75,7 +62,7 @@ abstract class BaseBottomSheetDialog<V : BaseContract.View, P : BaseContract.Pre
         dialog.window?.decorView?.findViewById<View>(R.id.design_bottom_sheet)?.setBackgroundResource(android.R.color.transparent)
         val d = dialog as BottomSheetDialog
         val bottomSheet = d.findViewById<View>(R.id.design_bottom_sheet) as FrameLayout?
-        val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet)
+        val bottomSheetBehavior = BottomSheetBehavior.from(bottomSheet!!)
         bottomSheetBehavior.skipCollapsed = true
         bottomSheetBehavior.state = BottomSheetBehavior.STATE_EXPANDED
     }
@@ -86,9 +73,6 @@ abstract class BaseBottomSheetDialog<V : BaseContract.View, P : BaseContract.Pre
         presenter.detachView()
     }
 
-    override fun buildKoinScope() {
-        session = getOrCreateScope(scopeName)
-    }
 
     override fun errorMessage(message: Int) {}
 

@@ -1,8 +1,8 @@
 package com.example.darkfox.trainingnotes.arch.domain.splash
 
 import android.app.Activity
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.ReadWriteStoragePermission
+import com.example.darkfox.trainingnotes.models.dto.Account
+import com.example.darkfox.trainingnotes.models.dto.ReadWriteStoragePermission
 
 interface ISplashInteractor {
 

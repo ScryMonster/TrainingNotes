@@ -4,19 +4,15 @@ import com.example.darkfox.trainingnotes.arch.domain.userInfo.IUserInfoInteracto
 import com.example.darkfox.trainingnotes.arch.domain.userInfo.UserInfoInteractor
 import com.example.darkfox.trainingnotes.arch.ui.contracts.UserInfoContract
 import com.example.darkfox.trainingnotes.arch.ui.userInfo.view.UserInfoPresenter
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 
 object UserInfoModule {
-
-    private val scopeName = KoinScopes.USER_INFO.scopeName
-
     val module = module {
-        scope<IUserInfoInteractor>(scopeName){
+        single<IUserInfoInteractor> {
             UserInfoInteractor()
         }
 
-        scope<UserInfoContract.Presenter>(scopeName){
+        single<UserInfoContract.Presenter> {
             UserInfoPresenter(get())
         }
     }

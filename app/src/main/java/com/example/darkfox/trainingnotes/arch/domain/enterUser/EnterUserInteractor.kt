@@ -2,11 +2,11 @@ package com.example.darkfox.trainingnotes.arch.domain.enterUser
 
 import android.util.Patterns
 import com.example.darkfox.trainingnotes.arch.repository.DataProvider
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.errors.FirebaseLoginException
-import com.example.darkfox.trainingnotes.dto.errors.FirebaseRegisterException
-import com.example.darkfox.trainingnotes.dto.errors.FirestoreExceptionCreatingAccountDoc
-import com.example.darkfox.trainingnotes.dto.errors.FirestoreExceptionGettingAccountDoc
+import com.example.darkfox.trainingnotes.models.dto.Account
+import com.example.darkfox.trainingnotes.models.errors.FirebaseLoginException
+import com.example.darkfox.trainingnotes.models.errors.FirebaseRegisterException
+import com.example.darkfox.trainingnotes.models.errors.FirestoreExceptionCreatingAccountDoc
+import com.example.darkfox.trainingnotes.models.errors.FirestoreExceptionGettingAccountDoc
 import com.example.darkfox.trainingnotes.utils.extensions.checkResultSusp
 import java.util.regex.Pattern
 

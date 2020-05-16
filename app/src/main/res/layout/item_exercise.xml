@@ -25,7 +25,7 @@
 
 
 
-    <com.example.darkfox.trainingnotes.dto.custom.RoundDetails
+    <com.example.darkfox.trainingnotes.models.view.RoundDetails
         android:id="@+id/roundOne"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/roundTwo"/>
 
-    <com.example.darkfox.trainingnotes.dto.custom.RoundDetails
+    <com.example.darkfox.trainingnotes.models.view.RoundDetails
         android:id="@+id/roundTwo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/roundThree"/>
 
-    <com.example.darkfox.trainingnotes.dto.custom.RoundDetails
+    <com.example.darkfox.trainingnotes.models.view.RoundDetails
         android:id="@+id/roundThree"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -52,7 +52,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/roundFour"/>
 
-    <com.example.darkfox.trainingnotes.dto.custom.RoundDetails
+    <com.example.darkfox.trainingnotes.models.view.RoundDetails
         android:id="@+id/roundFour"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -61,7 +61,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toStartOf="@id/roundFive"/>
 
-    <com.example.darkfox.trainingnotes.dto.custom.RoundDetails
+    <com.example.darkfox.trainingnotes.models.view.RoundDetails
         android:id="@+id/roundFive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

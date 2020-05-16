@@ -38,7 +38,7 @@
         android:visibility="gone"
         style="@style/ProgressShadow"/>
 
-    <com.example.darkfox.trainingnotes.dto.custom.DoubleProgressView
+    <com.example.darkfox.trainingnotes.models.view.DoubleProgressView
         android:id="@+id/rootRotateLoading"
         style="@style/rotate_view.ProgressView"
         android:visibility="gone"

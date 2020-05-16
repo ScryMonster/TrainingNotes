@@ -3,9 +3,6 @@ package com.example.darkfox.trainingnotes.arch.ui.enterAccount.login
 import com.example.darkfox.trainingnotes.arch.base.ui.BasePresenter
 import com.example.darkfox.trainingnotes.arch.domain.enterUser.IEnterUserInteractor
 import com.example.darkfox.trainingnotes.arch.ui.contracts.EnterUserFragmentContract
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.utils.enums.EnterUserFlow
-import com.example.darkfox.trainingnotes.utils.extensions.withProgress
 import com.example.darkfox.trainingnotes.utils.extensions.withProgressAsync
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job

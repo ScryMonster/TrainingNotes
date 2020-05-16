@@ -1,6 +1,6 @@
 package com.example.darkfox.trainingnotes.utils.extensions
 
-import com.example.darkfox.trainingnotes.dto.Result
+import com.example.darkfox.trainingnotes.models.dto.Result
 import java.util.*
 
 fun <T : Any> Result<T>.checkResult(success: (T) -> Unit,

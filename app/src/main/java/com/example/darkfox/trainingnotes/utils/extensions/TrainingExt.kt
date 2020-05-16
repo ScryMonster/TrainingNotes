@@ -1,6 +1,6 @@
 package com.example.darkfox.trainingnotes.utils.extensions
 
-import com.example.darkfox.trainingnotes.dto.gym.*
+import com.example.darkfox.trainingnotes.models.dto.gym.*
 import com.example.darkfox.trainingnotes.utils.enums.MuscleGroups
 import java.lang.StringBuilder
 import java.text.SimpleDateFormat

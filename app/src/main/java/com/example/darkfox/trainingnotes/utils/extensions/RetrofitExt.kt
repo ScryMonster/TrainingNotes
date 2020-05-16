@@ -1,6 +1,6 @@
 package com.example.darkfox.trainingnotes.utils.extensions
 
-import com.example.darkfox.trainingnotes.dto.Header
+import com.example.darkfox.trainingnotes.models.dto.Header
 import com.google.gson.Gson
 import okhttp3.Interceptor
 import okhttp3.Request

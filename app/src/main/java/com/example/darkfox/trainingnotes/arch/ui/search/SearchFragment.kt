@@ -13,8 +13,7 @@ import com.example.darkfox.trainingnotes.adapters.SearchAdapter
 import com.example.darkfox.trainingnotes.arch.base.NavigationResultView
 import com.example.darkfox.trainingnotes.arch.base.ui.BaseFragment
 import com.example.darkfox.trainingnotes.arch.ui.contracts.SearchContract
-import com.example.darkfox.trainingnotes.dto.TrainingDayHolder
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
+import com.example.darkfox.trainingnotes.models.dto.TrainingDayHolder
 import com.example.darkfox.trainingnotes.utils.enums.MuscleGroups
 import com.example.darkfox.trainingnotes.utils.enums.SearchBackResult
 import com.example.darkfox.trainingnotes.utils.enums.SearchType
@@ -26,7 +25,6 @@ import java.util.*
 class SearchFragment : BaseFragment<SearchContract.View, SearchContract.Presenter>(), SearchContract.View,NavigationResultView {
     override val layoutId: Int = R.layout.fragment_search
     override val presenter: SearchContract.Presenter by inject()
-    override val scopeName: String = KoinScopes.SEARCH.scopeName
 
     private var textSearchMenuItem:MenuItem? = null
     private var groupSearchMenuItem:MenuItem? = null

@@ -1,7 +1,7 @@
 package com.example.darkfox.trainingnotes.database.converters
 
 import androidx.room.TypeConverter
-import com.example.darkfox.trainingnotes.dto.gym.Training
+import com.example.darkfox.trainingnotes.models.dto.gym.Training
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 

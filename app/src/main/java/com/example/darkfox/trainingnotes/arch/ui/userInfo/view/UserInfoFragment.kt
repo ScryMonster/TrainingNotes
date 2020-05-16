@@ -6,17 +6,15 @@ import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.base.ui.BaseFragment
 import com.example.darkfox.trainingnotes.arch.ui.contracts.UserInfoContract
 import com.example.darkfox.trainingnotes.arch.ui.root.RootActivity
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
+import com.example.darkfox.trainingnotes.models.dto.Account
 import kotlinx.android.synthetic.main.fragment_user_info.*
-import org.koin.standalone.inject
+import org.koin.android.ext.android.inject
+import org.koin.core.inject
 
 class UserInfoFragment : BaseFragment<UserInfoContract.View, UserInfoContract.Presenter>(), UserInfoContract.View {
     override val presenter: UserInfoContract.Presenter by inject()
 
     override val layoutId: Int = R.layout.fragment_user_info
-
-    override val scopeName: String = KoinScopes.USER_INFO.scopeName
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

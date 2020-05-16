@@ -6,8 +6,8 @@
 //import androidx.lifecycle.Transformations
 //import com.example.darkfox.trainingnotes.arch.base.ui.ScopedViewModel
 //import com.example.darkfox.trainingnotes.arch.domain.splash.ISplashInteractor
-//import com.example.darkfox.trainingnotes.dto.Account
-//import com.example.darkfox.trainingnotes.dto.ReadWriteStoragePermission
+//import com.example.darkfox.trainingnotes.models.dto.Account
+//import com.example.darkfox.trainingnotes.models.dto.ReadWriteStoragePermission
 //import com.example.darkfox.trainingnotes.utils.extensions.withProgress
 //import com.example.darkfox.trainingnotes.utils.extensions.withProgressAsync
 //import com.example.darkfox.trainingnotes.utils.helpers.states.RequestState

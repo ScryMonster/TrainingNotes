@@ -8,9 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.base.rv.BaseAdapter
 import com.example.darkfox.trainingnotes.arch.base.rv.SwipeCallback
-import com.example.darkfox.trainingnotes.dto.TrainingDayHolder
-import com.example.darkfox.trainingnotes.dto.gym.Training
-import com.example.darkfox.trainingnotes.dto.gym.TrainingDay
+import com.example.darkfox.trainingnotes.models.dto.TrainingDayHolder
+import com.example.darkfox.trainingnotes.models.dto.gym.Training
+import com.example.darkfox.trainingnotes.models.dto.gym.TrainingDay
 import com.example.darkfox.trainingnotes.utils.extensions.*
 import kotlinx.android.synthetic.main.item_training_day.view.*
 

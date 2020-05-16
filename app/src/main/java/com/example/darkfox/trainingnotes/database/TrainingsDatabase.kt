@@ -8,8 +8,8 @@ import androidx.room.TypeConverters
 import com.example.darkfox.trainingnotes.database.converters.*
 import com.example.darkfox.trainingnotes.database.dao.AccountDao
 import com.example.darkfox.trainingnotes.database.dao.TrainingDaysDao
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.gym.TrainingDay
+import com.example.darkfox.trainingnotes.models.dto.Account
+import com.example.darkfox.trainingnotes.models.dto.gym.TrainingDay
 
 @Database(entities = [Account::class,TrainingDay::class], version = 1)
 @TypeConverters(PropertiestConverter::class,TrainingStateConvertor::class,MuscleGroupsConvertor::class,TrainingConverter::class,TrainingsConverter::class)

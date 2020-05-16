@@ -15,24 +15,22 @@ import com.example.darkfox.trainingnotes.arch.base.NavigationResultView
 import com.example.darkfox.trainingnotes.arch.base.ui.BaseFragment
 import com.example.darkfox.trainingnotes.arch.ui.contracts.CreateTrainingContract
 import com.example.darkfox.trainingnotes.arch.ui.dialogs.warmUp.AddWarmUpDialog
-import com.example.darkfox.trainingnotes.dto.TrainingDayHolder
-import com.example.darkfox.trainingnotes.dto.gym.Exercise
-import com.example.darkfox.trainingnotes.dto.gym.Training
-import com.example.darkfox.trainingnotes.dto.gym.TrainingState
-import com.example.darkfox.trainingnotes.dto.gym.WarmUp
+import com.example.darkfox.trainingnotes.models.dto.TrainingDayHolder
+import com.example.darkfox.trainingnotes.models.dto.gym.Exercise
+import com.example.darkfox.trainingnotes.models.dto.gym.Training
+import com.example.darkfox.trainingnotes.models.dto.gym.TrainingState
+import com.example.darkfox.trainingnotes.models.dto.gym.WarmUp
 import com.example.darkfox.trainingnotes.utils.enums.AddExercisePart
 import com.example.darkfox.trainingnotes.utils.enums.CreateTraningBackResult
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
 import com.example.darkfox.trainingnotes.utils.enums.MuscleGroups
 import com.example.darkfox.trainingnotes.utils.extensions.*
 import kotlinx.android.synthetic.main.fragment_create_training.*
-import org.koin.standalone.inject
+import org.koin.android.ext.android.inject
 import kotlin.random.Random
 
 class CreateTrainingFragment : BaseFragment<CreateTrainingContract.View, CreateTrainingContract.Presenter>(), CreateTrainingContract.View, NavigationResultView {
     override val layoutId: Int = R.layout.fragment_create_training
     override val presenter: CreateTrainingContract.Presenter by inject()
-    override val scopeName: String = KoinScopes.CREATE_TRAINING.scopeName
 
     private val warmUpAdapter = WarmUpAdapter()
     private val exerciseAdapter = ExerciseAdapter()

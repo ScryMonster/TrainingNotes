@@ -2,8 +2,7 @@ package com.example.darkfox.trainingnotes.arch.ui.contracts
 
 import com.example.darkfox.trainingnotes.arch.base.ui.BaseContract
 import com.example.darkfox.trainingnotes.arch.base.ui.IProgressView
-import com.example.darkfox.trainingnotes.dto.TrainingDayHolder
-import com.example.darkfox.trainingnotes.dto.gym.Training
+import com.example.darkfox.trainingnotes.models.dto.TrainingDayHolder
 import com.example.darkfox.trainingnotes.utils.enums.MuscleGroups
 import com.example.darkfox.trainingnotes.utils.enums.SearchType
 

@@ -70,7 +70,7 @@
             app:layout_constraintGuide_begin="124dp" />
 
 
-        <com.example.darkfox.trainingnotes.dto.custom.ExerciseRound
+        <com.example.darkfox.trainingnotes.models.view.ExerciseRound
             android:id="@+id/firstRound"
             android:layout_width="200dp"
             android:layout_height="80dp"
@@ -81,7 +81,7 @@
             app:layout_constraintTop_toBottomOf="@id/guideLine"
             app:roundNumber="1" />
 
-        <com.example.darkfox.trainingnotes.dto.custom.ExerciseRound
+        <com.example.darkfox.trainingnotes.models.view.ExerciseRound
             android:id="@+id/secondRound"
             android:layout_width="200dp"
             android:layout_height="80dp"
@@ -92,7 +92,7 @@
             app:layout_constraintTop_toBottomOf="@id/guideLine"
             app:roundNumber="2" />
 
-        <com.example.darkfox.trainingnotes.dto.custom.ExerciseRound
+        <com.example.darkfox.trainingnotes.models.view.ExerciseRound
             android:id="@+id/thirdRound"
             android:layout_width="200dp"
             android:layout_height="80dp"
@@ -103,7 +103,7 @@
             app:layout_constraintTop_toBottomOf="@id/firstRound"
             app:roundNumber="3" />
 
-        <com.example.darkfox.trainingnotes.dto.custom.ExerciseRound
+        <com.example.darkfox.trainingnotes.models.view.ExerciseRound
             android:id="@+id/fourthRound"
             android:layout_width="200dp"
             android:layout_height="80dp"
@@ -115,7 +115,7 @@
             app:roundNumber="4" />
 
 
-        <com.example.darkfox.trainingnotes.dto.custom.ExerciseRound
+        <com.example.darkfox.trainingnotes.models.view.ExerciseRound
             android:id="@+id/fifthRound"
             android:layout_width="200dp"
             android:layout_height="80dp"

@@ -1,21 +1,22 @@
 package com.example.darkfox.trainingnotes.arch.repository.remote
 
-import com.example.darkfox.trainingnotes.dto.Account
+import com.example.darkfox.trainingnotes.models.dto.Account
 import com.example.darkfox.trainingnotes.utils.enums.AccountPropertyType
-import com.example.darkfox.trainingnotes.utils.extensions.*
+import com.example.darkfox.trainingnotes.utils.extensions.account
+import com.example.darkfox.trainingnotes.utils.extensions.check
+import com.example.darkfox.trainingnotes.utils.extensions.users
 import com.google.android.gms.tasks.Task
 import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
-import kotlinx.coroutines.tasks.await
 
-class UserFirestoreRepository(private val db: FirebaseFirestore) : IRemoteRepository<Account> {
+class UserFirestoreRepository(private val firestoreDatabase: FirebaseFirestore) : IRemoteRepository<Account> {
 
     override suspend fun create(data: Account, success: () -> Unit, error: (Exception) -> Unit) {
-        db.users().account(data.fireBaseId).set(data).check(success,error)
+        firestoreDatabase.users().account(data.fireBaseId).set(data).check(success, error)
     }
 
 
-    override fun get(id: String, error: (Exception) -> Unit): Task<DocumentSnapshot> = db.users().document(id).get()
+    override fun get(id: String, error: (Exception) -> Unit): Task<DocumentSnapshot> = firestoreDatabase.users().document(id).get()
 //    {
 //        try {
 //            val snap = db.users().document(id).get().await()
@@ -41,7 +42,7 @@ class UserFirestoreRepository(private val db: FirebaseFirestore) : IRemoteReposi
                                              newValue: O,
                                              success: () -> Unit,
                                              error: (Exception) -> Unit) {
-        db.users().document(documentName).apply {
+        firestoreDatabase.users().document(documentName).apply {
             when (propertyType) {
                 AccountPropertyType.FIREBASE_ID -> update(AccountPropertyType.FIREBASE_ID.propName, newValue)
                 AccountPropertyType.FIRST_NAME -> update(AccountPropertyType.FIRST_NAME.propName, newValue)

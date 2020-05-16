@@ -4,19 +4,15 @@ import com.example.darkfox.trainingnotes.arch.domain.trainings.ITrainingDayInter
 import com.example.darkfox.trainingnotes.arch.domain.trainings.TrainingDayInteractor
 import com.example.darkfox.trainingnotes.arch.ui.contracts.TrainingsContract
 import com.example.darkfox.trainingnotes.arch.ui.trainings.TrainingsPresenter
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 
 object TrainingsModule {
-
-    private val scopeName = KoinScopes.TRAININGS.scopeName
-
     val module = module {
-        scope<ITrainingDayInteractor>(scopeName){
+        single<ITrainingDayInteractor> {
             TrainingDayInteractor()
         }
 
-        scope<TrainingsContract.Presenter>(scopeName){
+        single<TrainingsContract.Presenter> {
             TrainingsPresenter(get())
         }
     }

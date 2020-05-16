@@ -5,8 +5,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.base.rv.BaseAdapter
-import com.example.darkfox.trainingnotes.dto.gym.TrainingDay
-import com.example.darkfox.trainingnotes.dto.gym.states.TrainingStateMachine
+import com.example.darkfox.trainingnotes.models.dto.gym.TrainingDay
+import com.example.darkfox.trainingnotes.models.dto.gym.states.TrainingStateMachine
 import com.example.darkfox.trainingnotes.utils.enums.TimePatterns
 import com.example.darkfox.trainingnotes.utils.extensions.convertToTime
 import com.example.darkfox.trainingnotes.utils.extensions.inflate

@@ -1,28 +1,22 @@
 package com.example.darkfox.trainingnotes.arch.ui.wizzards.names
 
-import android.content.Intent
 import android.os.Bundle
-import android.text.InputType
 import android.view.View
 import androidx.navigation.fragment.findNavController
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.base.ui.BaseFragment
-import com.example.darkfox.trainingnotes.arch.ui.contracts.RootContract
 import com.example.darkfox.trainingnotes.arch.ui.contracts.WizzardContract
 import com.example.darkfox.trainingnotes.arch.ui.enterAccount.activity.EnterUserActivity
-import com.example.darkfox.trainingnotes.arch.ui.root.RootActivity
 import com.example.darkfox.trainingnotes.di.modules.WizzardModule
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.UserProperties
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
-import com.example.darkfox.trainingnotes.utils.enums.WizzardType
+import com.example.darkfox.trainingnotes.models.dto.Account
 import kotlinx.android.synthetic.main.fragment_wizzard.*
-import org.koin.standalone.inject
+import org.koin.android.ext.android.inject
+import org.koin.core.inject
+import org.koin.core.qualifier.named
 
 class WizzardNamesFragment : BaseFragment<WizzardContract.View, WizzardContract.Presenter>(), WizzardContract.View {
     override val layoutId: Int = R.layout.fragment_wizzard
-    override val presenter: WizzardContract.Presenter by inject(WizzardModule.WIZZARD_NAME)
-    override val scopeName: String = KoinScopes.WIZZARD.scopeName
+    override val presenter: WizzardContract.Presenter by inject(named(WizzardModule.WIZZARD_NAME))
     private var account: Account? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {

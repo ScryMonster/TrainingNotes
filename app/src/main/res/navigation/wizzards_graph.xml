@@ -9,7 +9,7 @@
         android:label="WizzardFragment" >
         <argument
             android:name="account"
-            app:argType="com.example.darkfox.trainingnotes.dto.Account"
+            app:argType="com.example.darkfox.trainingnotes.models.dto.Account"
             app:nullable="true" />
         <action
             android:id="@+id/open_wizzard_properties"
@@ -21,7 +21,7 @@
         android:label="WizzardPropertiesFragment" >
         <argument
             android:name="account"
-            app:argType="com.example.darkfox.trainingnotes.dto.Account"
+            app:argType="com.example.darkfox.trainingnotes.models.dto.Account"
             app:nullable="true" />
     </fragment>
 </navigation>

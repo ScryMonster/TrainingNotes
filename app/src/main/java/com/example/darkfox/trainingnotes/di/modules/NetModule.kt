@@ -5,7 +5,7 @@ import com.example.darkfox.trainingnotes.BuildConfig
 import com.example.darkfox.trainingnotes.utils.extensions.addHeader
 import com.example.darkfox.trainingnotes.utils.extensions.build
 import com.example.darkfox.trainingnotes.utils.extensions.header
-import com.example.darkfox.trainingnotes.utils.helpers.sharedPrefs.TokenManager
+import com.example.darkfox.trainingnotes.utils.helpers.sharedPrefs.ITokenManager
 import com.google.gson.FieldNamingPolicy
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
@@ -13,12 +13,13 @@ import com.jakewharton.retrofit2.adapter.kotlin.coroutines.experimental.Coroutin
 import okhttp3.Cache
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
-import org.koin.dsl.module.module
 import retrofit2.CallAdapter
 import retrofit2.Converter
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 import java.util.concurrent.TimeUnit
+import org.koin.dsl.module
+
 
 object NetModule {
 
@@ -48,7 +49,7 @@ object NetModule {
             .setFieldNamingPolicy(FieldNamingPolicy.IDENTITY)
             .create()
 
-    private fun provideOkHttpClient(tokenManager: TokenManager,
+    private fun provideOkHttpClient(tokenManager: ITokenManager,
                                     cache: Cache) = OkHttpClient.Builder().also { clientBuilder ->
         clientBuilder.addInterceptor { chain ->
             chain.request().also { request ->

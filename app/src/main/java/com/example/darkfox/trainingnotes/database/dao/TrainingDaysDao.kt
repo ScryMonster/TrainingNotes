@@ -3,8 +3,7 @@ package com.example.darkfox.trainingnotes.database.dao
 import androidx.room.Dao
 import androidx.room.Query
 import androidx.room.Transaction
-import com.example.darkfox.trainingnotes.dto.gym.Training
-import com.example.darkfox.trainingnotes.dto.gym.TrainingDay
+import com.example.darkfox.trainingnotes.models.dto.gym.TrainingDay
 
 @Dao
 interface TrainingDaysDao : BaseDao<TrainingDay> {

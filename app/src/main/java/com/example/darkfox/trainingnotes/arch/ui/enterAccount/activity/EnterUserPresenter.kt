@@ -3,7 +3,7 @@ package com.example.darkfox.trainingnotes.arch.ui.enterAccount.activity
 import com.example.darkfox.trainingnotes.arch.base.ui.BasePresenter
 import com.example.darkfox.trainingnotes.arch.repository.DataProvider
 import com.example.darkfox.trainingnotes.arch.ui.contracts.EnterUserContract
-import com.example.darkfox.trainingnotes.dto.UserProperties
+import com.example.darkfox.trainingnotes.models.dto.UserProperties
 import kotlinx.coroutines.launch
 
 class EnterUserPresenter : BasePresenter<EnterUserContract.View>(),EnterUserContract.Presenter {

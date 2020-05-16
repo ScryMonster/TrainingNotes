@@ -1,9 +1,9 @@
 package com.example.darkfox.trainingnotes.arch.domain.newTraining
 
 import com.example.darkfox.trainingnotes.arch.repository.DataProvider
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.TrainingDayHolder
-import com.example.darkfox.trainingnotes.dto.gym.TrainingDay
+import com.example.darkfox.trainingnotes.models.dto.Account
+import com.example.darkfox.trainingnotes.models.dto.TrainingDayHolder
+import com.example.darkfox.trainingnotes.models.dto.gym.TrainingDay
 import com.example.darkfox.trainingnotes.utils.extensions.todaysMidnight
 
 class CreateTrainingInteractor : ICreateTrainingInteractor {

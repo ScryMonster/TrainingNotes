@@ -1,7 +1,7 @@
 package com.example.darkfox.trainingnotes.arch.domain.wizzard
 
 import com.example.darkfox.trainingnotes.arch.repository.DataProvider
-import com.example.darkfox.trainingnotes.dto.Account
+import com.example.darkfox.trainingnotes.models.dto.Account
 
 class WizzardInteractor() : IWizzardInteractor {
     override suspend fun saveAccount(account: Account, success: () -> Unit,fail:(Exception)->Unit) {

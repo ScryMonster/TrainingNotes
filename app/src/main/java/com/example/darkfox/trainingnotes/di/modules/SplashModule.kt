@@ -4,23 +4,20 @@ import com.example.darkfox.trainingnotes.arch.domain.splash.ISplashInteractor
 import com.example.darkfox.trainingnotes.arch.domain.splash.SplashInteractor
 import com.example.darkfox.trainingnotes.arch.ui.contracts.SplashContract
 import com.example.darkfox.trainingnotes.arch.ui.splash.SplashPresenter
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
 import com.example.darkfox.trainingnotes.utils.permission.PermissionHelper
-import org.koin.dsl.module.module
+import org.koin.dsl.module
 
 object SplashModule {
-    private val scopeName = KoinScopes.SPLASH.scopeName
-
     val module = module {
-        scope(scopeName) { PermissionHelper() }
+        single { PermissionHelper() }
 
 
 
-        scope<ISplashInteractor>(scopeName) {
+        single<ISplashInteractor> {
             SplashInteractor(get())
         }
 
-        scope<SplashContract.Presenter>(scopeName) {
+        single<SplashContract.Presenter> {
             SplashPresenter(get())
         }
     }

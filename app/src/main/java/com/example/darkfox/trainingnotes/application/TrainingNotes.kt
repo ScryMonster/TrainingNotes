@@ -1,24 +1,23 @@
 package com.example.darkfox.trainingnotes.application
 
 import android.app.Application
-import com.example.darkfox.trainingnotes.BuildConfig
 import com.example.darkfox.trainingnotes.di.modules.*
-import org.koin.android.ext.android.startKoin
+import org.koin.android.ext.koin.androidContext
 import org.koin.android.logger.AndroidLogger
+import org.koin.core.context.startKoin
+import org.koin.dsl.module
 
 class TrainingNotes : Application() {
-    private val module = org.koin.dsl.module.module {
+    private val module = module {
         single { this@TrainingNotes.applicationContext }
     }
 
     override fun onCreate() {
         super.onCreate()
-        startKoin(this,
-                listOf(NetModule.module,
+        val modules = listOf(NetModule.module,
                         BaseModule.module,
                         SplashModule.module,
                         RootActModule.module,
-//                        SignInModule.module,
                         EnterUserActivityModule.module,
                         WizzardModule.module,
                         UserInfoModule.module,
@@ -27,9 +26,13 @@ class TrainingNotes : Application() {
                         AddWarmUpModule.module,
                         SearchModule.module,
                         SearchSettingsModule.module,
-                        EnterUserFragmentsModule.module),
-                logger = AndroidLogger(BuildConfig.DEBUG)
-        )
+                        EnterUserFragmentsModule.module)
+
+        startKoin{
+            androidContext(this@TrainingNotes)
+            logger(AndroidLogger())
+            modules(modules)
+        }
     }
 
 

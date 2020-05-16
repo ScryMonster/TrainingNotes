@@ -33,6 +33,14 @@ android {
 
         }
     }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    kotlinOptions {
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
 }
 
 kotlin {
@@ -48,7 +56,7 @@ androidExtensions {
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'com.google.android.material:material:1.0.0-beta01'
+    implementation 'com.google.android.material:material:1.2.0-alpha06'
     implementation libs.supportDesign
     implementation libs.constraintLayout
     implementation libs.card
@@ -56,10 +64,7 @@ dependencies {
     implementation libs.ktx
     implementation libs.navigation
     implementation libs.navigationUI
-    implementation libs.navigationRuntimeKtx
-    implementation libs.navigationKtx
-    implementation libs.navigationUIKtx
-    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.1.1'
+    implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-android:1.3.1'
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.1.1'
 
 
@@ -67,7 +72,6 @@ dependencies {
 
     implementation libs.viewModel
     implementation libs.livedata
-    implementation libs.lifecycle
     implementation 'com.google.firebase:firebase-auth:17.0.0'
     implementation 'com.google.firebase:firebase-firestore:17.1.2'
     kapt libs.accProcessor
@@ -83,6 +87,7 @@ dependencies {
 
 
     implementation libs.glide
+    implementation libs.topSnackbar
     kapt libs.glideCompiler
 
     implementation libs.retrofit
@@ -100,8 +105,8 @@ dependencies {
 
 
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'androidx.test:runner:1.1.1'
-    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.1'
+    androidTestImplementation 'androidx.test:runner:1.2.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
 
 }
 

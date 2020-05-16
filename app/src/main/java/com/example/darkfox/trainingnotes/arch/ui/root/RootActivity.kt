@@ -11,38 +11,29 @@ import androidx.fragment.app.FragmentManager
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.navigation.NavController
-import androidx.navigation.findNavController
+import androidx.navigation.ui.setupWithNavController
 import com.example.darkfox.trainingnotes.R
 import com.example.darkfox.trainingnotes.arch.base.NavigationResultView
 import com.example.darkfox.trainingnotes.arch.ui.contracts.RootContract
 import com.example.darkfox.trainingnotes.arch.ui.enterAccount.activity.EnterUserActivity
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
 import com.example.darkfox.trainingnotes.utils.extensions.*
 import kotlinx.android.synthetic.main.activity_root.*
-import org.koin.androidx.scope.ext.android.bindScope
-import org.koin.androidx.scope.ext.android.getOrCreateScope
-import org.koin.core.scope.Scope
-import org.koin.standalone.inject
+import org.koin.android.ext.android.inject
 import kotlin.properties.Delegates
 
 
-class RootActivity : AppCompatActivity(), RootContract.View  {
+class RootActivity : AppCompatActivity(), RootContract.View {
 
-    override val scopeName: String = KoinScopes.ROOT_ACT.scopeName
-    override lateinit var session: Scope
-    private val presenter:RootContract.Presenter by inject()
+    private val presenter: RootContract.Presenter by inject()
     private var currentNavController: MutableLiveData<NavController>? = null
     private val NAV_BAR_INVISIBLE_SCREENS = arrayListOf<Int>()
-
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_root)
-        buildKoinScope()
-        bindScope(session)
         presenter.attachView(this)
-        Log.d("RootInfo","Created")
+        Log.d("RootInfo", "Created")
         initBottomBarNavigation()
     }
 
@@ -55,7 +46,7 @@ class RootActivity : AppCompatActivity(), RootContract.View  {
         return currentNavController?.value?.navigateUp() ?: false
     }
 
-    fun returnToEnterUserFlow(){
+    fun returnToEnterUserFlow() {
         startActivity(Intent(this, EnterUserActivity::class.java))
         finish()
     }
@@ -78,15 +69,6 @@ class RootActivity : AppCompatActivity(), RootContract.View  {
         childFragmentManager?.addOnBackStackChangedListener(backStackListener)
         //currentNavController?.value?.navigateUp()
     }
-
-
-    //region DI Scope Initialization
-
-    override fun buildKoinScope() {
-        session = getOrCreateScope(scopeName)
-    }
-
-    //endregion
 
     //region Progress execution functions
     override fun showProgress(tag: Any?) {
@@ -131,9 +113,9 @@ class RootActivity : AppCompatActivity(), RootContract.View  {
     }
     //endregion
 
-    private fun initBottomBarNavigation(){
+    private fun initBottomBarNavigation() {
 
-        val graphIds = listOf(R.navigation.trainings_graph,R.navigation.profile_graph)
+        val graphIds = listOf(R.navigation.trainings_graph, R.navigation.profile_graph)
 
         val controller = rootBottomNavBar.setupWithNavController(
                 navGraphIds = graphIds,
@@ -150,7 +132,9 @@ class RootActivity : AppCompatActivity(), RootContract.View  {
         })
         currentNavController = controller
     }
-
-
-
 }
+
+
+
+
+

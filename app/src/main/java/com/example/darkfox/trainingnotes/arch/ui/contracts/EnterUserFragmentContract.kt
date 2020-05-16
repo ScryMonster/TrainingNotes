@@ -2,8 +2,7 @@ package com.example.darkfox.trainingnotes.arch.ui.contracts
 
 import com.example.darkfox.trainingnotes.arch.base.ui.BaseContract
 import com.example.darkfox.trainingnotes.arch.base.ui.IProgressView
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.utils.enums.EnterUserFlow
+import com.example.darkfox.trainingnotes.models.dto.Account
 
 interface EnterUserFragmentContract {
     interface View: IProgressView {

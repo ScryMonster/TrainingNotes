@@ -9,23 +9,22 @@ import com.example.darkfox.trainingnotes.arch.ui.contracts.EnterUserFragmentCont
 import com.example.darkfox.trainingnotes.arch.ui.enterAccount.activity.EnterUserActivity
 import com.example.darkfox.trainingnotes.arch.ui.wizzards.names.WizzardNamesFragment
 import com.example.darkfox.trainingnotes.di.modules.EnterUserFragmentsModule
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.EnterUserState
+import com.example.darkfox.trainingnotes.models.dto.Account
+import com.example.darkfox.trainingnotes.models.dto.EnterUserState
 import com.example.darkfox.trainingnotes.utils.enums.EnterUserFlow
-import com.example.darkfox.trainingnotes.utils.enums.KoinScopes
 import com.example.darkfox.trainingnotes.utils.enums.WizzardType
 import com.example.darkfox.trainingnotes.utils.extensions.afterTextChanged
 import com.example.darkfox.trainingnotes.utils.extensions.disable
 import com.example.darkfox.trainingnotes.utils.extensions.enable
 import kotlinx.android.synthetic.main.fragment_sign_in.*
-import org.koin.standalone.inject
+import org.koin.android.ext.android.inject
+import org.koin.core.qualifier.named
 
 class EnterUserFragment : BaseFragment<EnterUserFragmentContract.View, EnterUserFragmentContract.Presenter>(), EnterUserFragmentContract.View {
 
     override val layoutId: Int = R.layout.fragment_sign_in
 
-    override val scopeName: String = KoinScopes.ENTER_USER_FRAGMENTS.scopeName
-    override val presenter: EnterUserFragmentContract.Presenter  by inject(name = EnterUserFragmentsModule.SignIn)
+    override val presenter: EnterUserFragmentContract.Presenter  by inject(named(EnterUserFragmentsModule.SignIn))
 
     private var state = EnterUserState()
 //    private var flow = EnterUserFlow.LOGIN

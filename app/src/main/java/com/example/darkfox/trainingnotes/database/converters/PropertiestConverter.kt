@@ -1,7 +1,7 @@
 package com.example.darkfox.trainingnotes.database.converters
 
 import androidx.room.TypeConverter
-import com.example.darkfox.trainingnotes.dto.UserProperties
+import com.example.darkfox.trainingnotes.models.dto.UserProperties
 import com.example.darkfox.trainingnotes.utils.extensions.fromJson
 import com.google.gson.Gson
 

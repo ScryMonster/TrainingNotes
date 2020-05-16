@@ -1,9 +1,7 @@
 package com.example.darkfox.trainingnotes.arch.domain.newTraining
 
-import com.example.darkfox.trainingnotes.dto.Account
-import com.example.darkfox.trainingnotes.dto.TrainingDayHolder
-import com.example.darkfox.trainingnotes.dto.gym.Training
-import com.example.darkfox.trainingnotes.dto.gym.TrainingDay
+import com.example.darkfox.trainingnotes.models.dto.Account
+import com.example.darkfox.trainingnotes.models.dto.TrainingDayHolder
 
 interface ICreateTrainingInteractor {
     fun getCurrentUser(): Account?
